@@ -149,7 +149,7 @@ public class MainActivity extends AppCompatActivity
 
     private void initObjectives(SharedPreferences sharedPreferences){
         Objective over65percent = new Objective.ObjectiveBuilder().id(1).isEditable(false).period(Objective.BOTH_PERIODS).name("Gagner avec > 65% poss").description("").build();
-        Objective under65percent = new Objective.ObjectiveBuilder().id(2).isEditable(false).period(Objective.BOTH_PERIODS).name("Gagner avec < 65% poss").description("").build();
+        Objective under65percent = new Objective.ObjectiveBuilder().id(2).isEditable(false).period(Objective.BOTH_PERIODS).name("Gagner avec < 35% poss").description("").build();
         Objective scoreHatTrick = new Objective.ObjectiveBuilder().id(3).isEditable(false).period(Objective.BOTH_PERIODS).name("Marquer un triplé").description("").build();
         Objective noRond = new Objective.ObjectiveBuilder().id(4).isEditable(false).period(Objective.BOTH_PERIODS).name("Gagner sans la touche rond").description("").build();
         Objective noCroix = new Objective.ObjectiveBuilder().id(5).isEditable(false).period(Objective.BOTH_PERIODS).name("Gagner sans la touche croix").description("").build();
@@ -167,8 +167,8 @@ public class MainActivity extends AppCompatActivity
         Objective get4corners = new Objective.ObjectiveBuilder().id(17).isEditable(false).period(Objective.BOTH_PERIODS).name("Obtenir 4 corners").description("").build();
         Objective scoreDirectFk = new Objective.ObjectiveBuilder().id(18).isEditable(false).period(Objective.BOTH_PERIODS).name("Marquer sur coup franc direct").description("").build();
         Objective noFoul = new Objective.ObjectiveBuilder().id(19).isEditable(false).period(Objective.BOTH_PERIODS).name("Faire 0 faute en taclant au moins 3 fois").description("").build();
-        Objective scoreFirst15 = new Objective.ObjectiveBuilder().id(20).isEditable(false).period(Objective.BOTH_PERIODS).name("Marquer dans les 15 premieres").description("").build();
-        Objective scoreLast15 = new Objective.ObjectiveBuilder().id(21).isEditable(false).period(Objective.BOTH_PERIODS).name("Marquer dans les 15 dernieres").description("").build();
+        Objective scoreFirst15 = new Objective.ObjectiveBuilder().id(20).isEditable(false).period(Objective.BOTH_PERIODS).name("Marquer dans les 15 premieres minutes").description("").build();
+        Objective scoreLast15 = new Objective.ObjectiveBuilder().id(21).isEditable(false).period(Objective.BOTH_PERIODS).name("Marquer dans les 15 dernieres minutes").description("").build();
         Objective scoreDefender = new Objective.ObjectiveBuilder().id(22).isEditable(false).period(Objective.BOTH_PERIODS).name("Marquer avec un defenseur (placé defenseur)").description("").build();
         Objective dribbleGoal = new Objective.ObjectiveBuilder().id(23).isEditable(false).period(Objective.BOTH_PERIODS).name("Marquer en eliminant le gardien").description("").build();
         Objective screamerTwice = new Objective.ObjectiveBuilder().id(24).isEditable(false).period(Objective.BOTH_PERIODS).name("Marquer 2 fois de l'exterieur de la surface").description("").build();
