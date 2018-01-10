@@ -1,0 +1,189 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="personal.nmartinez.fr.virtualfootballpicker.playofflinesolo.view.PlayOfflineSoloFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/selected_wheel_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/selected_wheel_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:text="@string/selected_wheel_label" />
+
+        <TextView
+            android:id="@+id/selected_wheel_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="22sp"
+            android:textStyle="bold|italic" />
+
+    </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/stars_layout"
+            android:layout_below="@id/selected_wheel_layout"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/star_number_label"
+                android:textSize="18sp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="15dp"
+                />
+
+            <ImageView
+                android:id="@+id/selected_stars_imageview"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:src="@drawable/fivestars"
+                />
+
+            <Button
+                android:id="@+id/pick_stars_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/white"
+                android:text="@string/pick_objective"
+                />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/first_half_objective_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/stars_layout"
+            android:layout_centerHorizontal="true"
+            android:textSize="18sp"
+            android:paddingTop="30dp"
+            android:text="@string/first_half_objective_label"/>
+
+        <TextView
+            android:id="@+id/first_half_objective_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="15dp"
+            android:textStyle="italic"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/first_half_objective_label" />
+
+        <RelativeLayout
+            android:id="@+id/first_half_buttons_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="15dp"
+            android:layout_below="@id/first_half_objective_textview">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true">
+
+                <Button
+                    android:id="@+id/pick_first_half_objective_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:textColor="@color/white"
+                    android:text="@string/pick_objective"/>
+
+                <Button
+                    android:id="@+id/display_or_hide_first_half_objective_button"
+                    android:layout_marginLeft="20dp"
+                    android:visibility="gone"
+                    android:text="@string/hide_objective"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:textColor="@color/white"
+                    android:layout_toRightOf="@id/pick_first_half_objective_button"/>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/second_half_objective_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/first_half_buttons_layout"
+            android:layout_centerHorizontal="true"
+            android:textSize="18sp"
+            android:paddingTop="30dp"
+            android:text="@string/second_half_objective_label"/>
+
+        <TextView
+            android:id="@+id/second_half_objective_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="15dp"
+            android:textStyle="italic"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/second_half_objective_label" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="15dp"
+            android:layout_below="@id/second_half_objective_textview">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true">
+
+                <Button
+                    android:id="@+id/pick_second_half_objective_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:textColor="@color/white"
+                    android:text="@string/pick_objective"/>
+
+                <Button
+                    android:id="@+id/display_or_hide_second_half_objective_button"
+                    android:layout_marginLeft="20dp"
+                    android:visibility="gone"
+                    android:text="@string/hide_objective"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:textColor="@color/white"
+                    android:layout_toRightOf="@id/pick_second_half_objective_button"/>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+</FrameLayout>

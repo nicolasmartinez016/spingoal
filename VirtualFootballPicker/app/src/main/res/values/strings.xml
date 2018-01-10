@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">VirtualFootballPicker</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="objectives_title">Gages</string>
+    <string name="create_objectives_title">Creer un gage</string>
+    <string name="create_wheels_title">Creer une roue</string>
+    <string name="consult_wheels_title">Consulter les roues</string>
+    <string name="consult_objectives_title">Consulter les gages</string>
+    <string name="wheels_title">Roues</string>
+    <string name="play_title">Jouer</string>
+    <string name="play_offline_solo_title">Jouer hors ligne seul</string>
+    <string name="homepage_title">Accueil</string>
+    <string name="play_offline_multi_title">Jouer hors ligne a 2</string>
+    <string name="play_online_multi_title">Jouer en ligne a 2</string>
+    <string name="selected_wheel_label">Roue selectionnee : </string>
+    <string name="first_half_objective_label">GAGE DE LA PREMIERE MI TEMPS</string>
+    <string name="second_half_objective_label">GAGE DE LA DEUXIEME MI TEMPS</string>
+    <string name="please_wait">Veuillez patienter...</string>
+    <string name="first_period">1ere mi-temps</string>
+    <string name="second_period">2eme mi-temps</string>
+    <string name="create_wheel_label">Creer une roue</string>
+    <string name="edit_objective_label">Edition du gage </string>
+    <string name="edit_wheel_label">Edition de la roue </string>
+    <string name="create_objective_label">Creer un gage</string>
+    <string name="both_periods">Chaque mi-temps</string>
+    <string name="every_objectives">TOUS LES GAGES</string>
+    <string name="every_wheels">TOUTES LES ROUES</string>
+    <string name="pick_objective">Go !</string>
+    <string name="hide_objective">Cacher</string>
+    <string name="display_objective">Afficher</string>
+    <string name="star_number_label">NOMBRE D\'ETOILES</string>
+    <string name="create_wheel_name_label">Nom de la roue : </string>
+    <string name="create_wheel_button_label">Créer !</string>
+    <string name="try_playing_alone">Essaye maintenant ! \n(simple écran)</string>
+    <string name="try_playing_multi">Essaye maintenant ! \n(écran partagé)</string>
+    <string name="unsaved_changes_label">Des changements n\'ont pas été sauvegardés..</string>
+    <string name="game_description">Lassé de taper tes potes sans cesse à la console ? Laisse leur une chance et change les règles du jeu !\n</string>
+    <string name="game_description_part_2">D\'abord, le jeu va choisir le niveau de l\'équipe que tu vas jouer !\nEnsuite, tirez au sort un objectif par mi-temps et le premier à l\'avoir rempli gagne le match.</string>
+    <string name="game_description_part_3">Parce que battre son pote avec une daube comme le Stade Rennais contre le Bayern sans pouvoir tirer, y a rien de mieux..</string>
+
+
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
