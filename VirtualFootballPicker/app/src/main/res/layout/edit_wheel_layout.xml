@@ -23,51 +23,38 @@
             android:textSize="22sp"
             android:textStyle="bold|italic"
             />
-    </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/edit_wheel_name_layout"
-        android:layout_below="@id/wheel_to_edit_layout"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/edit_wheel_name_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:text="Nom : "/>
 
         <EditText
             android:id="@+id/edit_wheel_name_edittext"
-            android:layout_width="200dp"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:ellipsize="start"
+            android:gravity="center"
             android:maxLength="20"
+            android:background="@drawable/edit_text_style"
             android:layout_height="wrap_content" />
-
-    </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/edit_wheel_recyclerview"
-        android:layout_width="300dp"
-        android:layout_height="330dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/edit_wheel_name_layout"
-        android:layout_marginTop="20dp"/>
-
-    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_alignParentBottom="true">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="20dp"/>
 
         <Button
             android:id="@+id/edit_wheel_apply_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/buttonStyle"
             android:layout_gravity="center"
-            android:background="@color/colorPrimary"
-            android:textColor="@color/white"
             android:layout_marginTop="20dp"
             android:text="Appliquer"
             />
@@ -84,10 +71,5 @@
             android:visibility="invisible"
             />
     </LinearLayout>
-
-
-
-
-
 
 </RelativeLayout>

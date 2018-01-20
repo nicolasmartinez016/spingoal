@@ -1,6 +1,7 @@
 package personal.nmartinez.fr.virtualfootballpicker.homepage.core;
 
 import personal.nmartinez.fr.virtualfootballpicker.MainActivity;
+import personal.nmartinez.fr.virtualfootballpicker.playofflinemulti.PlaySplitScreenFragment;
 import personal.nmartinez.fr.virtualfootballpicker.playofflinesolo.view.PlayOfflineSoloFragment;
 
 /**
@@ -22,6 +23,6 @@ public class HomePageCore implements IHomePageCore {
 
     @Override
     public void playSplitScreen() {
-
+        this.activity.goToFragment(new PlaySplitScreenFragment());
     }
 }

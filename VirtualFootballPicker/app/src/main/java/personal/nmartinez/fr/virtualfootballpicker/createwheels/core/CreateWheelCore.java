@@ -51,11 +51,17 @@ public class CreateWheelCore implements ICreateWheelCore {
     public void applyCreation() {
         String nameToCreate = this.view.getNameToCreate();
         List<Wheel> wheels = getWheels();
+
         boolean isNameAvailable = true;
-        for (Wheel wheel : wheels){
-            if (wheel.getName().equalsIgnoreCase(nameToCreate)){
-                isNameAvailable = false;
-                break;
+        if (nameToCreate.isEmpty()){
+            isNameAvailable = false;
+        }
+        else{
+            for (Wheel wheel : wheels){
+                if (wheel.getName().equalsIgnoreCase(nameToCreate)){
+                    isNameAvailable = false;
+                    break;
+                }
             }
         }
 
@@ -65,6 +71,10 @@ public class CreateWheelCore implements ICreateWheelCore {
             wheels.add(this.wheel);
             saveWheels(wheels);
             view.displayUnsavedChanges(false);
+            view.showCreationSuccess();
+        }
+        else{
+            view.showCreationFailure();
         }
     }
 

@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -41,6 +43,14 @@ public class ConsultObjectivesAdapter extends RecyclerView.Adapter<ConsultObject
     @Override
     public void onBindViewHolder(ConsultObjectivesViewHolder holder, int position) {
         final Objective objective = this.objectives.get(position);
+
+        if (position % 2 == 0){
+            holder.rowLayout.setBackgroundColor(context.getResources().getColor(R.color.gray));
+        }
+        else{
+            holder.rowLayout.setBackgroundColor(context.getResources().getColor(R.color.light_gray));
+        }
+
         holder.objectiveTitle.setText(StringUtils.cutObjectiveName(objective.getName()));
         if (!objective.isEditable()){
             holder.editObjectiveButton.setVisibility(View.INVISIBLE);
@@ -60,15 +70,18 @@ public class ConsultObjectivesAdapter extends RecyclerView.Adapter<ConsultObject
         if (objective.getPeriod() == Objective.FIRST_PERIOD){
             holder.objectivePeriod.setText(context.getResources().getString(R.string.first_period));
             holder.objectivePeriod.setTextColor(context.getResources().getColor(R.color.firstPeriodColor));
+            holder.periodImageView.setImageResource(R.drawable.field_first_period);
 
         }
         else if (objective.getPeriod() == Objective.SECOND_PERIOD){
             holder.objectivePeriod.setText(context.getResources().getString(R.string.second_period));
             holder.objectivePeriod.setTextColor(context.getResources().getColor(R.color.secondPeriodColor));
+            holder.periodImageView.setImageResource(R.drawable.field_second_period);
         }
         else if (objective.getPeriod() == Objective.BOTH_PERIODS){
             holder.objectivePeriod.setText(context.getResources().getString(R.string.both_periods));
             holder.objectivePeriod.setTextColor(context.getResources().getColor(R.color.bothPeriodsColor));
+            holder.periodImageView.setImageResource(R.drawable.field);
         }
     }
 
@@ -81,16 +94,20 @@ public class ConsultObjectivesAdapter extends RecyclerView.Adapter<ConsultObject
 
         public TextView objectiveTitle;
         TextView objectivePeriod;
-        public ImageButton editObjectiveButton;
-        public ImageButton deleteObjectiveButton;
+        public ImageView editObjectiveButton;
+        public ImageView deleteObjectiveButton;
         public ImageButton uploadObjectiveButton;
+        ImageView periodImageView;
+        LinearLayout rowLayout;
 
         public ConsultObjectivesViewHolder(View itemView) {
             super(itemView);
             objectiveTitle = (TextView) itemView.findViewById(R.id.consult_objective_title_textview);
-            editObjectiveButton = (ImageButton) itemView.findViewById(R.id.consult_objective_edit_button);
-            deleteObjectiveButton = (ImageButton) itemView.findViewById(R.id.consult_objective_delete_button);
+            editObjectiveButton = (ImageView) itemView.findViewById(R.id.consult_objective_edit_button);
+            deleteObjectiveButton = (ImageView) itemView.findViewById(R.id.consult_objective_delete_button);
             objectivePeriod = (TextView) itemView.findViewById(R.id.consult_objective_period_textview);
+            rowLayout = (LinearLayout) itemView.findViewById(R.id.consult_objective_row_layout);
+            periodImageView = (ImageView) itemView.findViewById(R.id.consult_objective_row_period_imageview);
         }
     }
 }

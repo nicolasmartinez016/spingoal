@@ -9,55 +9,87 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/create_wheel_label"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/add_wheel_icon"
+                    />
+
+                <TextView
+                    android:id="@+id/create_wheel_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_gravity="center"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:text="@string/create_wheel_label"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center">
+
+                <View
+                    android:layout_width="90dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="0.5"
+                    android:background="@color/main_green"
+                    />
+
+                <View android:layout_width="90dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="0.5"
+                    android:background="@color/gold"
+                    />
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/create_wheel_name_textview"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/create_wheel_name_label"/>
 
             <EditText
                 android:id="@+id/create_wheel_name_edittext"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:ellipsize="start"
+                android:gravity="center"
+                android:background="@drawable/edit_text_style"/>
 
-        </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/create_wheel_objectives_recyclerview"
             android:layout_marginTop="20dp"
-            android:layout_width="350dp"
-            android:layout_height="380dp"/>
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="0dp"/>
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:orientation="vertical">
+
                 <Button
                     android:id="@+id/create_wheel_button"
-                    android:background="@color/colorPrimary"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/buttonStyle"
                     android:text="@string/create_wheel_button_label"
-                    android:textColor="@color/white"
+                    android:layout_marginTop="15dp"
                     android:layout_gravity="center"
                     />
 
@@ -70,14 +102,9 @@
                     android:text="@string/unsaved_changes_label"
                     android:textColor="@color/warningColor"
                     android:textStyle="italic"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="15dp"
                     />
             </LinearLayout>
-        </RelativeLayout>
-
-
-
-
-    </LinearLayout>
 
 </FrameLayout>

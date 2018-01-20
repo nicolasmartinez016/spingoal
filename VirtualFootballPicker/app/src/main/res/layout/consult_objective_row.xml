@@ -3,46 +3,84 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black"/>
+
+    <LinearLayout
+        android:id="@+id/consult_objective_row_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
     <LinearLayout
         android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <TextView
-            android:id="@+id/consult_objective_title_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="italic"
-            android:textSize="18sp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/whistle"/>
+            <TextView
+                android:id="@+id/consult_objective_title_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:textStyle="bold"
+                android:textSize="18sp"/>
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/consult_objective_period_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:textStyle="bold"
-            android:textSize="11sp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/consult_objective_row_period_imageview"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/field"/>
+
+            <TextView
+                android:id="@+id/consult_objective_period_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textStyle="italic"
+                android:layout_marginLeft="10dp"
+                android:textSize="11sp"/>
+        </LinearLayout>
+
     </LinearLayout>
 
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:gravity="right">
 
-        <ImageButton
+        <ImageView
             android:id="@+id/consult_objective_edit_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_mode_edit_black_24dp"/>
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:src="@drawable/edit_icon" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/consult_objective_delete_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_delete_black_24dp"/>
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center"
+            android:src="@drawable/delete_icon"/>
     </LinearLayout>
 
 
@@ -55,6 +93,8 @@
         android:src="@drawable/ic_send_black_24dp"/>
 
 
+
+    </LinearLayout>
 
 
 </LinearLayout>

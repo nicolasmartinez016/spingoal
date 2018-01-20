@@ -36,6 +36,7 @@ public class CreateObjectiveCore implements ICreateObjectiveCore {
         this.objective = new Objective();
         this.sharedPreferences = context.getSharedPreferences("", Context.MODE_PRIVATE);
         loadObjectives();
+        objective.setEditable(true);
     }
 
     /**
@@ -53,6 +54,7 @@ public class CreateObjectiveCore implements ICreateObjectiveCore {
             }
             return true;
         }
+
         return false;
     }
 
@@ -96,6 +98,7 @@ public class CreateObjectiveCore implements ICreateObjectiveCore {
 
         }
         else{
+            this.view.displayObjectiveCreationFailure();
             this.view.displayNameUnavailableError();
         }
     }

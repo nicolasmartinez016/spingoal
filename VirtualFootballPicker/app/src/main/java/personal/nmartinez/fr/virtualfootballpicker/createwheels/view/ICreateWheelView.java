@@ -7,4 +7,6 @@ package personal.nmartinez.fr.virtualfootballpicker.createwheels.view;
 public interface ICreateWheelView {
     void displayUnsavedChanges(boolean isDisplayed);
     String getNameToCreate();
+    void showCreationSuccess();
+    void showCreationFailure();
 }

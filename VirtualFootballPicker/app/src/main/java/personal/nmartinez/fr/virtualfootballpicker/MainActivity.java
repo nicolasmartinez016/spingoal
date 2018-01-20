@@ -27,6 +27,7 @@ import personal.nmartinez.fr.virtualfootballpicker.createobjective.view.CreateOb
 import personal.nmartinez.fr.virtualfootballpicker.createwheels.view.CreateWheelFragment;
 import personal.nmartinez.fr.virtualfootballpicker.homepage.view.HomePageFragment;
 import personal.nmartinez.fr.virtualfootballpicker.models.Wheel;
+import personal.nmartinez.fr.virtualfootballpicker.playofflinemulti.PlaySplitScreenFragment;
 import personal.nmartinez.fr.virtualfootballpicker.playofflinesolo.view.PlayOfflineSoloFragment;
 import personal.nmartinez.fr.virtualfootballpicker.models.Objective;
 
@@ -131,6 +132,10 @@ public class MainActivity extends AppCompatActivity
         else if (id == R.id.play_offline_solo_menu_item) {
             // Handle the camera action
             goToFragment(new PlayOfflineSoloFragment());
+        }
+        else if (id == R.id.play_offline_multi_menu_item) {
+            // Handle the camera action
+            goToFragment(new PlaySplitScreenFragment());
         }
         else if (id == R.id.create_objective_menu_item) {
             // Handle the camera action

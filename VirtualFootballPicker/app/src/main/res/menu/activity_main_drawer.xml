@@ -26,11 +26,11 @@
         <menu>
             <item
                 android:id="@+id/consult_objectives_menu_item"
-                android:icon="@drawable/ic_menu_camera"
+                android:icon="@drawable/consult_objective_icon"
                 android:title="@string/consult_objectives_title" />
             <item
                 android:id="@+id/create_objective_menu_item"
-                android:icon="@drawable/ic_menu_gallery"
+                android:icon="@drawable/add_objective_icon"
                 android:title="@string/create_objectives_title" />
         </menu>
     </item>
@@ -39,11 +39,11 @@
         <menu>
             <item
                 android:id="@+id/consult_wheels_menu_item"
-                android:icon="@drawable/ic_menu_camera"
+                android:icon="@drawable/consult_wheel_icon"
                 android:title="@string/consult_wheels_title" />
             <item
                 android:id="@+id/create_wheel_menu_item"
-                android:icon="@drawable/ic_menu_gallery"
+                android:icon="@drawable/add_wheel_icon"
                 android:title="@string/create_wheels_title" />
         </menu>
     </item>

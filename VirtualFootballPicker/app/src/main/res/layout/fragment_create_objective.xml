@@ -9,40 +9,93 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/create_objective_label"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/create_objective_title_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:text="@string/create_objective_label"
-            />
+            android:layout_centerHorizontal="true">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/add_objective_icon"
+                        />
+
+                    <TextView
+                        android:id="@+id/create_objective_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+
+                        android:layout_gravity="center"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:text="@string/create_objective_label"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_gravity="center">
+
+                    <View
+                        android:layout_width="80dp"
+                        android:layout_height="1dp"
+                        android:layout_weight="0.5"
+                        android:background="@color/main_green"
+                        />
+
+                    <View android:layout_width="80dp"
+                        android:layout_height="1dp"
+                        android:layout_weight="0.5"
+                        android:background="@color/gold"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
 
         <LinearLayout
             android:id="@+id/create_objective_name_layout"
-            android:layout_below="@id/create_objective_label"
-            android:layout_width="wrap_content"
+            android:layout_below="@id/create_objective_title_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:layout_marginTop="20dp"
             android:layout_marginStart="20dp">
         <TextView
             android:id="@+id/create_objective_name_textview"
-            android:layout_weight="0.75"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nom : "/>
+            android:text="Nom du gage : "/>
 
         <EditText
             android:id="@+id/create_objective_name_edittext"
-            android:layout_width="200dp"
-            android:layout_weight="1.25"
+            android:layout_width="match_parent"
             android:focusedByDefault="false"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/create_objective_name_textview"/>
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:ellipsize="start"
+            android:gravity="center"
+            android:background="@drawable/edit_text_style"/>
 
-        </LinearLayout>
 
         <TextView
             android:id="@+id/create_objective_name_error_textview"
@@ -56,41 +109,58 @@
             android:layout_below="@id/create_objective_name_layout"
             />
 
-        <LinearLayout
-            android:id="@+id/create_objective_period_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_below="@id/create_objective_name_layout"
-            >
+
 
         <TextView
             android:id="@+id/create_objective_period_textview"
-            android:paddingTop="40dp"
+            android:paddingTop="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Mi-temps : "/>
 
-            <RadioButton
-                android:id="@+id/create_objective_first_period_radiobutton"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="1"
-                />
-            <RadioButton
-                android:id="@+id/create_objective_second_period_radiobutton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2"
-                />
-            <RadioButton
-                android:id="@+id/create_objective_both_periods_radiobutton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="tout"
-                />
+                android:layout_marginTop="10dp">
 
-        </LinearLayout>
+
+                <Button
+                    android:id="@+id/create_objective_first_period_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/first_period"
+                    android:textColor="@color/white"
+                    android:paddingRight="5dp"
+                    android:paddingLeft="5dp"
+                    android:textSize="10sp"
+                    android:background="@color/gold"/>
+
+                <Button
+                    android:id="@+id/create_objective_second_period_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/second_period"
+                    android:textSize="10sp"
+                    android:paddingRight="5dp"
+                    android:paddingLeft="5dp"
+                    android:textColor="@color/secondPeriodColor"
+                    android:background="@drawable/button_border"/>
+
+                <Button
+                    android:id="@+id/create_objective_both_periods_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/both_periods"
+                    android:textSize="10sp"
+                    android:paddingRight="5dp"
+                    android:paddingLeft="3dp"
+                    android:background="@drawable/button_border"
+                    android:textColor="@color/bothPeriodsColor"/>
+
+            </LinearLayout>
+
+
+
 
         <TextView
             android:id="@+id/create_objective_period_error_textview"
@@ -101,53 +171,70 @@
             android:textSize="8sp"
             android:visibility="gone"
             android:text="Veuillez choisir une mi-temps"
-            android:layout_below="@id/create_objective_period_layout"
             />
 
-        <LinearLayout
-            android:id="@+id/create_objective_description_layout"
-            android:paddingTop="40dp"
-            android:layout_marginStart="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/create_objective_period_layout">
+
             <TextView
                 android:id="@+id/create_objective_description_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.75"
+                android:layout_marginTop="30dp"
                 android:text="Description : "/>
 
             <EditText
                 android:id="@+id/create_objective_description_edittext"
                 android:focusedByDefault="false"
-                android:layout_width="200dp"
-                android:layout_weight="1.25"
-                android:layout_height="wrap_content"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:ellipsize="start"
+                android:gravity="center"
+                android:background="@drawable/edit_text_style"/>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/create_objective_editable_layout"
-            android:paddingTop="40dp"
-            android:layout_marginStart="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/create_objective_description_layout">
             <TextView
                 android:id="@+id/create_objective_editable_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.75"
+                android:layout_marginTop="30dp"
                 android:text="Editable : "/>
 
-            <ToggleButton
-                android:id="@+id/create_objective_editable_togglebutton"
-                android:layout_width="wrap_content"
-                android:layout_weight="1.25"
+            <!--<ToggleButton-->
+                <!--android:id="@+id/create_objective_editable_togglebutton"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:background="@color/colorPrimary"-->
+                <!--android:textColor="@color/white"/>-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
-                android:textColor="@color/white"/>
+                android:layout_marginTop="10dp">
+
+
+                <Button
+                    android:id="@+id/create_objective_editable_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="OUI"
+                    android:textColor="@color/white"
+                    android:paddingRight="5dp"
+                    android:paddingLeft="5dp"
+                    android:background="@color/main_green"/>
+
+                <Button
+                    android:id="@+id/create_objective_not_editable_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="NON"
+                    android:paddingRight="5dp"
+                    android:paddingLeft="5dp"
+                    android:textColor="@color/main_green"
+                    android:background="@drawable/button_border"/>
+
+
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -161,12 +248,9 @@
 
             <Button
                 android:id="@+id/create_objective_validate_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/buttonStyle"
                 android:layout_gravity="center"
-                android:text="Valider"
-                android:background="@color/colorPrimary"
-                android:textColor="@color/white"/>
+                android:text="Valider"/>
 
         </LinearLayout>
 

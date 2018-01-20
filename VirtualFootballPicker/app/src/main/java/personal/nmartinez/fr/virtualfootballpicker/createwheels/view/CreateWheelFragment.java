@@ -14,9 +14,12 @@ import android.widget.TextView;
 
 import personal.nmartinez.fr.virtualfootballpicker.R;
 import personal.nmartinez.fr.virtualfootballpicker.consultwheels.adapters.EditWheelAdapter;
+import personal.nmartinez.fr.virtualfootballpicker.createobjective.view.dialogs.CreationOkDialog;
 import personal.nmartinez.fr.virtualfootballpicker.createwheels.adapters.CreateWheelAdapter;
 import personal.nmartinez.fr.virtualfootballpicker.createwheels.core.CreateWheelCore;
 import personal.nmartinez.fr.virtualfootballpicker.createwheels.core.ICreateWheelCore;
+import personal.nmartinez.fr.virtualfootballpicker.createwheels.view.dialogs.CreationWheelKoDialog;
+import personal.nmartinez.fr.virtualfootballpicker.createwheels.view.dialogs.CreationWheelOkDialog;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -50,7 +53,7 @@ public class CreateWheelFragment extends Fragment implements ICreateWheelView {
 
         createWheelObjectivesRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         createWheelObjectivesRecyclerView.setHasFixedSize(true);
-        CreateWheelAdapter adapter = new CreateWheelAdapter(this.core);
+        CreateWheelAdapter adapter = new CreateWheelAdapter(this.core, getActivity());
         createWheelObjectivesRecyclerView.setAdapter(adapter);
 
         this.createWheelButton.setOnClickListener(new View.OnClickListener() {
@@ -84,5 +87,15 @@ public class CreateWheelFragment extends Fragment implements ICreateWheelView {
     @Override
     public String getNameToCreate() {
         return this.createWheelNameEditText.getText().toString();
+    }
+
+    @Override
+    public void showCreationSuccess() {
+        new CreationWheelOkDialog().show(getFragmentManager(), "");
+    }
+
+    @Override
+    public void showCreationFailure() {
+        new CreationWheelKoDialog().show(getFragmentManager(), "");
     }
 }
