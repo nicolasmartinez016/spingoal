@@ -20,6 +20,8 @@ import personal.nmartinez.fr.virtualfootballpicker.consultwheels.adapters.EditWh
 import personal.nmartinez.fr.virtualfootballpicker.consultwheels.core.EditWheelCore;
 import personal.nmartinez.fr.virtualfootballpicker.consultwheels.core.IConsultWheelsCore;
 import personal.nmartinez.fr.virtualfootballpicker.consultwheels.core.IEditWheelCore;
+import personal.nmartinez.fr.virtualfootballpicker.consultwheels.view.dialogs.EditWheelKoDialog;
+import personal.nmartinez.fr.virtualfootballpicker.consultwheels.view.dialogs.EditWheelOkDialog;
 import personal.nmartinez.fr.virtualfootballpicker.models.Wheel;
 
 /**
@@ -70,10 +72,15 @@ public class EditWheelDialog extends DialogFragment implements IEditWheelView {
         applyChangesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                core.saveChanges();
-                // this is meh
-                consultWheelsCore.getView().applyChangesInWheels();
-                dismissAllowingStateLoss();
+                if (core.saveChanges()){
+                    // this is meh
+                    consultWheelsCore.getView().applyChangesInWheels();
+                    dismissAllowingStateLoss();
+                    new EditWheelOkDialog().show(getFragmentManager(), "");
+                }
+                else{
+                    new EditWheelKoDialog().show(getFragmentManager(), "");
+                }
             }
         });
         return view;

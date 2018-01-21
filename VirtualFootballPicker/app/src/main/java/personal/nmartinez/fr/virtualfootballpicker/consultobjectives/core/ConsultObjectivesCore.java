@@ -50,25 +50,6 @@ public class ConsultObjectivesCore implements IConsultObjectivesCore {
 
     private List<Objective> getData(){
         List<Objective> objectives = new ArrayList<>();
-//        if (StringUtils.isNullOrEmpty(this.sharedPreferences.getString(OBJECTIVES_KEY, ""))){
-//            SharedPreferences.Editor editor = this.sharedPreferences.edit();
-//            for (int i = 0; i < 24; i++){
-//                Objective objective = new Objective();
-//                objective.setName("Gage " + i);
-//                objective.setId(i + 1);
-//                if (i%2 == 0){
-//                    objective.setEditable(true);
-//                }
-//                objectives.add(objective);
-//            }
-//            try {
-//                String objectivesJson = this.objectMapper.writeValueAsString(objectives);
-//                editor.putString(OBJECTIVES_KEY, objectivesJson);
-//                editor.commit();
-//            } catch (JsonProcessingException e) {
-//                e.printStackTrace();
-//            }
-//        }
 
         String objectivesJson = this.sharedPreferences.getString(OBJECTIVES_KEY, "");
         try {
@@ -96,7 +77,13 @@ public class ConsultObjectivesCore implements IConsultObjectivesCore {
         ft.addToBackStack(null);
 
         EditObjectiveDialog editDialog = EditObjectiveDialog.newInstance(objective);
+        editDialog.setConsultObjectivesCore(this);
         editDialog.show(ft, "dialog");
         return editDialog;
+    }
+
+    @Override
+    public IConsultObjectivesView getView() {
+        return this.view;
     }
 }

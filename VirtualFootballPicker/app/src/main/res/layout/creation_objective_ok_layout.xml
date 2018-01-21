@@ -4,23 +4,57 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="64dp"
-        android:text="Creation d'un gage"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:background="@color/main_green"/>
+        android:background="@color/main_green">
 
-    <TextView
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center"
+            android:src="@drawable/add_objective_icon"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Creation d'un gage"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:layout_marginLeft="10dp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Le gage a bien ete cree."
-        android:gravity="center"
-        android:textSize="16sp"
-        android:layout_marginTop="30dp"
-        />
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/yes"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Le gage a ete cree."
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:textSize="16sp"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
 
 </LinearLayout>

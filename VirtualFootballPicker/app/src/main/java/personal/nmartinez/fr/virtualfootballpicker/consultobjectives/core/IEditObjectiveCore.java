@@ -8,7 +8,7 @@ public interface IEditObjectiveCore {
 
     void setObjectivePeriod(int period);
     void setObjectiveName(String name);
-    void saveObjective();
+    boolean saveObjective();
     void checkObjectivePeriod();
     void checkObjectiveName();
 }

@@ -153,16 +153,16 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void initObjectives(SharedPreferences sharedPreferences){
-        Objective over65percent = new Objective.ObjectiveBuilder().id(1).isEditable(false).period(Objective.BOTH_PERIODS).name("Gagner avec > 65% poss").description("").build();
-        Objective under65percent = new Objective.ObjectiveBuilder().id(2).isEditable(false).period(Objective.BOTH_PERIODS).name("Gagner avec < 35% poss").description("").build();
-        Objective scoreHatTrick = new Objective.ObjectiveBuilder().id(3).isEditable(false).period(Objective.BOTH_PERIODS).name("Marquer un triplé").description("").build();
+        Objective over65percent = new Objective.ObjectiveBuilder().id(1).isEditable(false).period(Objective.FIRST_PERIOD).name("Gagner avec > 65% poss").description("").build();
+        Objective under65percent = new Objective.ObjectiveBuilder().id(2).isEditable(false).period(Objective.FIRST_PERIOD).name("Gagner avec < 35% poss").description("").build();
+        Objective scoreHatTrick = new Objective.ObjectiveBuilder().id(3).isEditable(false).period(Objective.BOTH_PERIODS).name("Marquer un doublé").description("").build();
         Objective noRond = new Objective.ObjectiveBuilder().id(4).isEditable(false).period(Objective.BOTH_PERIODS).name("Gagner sans la touche rond").description("").build();
         Objective noCroix = new Objective.ObjectiveBuilder().id(5).isEditable(false).period(Objective.BOTH_PERIODS).name("Gagner sans la touche croix").description("").build();
         Objective noTriangle = new Objective.ObjectiveBuilder().id(6).isEditable(false).period(Objective.BOTH_PERIODS).name("Gagner sans la touche triangle").description("").build();
         Objective noCarre = new Objective.ObjectiveBuilder().id(7).isEditable(false).period(Objective.BOTH_PERIODS).name("Gagner sans la touche carré").description("").build();
-        Objective scoreTwoVolleys = new Objective.ObjectiveBuilder().id(8).isEditable(false).period(Objective.BOTH_PERIODS).name("Marquer 2 buts de volée").description("").build();
-        Objective scoreTwoHeaders = new Objective.ObjectiveBuilder().id(9).isEditable(false).period(Objective.BOTH_PERIODS).name("Marquer 2 buts de la tête").description("").build();
-        Objective score2pens = new Objective.ObjectiveBuilder().id(10).isEditable(false).period(Objective.BOTH_PERIODS).name("Marquer 2 penalties").description("").build();
+        Objective scoreTwoVolleys = new Objective.ObjectiveBuilder().id(8).isEditable(false).period(Objective.BOTH_PERIODS).name("Marquer 1 but de volée").description("").build();
+        Objective scoreTwoHeaders = new Objective.ObjectiveBuilder().id(9).isEditable(false).period(Objective.BOTH_PERIODS).name("Marquer 1 but de la tête").description("").build();
+        Objective score2pens = new Objective.ObjectiveBuilder().id(10).isEditable(false).period(Objective.BOTH_PERIODS).name("Marquer 1 penalty").description("").build();
         Objective stop1pen = new Objective.ObjectiveBuilder().id(11).isEditable(false).period(Objective.BOTH_PERIODS).name("Arreter 1 penalty").description("").build();
         Objective fifteenPassesBeforeScoring = new Objective.ObjectiveBuilder().id(12).isEditable(false).period(Objective.BOTH_PERIODS).name("15 passes dans le camp adverse avant de marquer").description("").build();
         Objective noR2 = new Objective.ObjectiveBuilder().id(13).isEditable(false).period(Objective.BOTH_PERIODS).name("Gagner sans la touche R2").description("").build();
@@ -176,8 +176,13 @@ public class MainActivity extends AppCompatActivity
         Objective scoreLast15 = new Objective.ObjectiveBuilder().id(21).isEditable(false).period(Objective.BOTH_PERIODS).name("Marquer dans les 15 dernieres minutes").description("").build();
         Objective scoreDefender = new Objective.ObjectiveBuilder().id(22).isEditable(false).period(Objective.BOTH_PERIODS).name("Marquer avec un defenseur (placé defenseur)").description("").build();
         Objective dribbleGoal = new Objective.ObjectiveBuilder().id(23).isEditable(false).period(Objective.BOTH_PERIODS).name("Marquer en eliminant le gardien").description("").build();
-        Objective screamerTwice = new Objective.ObjectiveBuilder().id(24).isEditable(false).period(Objective.BOTH_PERIODS).name("Marquer 2 fois de l'exterieur de la surface").description("").build();
-        Objective wrongFootTwice = new Objective.ObjectiveBuilder().id(25).isEditable(false).period(Objective.BOTH_PERIODS).name("Marquer 2 fois du mauvais pied").description("").build();
+        Objective screamerTwice = new Objective.ObjectiveBuilder().id(24).isEditable(false).period(Objective.BOTH_PERIODS).name("Marquer de l'exterieur de la surface").description("").build();
+        Objective wrongFootTwice = new Objective.ObjectiveBuilder().id(25).isEditable(false).period(Objective.BOTH_PERIODS).name("Marquer du mauvais pied").description("").build();
+        Objective stoppedPenalty = new Objective.ObjectiveBuilder().id(26).isEditable(false).period(Objective.BOTH_PERIODS).name("Se faire arreter un penalty").description("").build();
+        Objective conceide0shot = new Objective.ObjectiveBuilder().id(27).isEditable(false).period(Objective.BOTH_PERIODS).name("Ne concéder aucun tir").description("").build();
+        Objective scoreLessThan5Passes = new Objective.ObjectiveBuilder().id(28).isEditable(false).period(Objective.BOTH_PERIODS).name("Marquer en moins de 5 passes").description("").build();
+        Objective oneTouchFromOtherHalf = new Objective.ObjectiveBuilder().id(29).isEditable(false).period(Objective.BOTH_PERIODS).name("Marquer avec action en une touche de balle a partir du camp adverse").description("").build();
+        Objective provokeOwnGoal = new Objective.ObjectiveBuilder().id(30).isEditable(false).period(Objective.BOTH_PERIODS).name("Provoquer un but contre son camp").description("").build();
 
         List<Objective> objectives = new ArrayList<>();
         objectives.add(over65percent);
@@ -205,6 +210,11 @@ public class MainActivity extends AppCompatActivity
         objectives.add(dribbleGoal);
         objectives.add(screamerTwice);
         objectives.add(wrongFootTwice);
+        objectives.add(stoppedPenalty);
+        objectives.add(conceide0shot);
+        objectives.add(scoreLessThan5Passes);
+        objectives.add(provokeOwnGoal);
+        objectives.add(oneTouchFromOtherHalf);
 
         Wheel wheel = new Wheel();
         wheel.setId(1);

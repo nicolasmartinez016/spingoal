@@ -41,6 +41,8 @@ public class CreateWheelAdapter extends RecyclerView.Adapter<CreateWheelAdapter.
     @Override
     public void onBindViewHolder(CreateWheelViewHolder holder, int position) {
         final Objective objective = this.objectives.get(position);
+
+        holder.objectiveCheckBox.setChecked(core.isObjectiveInWheel(objective));
         holder.objectiveName.setText(objective.getName());
 
         if (position % 2 == 0){

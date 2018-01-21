@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import personal.nmartinez.fr.virtualfootballpicker.consultobjectives.view.IEditObjectiveView;
+import personal.nmartinez.fr.virtualfootballpicker.consultobjectives.view.dialogs.EditObjectiveOkDialog;
 import personal.nmartinez.fr.virtualfootballpicker.models.Objective;
 import personal.nmartinez.fr.virtualfootballpicker.models.Wheel;
 
@@ -30,6 +31,7 @@ public class EditObjectiveCore implements IEditObjectiveCore {
     private Context context;
     private SharedPreferences sharedPreferences;
     private ObjectMapper objectMapper;
+    private IConsultObjectivesCore consultObjectivesCore;
 
     public EditObjectiveCore(Context context, Objective objective, IEditObjectiveView view){
         this.context = context;
@@ -55,41 +57,47 @@ public class EditObjectiveCore implements IEditObjectiveCore {
      * in the shared preferences
      */
     @Override
-    public void saveObjective() {
+    public boolean saveObjective() {
         SharedPreferences.Editor editor = this.sharedPreferences.edit();
         List<Objective> objectives = getObjectives();
-        objectives = editObjectiveInList(objectives);
-        try {
-            editor.putString(OBJECTIVES_KEY, objectMapper.writeValueAsString(objectives));
-            editor.commit();
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
+
+        if (isNameAvailable(objectives)){
+            objectives = editObjectiveInList(objectives);
+            try {
+                editor.putString(OBJECTIVES_KEY, objectMapper.writeValueAsString(objectives));
+                editor.commit();
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            }
+
+            List<Wheel> wheels = getWheels();
+            editObjectiveInWheels(wheels);
+
+            try {
+                editor.putString(WHEELS_KEY, objectMapper.writeValueAsString(wheels));
+                editor.commit();
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            }
+
+
+            String wheelToUseJson = this.sharedPreferences.getString(WHEEL_TO_USE, "");
+
+            try {
+                Wheel wheelToUse = this.objectMapper.readValue(wheelToUseJson, Wheel.class);
+                editObjectiveInWheel(wheelToUse);
+                wheelToUseJson = this.objectMapper.writeValueAsString(wheelToUse);
+                editor.putString(WHEEL_TO_USE, wheelToUseJson);
+                editor.commit();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return true;
         }
-
-        List<Wheel> wheels = getWheels();
-        editObjectiveInWheels(wheels);
-
-        try {
-            editor.putString(WHEELS_KEY, objectMapper.writeValueAsString(wheels));
-            editor.commit();
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
+        else{
+            return false;
         }
-
-
-        String wheelToUseJson = this.sharedPreferences.getString(WHEEL_TO_USE, "");
-
-        try {
-            Wheel wheelToUse = this.objectMapper.readValue(wheelToUseJson, Wheel.class);
-            editObjectiveInWheel(wheelToUse);
-            wheelToUseJson = this.objectMapper.writeValueAsString(wheelToUse);
-            editor.putString(WHEEL_TO_USE, wheelToUseJson);
-            editor.commit();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
     }
 
     /**
@@ -174,5 +182,20 @@ public class EditObjectiveCore implements IEditObjectiveCore {
     @Override
     public void checkObjectiveName() {
         this.view.fillObjectiveName(this.objective.getName());
+    }
+
+    private boolean isNameAvailable(List<Objective> objectives){
+        String name = this.objective.getName();
+        if (name.isEmpty()){
+            return false;
+        }
+
+        for (Objective localObjective : objectives){
+            if (localObjective.getName().equalsIgnoreCase(name)){
+                return false;
+            }
+        }
+
+        return true;
     }
 }

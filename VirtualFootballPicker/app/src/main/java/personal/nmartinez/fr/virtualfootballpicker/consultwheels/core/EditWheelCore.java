@@ -64,10 +64,17 @@ public class EditWheelCore implements IEditWheelCore {
      * Hides the text warning the user about the unsaved changes
      */
     @Override
-    public void saveChanges() {
+    public boolean saveChanges() {
         this.wheel.setName(this.view.getEditedWheelName());
-        this.applyChanges();
-        this.view.hideUnsavedChanges();
+        if (isNameAvailable(getWheels())){
+            this.applyChanges();
+            this.view.hideUnsavedChanges();
+            return true;
+        }
+        else{
+            return false;
+        }
+
     }
 
     /**
@@ -190,5 +197,20 @@ public class EditWheelCore implements IEditWheelCore {
             e.printStackTrace();
         }
         return wheels;
+    }
+
+    private boolean isNameAvailable(List<Wheel> wheels){
+        String name = this.wheel.getName();
+        if (name.isEmpty()){
+            return false;
+        }
+
+        for (Wheel localWheel : wheels){
+            if (localWheel.getName().equalsIgnoreCase(name)){
+                return false;
+            }
+        }
+
+        return true;
     }
 }

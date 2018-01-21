@@ -40,6 +40,8 @@ public class EditWheelAdapter extends RecyclerView.Adapter<EditWheelAdapter.Edit
         final Objective objective = this.objectives.get(position);
         holder.objectiveName.setText(objective.getName());
 
+        holder.objectiveCheckBox.setChecked(core.isObjectiveInWheel(objective));
+
         holder.objectiveCheckBox.setOnCheckedChangeListener(null);
 
         if (core.isObjectiveInWheel(objective)) {

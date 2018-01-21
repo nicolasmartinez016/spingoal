@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -87,12 +89,13 @@ public class ConsultWheelsAdapter extends BaseExpandableListAdapter {
             //final Wheel wheel = this.wheels.get(i);
             final Wheel wheel = (Wheel)getGroup(i);
 
+        LinearLayout layout = (LinearLayout) view.findViewById(R.id.consult_wheel_row_layout);
             TextView wheelName = (TextView) view.findViewById(R.id.consult_wheel_title_textview);
             wheelName.setText(wheel.getName());
-            ImageButton editButton = (ImageButton) view.findViewById(R.id.consult_wheel_edit_button);
-            ImageButton uploadButton = (ImageButton) view.findViewById(R.id.consult_wheel_upload_button);
-            ImageButton deleteButton = (ImageButton) view.findViewById(R.id.consult_wheel_delete_button);
-            ImageButton favButton = (ImageButton) view.findViewById(R.id.consult_wheel_fav_button);
+            ImageView editButton = (ImageView) view.findViewById(R.id.consult_wheel_edit_button);
+            ImageView uploadButton = (ImageView) view.findViewById(R.id.consult_wheel_upload_button);
+            ImageView deleteButton = (ImageView) view.findViewById(R.id.consult_wheel_delete_button);
+            ImageView favButton = (ImageView) view.findViewById(R.id.consult_wheel_fav_button);
 
             // have to set focusable to false otherwise the listview doesnt expand anymore due to buttons
             // catching the focus instead of the list
@@ -100,6 +103,13 @@ public class ConsultWheelsAdapter extends BaseExpandableListAdapter {
             deleteButton.setFocusable(false);
             uploadButton.setFocusable(false);
             favButton.setFocusable(false);
+
+            if (i % 2 == 0 ){
+                layout.setBackgroundColor(context.getResources().getColor(R.color.gray));
+            }
+            else{
+                layout.setBackgroundColor(context.getResources().getColor(R.color.light_gray));
+            }
 
             if (wheel.getId() == this.selectedWheelId){
                 favButton.setImageDrawable(context.getDrawable(R.drawable.ic_star_black_24dp));

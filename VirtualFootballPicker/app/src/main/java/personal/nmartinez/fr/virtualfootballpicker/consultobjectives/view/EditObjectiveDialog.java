@@ -15,7 +15,10 @@ import android.widget.TextView;
 
 import personal.nmartinez.fr.virtualfootballpicker.R;
 import personal.nmartinez.fr.virtualfootballpicker.consultobjectives.core.EditObjectiveCore;
+import personal.nmartinez.fr.virtualfootballpicker.consultobjectives.core.IConsultObjectivesCore;
 import personal.nmartinez.fr.virtualfootballpicker.consultobjectives.core.IEditObjectiveCore;
+import personal.nmartinez.fr.virtualfootballpicker.consultobjectives.view.dialogs.EditObjectiveKoDialog;
+import personal.nmartinez.fr.virtualfootballpicker.consultobjectives.view.dialogs.EditObjectiveOkDialog;
 import personal.nmartinez.fr.virtualfootballpicker.models.Objective;
 import personal.nmartinez.fr.virtualfootballpicker.models.Wheel;
 
@@ -28,6 +31,7 @@ public class EditObjectiveDialog extends DialogFragment implements IEditObjectiv
     private static String OBJECTIVE_KEY = "objective";
 
     private IEditObjectiveCore core;
+    private IConsultObjectivesCore consultObjectivesCore;
 
     private EditText objectiveNameEditText;
     private RadioButton objective1stPeriodRadioButton;
@@ -114,7 +118,14 @@ public class EditObjectiveDialog extends DialogFragment implements IEditObjectiv
             @Override
             public void onClick(View view) {
                 core.setObjectiveName(objectiveNameEditText.getText().toString());
-                core.saveObjective();
+                if (core.saveObjective()){
+                    dismissAllowingStateLoss();
+                    consultObjectivesCore.retrieveObjectives();
+                    new EditObjectiveOkDialog().show(getFragmentManager(), "");
+                }
+                else{
+                    new EditObjectiveKoDialog().show(getFragmentManager(), "");
+                }
             }
         });
 
@@ -154,5 +165,9 @@ public class EditObjectiveDialog extends DialogFragment implements IEditObjectiv
     public void fillObjectiveName(String name) {
         this.objectiveNameEditText.setText(name);
         this.editObjectiveValueTextview.setText(" " + name);
+    }
+
+    public void setConsultObjectivesCore(IConsultObjectivesCore consultObjectivesCore) {
+        this.consultObjectivesCore = consultObjectivesCore;
     }
 }

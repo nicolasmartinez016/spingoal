@@ -1,6 +1,7 @@
 package personal.nmartinez.fr.virtualfootballpicker.consultobjectives.core;
 
 import personal.nmartinez.fr.virtualfootballpicker.consultobjectives.view.EditObjectiveDialog;
+import personal.nmartinez.fr.virtualfootballpicker.consultobjectives.view.IConsultObjectivesView;
 import personal.nmartinez.fr.virtualfootballpicker.models.Objective;
 
 /**
@@ -10,4 +11,5 @@ import personal.nmartinez.fr.virtualfootballpicker.models.Objective;
 public interface IConsultObjectivesCore {
     void retrieveObjectives();
     EditObjectiveDialog openEdition(Objective objective);
+    IConsultObjectivesView getView();
 }

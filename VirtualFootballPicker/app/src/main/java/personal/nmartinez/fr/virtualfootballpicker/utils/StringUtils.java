@@ -16,13 +16,16 @@ public class StringUtils {
 
     public static String cutObjectiveName(String name){
         StringBuilder str = new StringBuilder(name);
-        int idx = 35;
+        int idx = 28;
 
-        while (idx < str.length())
-        {
+        while (idx < str.length()) {
+            while (!(Character.toString(name.charAt(idx)).equalsIgnoreCase(" "))) {
+                idx = idx - 1;
+            }
             str.insert(idx, "\n");
-            idx = idx + 35;
+            idx = idx + 28;
         }
+
         return str.toString();
     }
 }

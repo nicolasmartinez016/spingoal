@@ -14,12 +14,12 @@
             android:layout_height="30dp"
             android:layout_marginLeft="10dp"
             android:layout_gravity="center"
-            android:src="@drawable/add_wheel_icon"/>
+            android:src="@drawable/edit_wheel_icon"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Creation d'une roue"
+            android:text="Edition d'une roue"
             android:layout_gravity="center"
             android:textColor="@color/white"
             android:textSize="22sp"
@@ -46,12 +46,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="La roue n'a ete cree."
+                android:text="La roue n'a ete edite."
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
                 android:textSize="16sp"
                 />
-    </LinearLayout>
+        </LinearLayout>
 
     </LinearLayout>
 

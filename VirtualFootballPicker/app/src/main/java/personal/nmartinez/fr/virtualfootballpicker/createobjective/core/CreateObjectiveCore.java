@@ -75,6 +75,7 @@ public class CreateObjectiveCore implements ICreateObjectiveCore {
                 ObjectMapper objectMapper = new ObjectMapper();
                 try {
                     if (this.objectives != null){
+                        this.objective.setId(this.objectives.size() + 1);
                         this.objectives.add(this.objective);
                         String newObjectives = objectMapper.writeValueAsString(objectives);
                         SharedPreferencesUtil.commitPreferenceChange(this.sharedPreferences, OBJECTIVES_KEY, newObjectives);

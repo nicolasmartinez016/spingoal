@@ -12,7 +12,7 @@ import personal.nmartinez.fr.virtualfootballpicker.models.Wheel;
 public interface IEditWheelCore {
 
     void addOrRemoveObjective(Objective objective);
-    void saveChanges();
+    boolean saveChanges();
     Wheel getWheel();
     List<Objective> getObjectives();
     boolean isObjectiveInWheel(Objective objective);
