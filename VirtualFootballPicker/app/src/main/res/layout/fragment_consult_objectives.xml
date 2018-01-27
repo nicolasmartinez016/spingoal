@@ -38,6 +38,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
                         android:text="@string/every_objectives"
+                        android:fontFamily="casual"
                         android:layout_gravity="center"
                         android:layout_centerHorizontal="true"
                         android:textStyle="bold"

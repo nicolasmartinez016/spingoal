@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<!--<RelativeLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--xmlns:android="http://schemas.android.com/apk/res/android">-->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <LinearLayout
@@ -13,22 +16,41 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="5dp">
 
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            android:text="@string/edit_objective_label"
-            />
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/edit_objective_icon"
+                />
+
+            <TextView
+                android:id="@+id/create_objective_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_gravity="center"
+                android:textSize="22sp"
+                android:fontFamily="casual"
+                android:textStyle="bold"
+                android:text="@string/edit_objective_label"
+                />
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/edit_objective_value_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:textSize="22sp"
+            android:fontFamily="casual"
             android:layout_gravity="center"
             android:textStyle="bold"/>
 
@@ -36,77 +58,90 @@
 
 
 
-    <LinearLayout
-        android:id="@+id/edit_objective_name_layout"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+
 
         <TextView
             android:id="@+id/edit_objective_name_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:fontFamily="casual"
             android:text="Nom : "/>
 
         <EditText
             android:id="@+id/edit_objective_name_edittext"
-            android:layout_width="200dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLength="20"
-            android:layout_marginRight="20dp"/>
-    </LinearLayout>
+            android:maxLength="50"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:ellipsize="start"
+            android:gravity="center"
+            android:background="@drawable/edit_text_style"/>
 
-    <LinearLayout
-        android:id="@+id/edit_objective_period_layout"
-        android:paddingTop="40dp"
-        android:layout_marginLeft="20dp"
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/create_objective_name_layout"
-        >
 
         <TextView
+            android:paddingTop="40dp"
+            android:layout_marginLeft="20dp"
             android:id="@+id/edit_objective_period_textview"
             android:layout_width="wrap_content"
+            android:fontFamily="casual"
             android:layout_height="wrap_content"
             android:text="Mi-temps : "/>
 
-        <RadioButton
-            android:id="@+id/edit_objective_1st_period_radiobutton"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+
+
+        <Button
+            android:id="@+id/edit_objective_first_period_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1"
-            />
-        <RadioButton
-            android:id="@+id/edit_objective_2nd_period_radiobutton"
+            android:text="@string/first_period"
+            android:textColor="@color/white"
+            android:paddingRight="2dp"
+            android:paddingLeft="2dp"
+            android:textSize="10sp"
+            android:background="@color/gold"/>
+
+        <Button
+            android:id="@+id/edit_objective_second_period_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2"
-            />
-        <RadioButton
-            android:id="@+id/edit_objective_both_periods_radiobutton"
+            android:text="@string/second_period"
+            android:textSize="10sp"
+            android:paddingRight="2dp"
+            android:paddingLeft="2dp"
+            android:textColor="@color/secondPeriodColor"
+            android:background="@drawable/button_border"/>
+
+        <Button
+            android:id="@+id/edit_objective_both_periods_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="tout"
-            />
+            android:text="@string/both_periods"
+            android:textSize="10sp"
+            android:paddingRight="2dp"
+            android:paddingLeft="2dp"
+            android:background="@drawable/button_border"
+            android:textColor="@color/bothPeriodsColor"/>
 
     </LinearLayout>
-</LinearLayout>
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:layout_alignParentBottom="true">
     <Button
         android:id="@+id/edit_objective_apply_button"
         style="@style/buttonStyle"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
-        android:layout_below="@id/edit_objective_period_layout"
+        android:fontFamily="casual"
         android:text="Appliquer"
         />
 
@@ -125,4 +160,4 @@
 
 
 
-</RelativeLayout>
+<!--</RelativeLayout>-->

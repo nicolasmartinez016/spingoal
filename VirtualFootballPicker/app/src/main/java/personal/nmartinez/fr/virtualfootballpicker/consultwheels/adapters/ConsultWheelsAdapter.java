@@ -147,17 +147,17 @@ public class ConsultWheelsAdapter extends BaseExpandableListAdapter {
         TextView objectivePeriod = (TextView) view.findViewById(R.id.objective_period_in_wheels_textview);
 
         if (objective.getPeriod() == Objective.FIRST_PERIOD){
-            objectivePeriod.setText(context.getResources().getString(R.string.first_period));
+            objectivePeriod.setText(context.getResources().getString(R.string.first_period_inline));
             objectivePeriod.setTextColor(context.getResources().getColor(R.color.firstPeriodColor));
         }
 
         else if (objective.getPeriod() == Objective.SECOND_PERIOD){
-            objectivePeriod.setText(context.getResources().getString(R.string.second_period));
+            objectivePeriod.setText(context.getResources().getString(R.string.second_period_inline));
             objectivePeriod.setTextColor(context.getResources().getColor(R.color.secondPeriodColor));
         }
 
         else if (objective.getPeriod() == Objective.BOTH_PERIODS){
-            objectivePeriod.setText(context.getResources().getString(R.string.both_periods));
+            objectivePeriod.setText(context.getResources().getString(R.string.both_periods_inline));
             objectivePeriod.setTextColor(context.getResources().getColor(R.color.bothPeriodsColor));
         }
 

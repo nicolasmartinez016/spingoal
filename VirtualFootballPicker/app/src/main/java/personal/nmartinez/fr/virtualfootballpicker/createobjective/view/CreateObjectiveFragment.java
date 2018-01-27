@@ -60,7 +60,7 @@ public class CreateObjectiveFragment extends Fragment implements ICreateObjectiv
         View view = inflater.inflate(R.layout.fragment_create_objective, container, false);
 
         this.nameEditText = (EditText) view.findViewById(R.id.create_objective_name_edittext);
-        this.descriptionEditText = (EditText) view.findViewById(R.id.create_objective_description_edittext);
+        //this.descriptionEditText = (EditText) view.findViewById(R.id.create_objective_description_edittext);
         this.validateButton = (Button) view.findViewById(R.id.create_objective_validate_button);
         //this.isEditableToggleButton = (ToggleButton) view.findViewById(R.id.create_objective_editable_togglebutton);
         this.errorNameTextView = (TextView) view.findViewById(R.id.create_objective_name_error_textview);

@@ -68,18 +68,18 @@ public class ConsultObjectivesAdapter extends RecyclerView.Adapter<ConsultObject
         });
 
         if (objective.getPeriod() == Objective.FIRST_PERIOD){
-            holder.objectivePeriod.setText(context.getResources().getString(R.string.first_period));
+            holder.objectivePeriod.setText(context.getResources().getString(R.string.first_period_inline));
             holder.objectivePeriod.setTextColor(context.getResources().getColor(R.color.firstPeriodColor));
             holder.periodImageView.setImageResource(R.drawable.field_first_period);
 
         }
         else if (objective.getPeriod() == Objective.SECOND_PERIOD){
-            holder.objectivePeriod.setText(context.getResources().getString(R.string.second_period));
+            holder.objectivePeriod.setText(context.getResources().getString(R.string.second_period_inline));
             holder.objectivePeriod.setTextColor(context.getResources().getColor(R.color.secondPeriodColor));
             holder.periodImageView.setImageResource(R.drawable.field_second_period);
         }
         else if (objective.getPeriod() == Objective.BOTH_PERIODS){
-            holder.objectivePeriod.setText(context.getResources().getString(R.string.both_periods));
+            holder.objectivePeriod.setText(context.getResources().getString(R.string.both_periods_inline));
             holder.objectivePeriod.setTextColor(context.getResources().getColor(R.color.bothPeriodsColor));
             holder.periodImageView.setImageResource(R.drawable.field);
         }

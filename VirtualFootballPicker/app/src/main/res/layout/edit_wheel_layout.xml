@@ -7,19 +7,36 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            android:text="@string/edit_wheel_label"
-            />
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/add_wheel_icon"
+                />
+
+            <TextView
+                android:id="@+id/edit_wheel_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_gravity="center"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:text="@string/edit_wheel_label"
+                />
+
+        </LinearLayout>
         <TextView
             android:id="@+id/edit_wheel_name_value_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="5dp"
             android:textSize="22sp"
             android:textStyle="bold|italic"
             />
@@ -27,6 +44,7 @@
 
         <TextView
             android:id="@+id/edit_wheel_name_textview"
+            android:layout_marginTop="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"

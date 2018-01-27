@@ -39,6 +39,7 @@
                         android:text="@string/every_wheels"
                         android:layout_gravity="center"
                         android:layout_marginLeft="15dp"
+                        android:fontFamily="casual"
                         android:textStyle="bold"
                         />
 

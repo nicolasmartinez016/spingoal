@@ -29,6 +29,11 @@ public class PlaySplitScreenFragment extends Fragment implements IPlaySplitScree
     private TextView secondPlayerFirstPeriodObjectiveTextView;
     private TextView secondPlayerSecondPeriodObjectiveTextView;
 
+    private ProgressBar firstPlayerFirstPeriodObjectiveProgressBar;
+    private ProgressBar firstPlayerSecondPeriodObjectiveProgressBar;
+    private ProgressBar secondPlayerFirstPeriodObjectiveProgressBar;
+    private ProgressBar secondPlayerSecondPeriodObjectiveProgressBar;
+
     private Button pickFirstPlayerStarsButton;
     private Button pickSecondPlayerStarsButton;
     private Button pickFirstPlayerFirstPeriodObjectiveButton;
@@ -66,6 +71,11 @@ public class PlaySplitScreenFragment extends Fragment implements IPlaySplitScree
         this.secondPlayerFirstPeriodObjectiveTextView = (TextView) view.findViewById(R.id.player_2_period_1_objective_textview);
         this.secondPlayerSecondPeriodObjectiveTextView = (TextView) view.findViewById(R.id.player_2_period_2_objective_textview);
 
+        this.firstPlayerFirstPeriodObjectiveProgressBar = (ProgressBar) view.findViewById(R.id.first_player_first_objective_progressbar);
+        this.firstPlayerSecondPeriodObjectiveProgressBar = (ProgressBar) view.findViewById(R.id.first_player_second_objective_progressbar);
+        this.secondPlayerFirstPeriodObjectiveProgressBar = (ProgressBar) view.findViewById(R.id.second_player_first_objective_progressbar);
+        this.secondPlayerSecondPeriodObjectiveProgressBar = (ProgressBar) view.findViewById(R.id.second_player_second_objective_progressbar);
+
         this.pickFirstPlayerFirstPeriodObjectiveButton = (Button) view.findViewById(R.id.player_1_pick_period_1_objective_button);
         this.pickFirstPlayerSecondPeriodObjectiveButton = (Button) view.findViewById(R.id.player_1_pick_period_2_objective_button);
         this.pickSecondPlayerFirstPeriodObjectiveButton = (Button) view.findViewById(R.id.player_2_pick_period_1_objective_button);
@@ -89,12 +99,14 @@ public class PlaySplitScreenFragment extends Fragment implements IPlaySplitScree
             @Override
             public void onClick(View view) {
                 if (firstPlayerFirstPeriodObjectiveTextView.getVisibility() == View.VISIBLE){
-                    firstPlayerFirstPeriodObjectiveTextView.setVisibility(View.INVISIBLE);
+                    firstPlayerFirstPeriodObjectiveTextView.setVisibility(View.GONE);
                     hideFirstPlayerFirstPeriodObjectiveButton.setText(getActivity().getResources().getString(R.string.display_objective));
+                    pickFirstPlayerFirstPeriodObjectiveButton.setVisibility(View.GONE);
                 }
                 else if (firstPlayerFirstPeriodObjectiveTextView.getVisibility() == View.INVISIBLE ||
                         firstPlayerFirstPeriodObjectiveTextView.getVisibility() == View.GONE){
                     firstPlayerFirstPeriodObjectiveTextView.setVisibility(View.VISIBLE);
+                    pickFirstPlayerFirstPeriodObjectiveButton.setVisibility(View.VISIBLE);
                     hideFirstPlayerFirstPeriodObjectiveButton.setText(getActivity().getResources().getString(R.string.hide_objective));
                 }
             }
@@ -104,13 +116,16 @@ public class PlaySplitScreenFragment extends Fragment implements IPlaySplitScree
             @Override
             public void onClick(View view) {
                 if (firstPlayerSecondPeriodObjectiveTextView.getVisibility() == View.VISIBLE){
-                    firstPlayerSecondPeriodObjectiveTextView.setVisibility(View.INVISIBLE);
+                    firstPlayerSecondPeriodObjectiveTextView.setVisibility(View.GONE);
                     hideFirstPlayerSecondPeriodObjectiveButton.setText(getActivity().getResources().getString(R.string.display_objective));
+                    pickFirstPlayerSecondPeriodObjectiveButton.setVisibility(View.GONE);
+
                 }
                 else if (firstPlayerSecondPeriodObjectiveTextView.getVisibility() == View.INVISIBLE ||
                         firstPlayerSecondPeriodObjectiveTextView.getVisibility() == View.GONE){
                     firstPlayerSecondPeriodObjectiveTextView.setVisibility(View.VISIBLE);
                     hideFirstPlayerSecondPeriodObjectiveButton.setText(getActivity().getResources().getString(R.string.hide_objective));
+                    pickFirstPlayerSecondPeriodObjectiveButton.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -119,13 +134,16 @@ public class PlaySplitScreenFragment extends Fragment implements IPlaySplitScree
             @Override
             public void onClick(View view) {
                 if (secondPlayerFirstPeriodObjectiveTextView.getVisibility() == View.VISIBLE){
-                    secondPlayerFirstPeriodObjectiveTextView.setVisibility(View.INVISIBLE);
+                    secondPlayerFirstPeriodObjectiveTextView.setVisibility(View.GONE);
                     hideSecondPlayerFirstPeriodObjectiveButton.setText(getActivity().getResources().getString(R.string.display_objective));
+                    pickSecondPlayerFirstPeriodObjectiveButton.setVisibility(View.GONE);
+
                 }
                 else if (secondPlayerFirstPeriodObjectiveTextView.getVisibility() == View.INVISIBLE ||
                         secondPlayerFirstPeriodObjectiveTextView.getVisibility() == View.GONE){
                     secondPlayerFirstPeriodObjectiveTextView.setVisibility(View.VISIBLE);
                     hideSecondPlayerFirstPeriodObjectiveButton.setText(getActivity().getResources().getString(R.string.hide_objective));
+                    pickSecondPlayerFirstPeriodObjectiveButton.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -134,13 +152,15 @@ public class PlaySplitScreenFragment extends Fragment implements IPlaySplitScree
             @Override
             public void onClick(View view) {
                 if (secondPlayerSecondPeriodObjectiveTextView.getVisibility() == View.VISIBLE){
-                    secondPlayerSecondPeriodObjectiveTextView.setVisibility(View.INVISIBLE);
+                    secondPlayerSecondPeriodObjectiveTextView.setVisibility(View.GONE);
                     hideSecondPlayerSecondPeriodObjectiveButton.setText(getActivity().getResources().getString(R.string.display_objective));
+                    pickSecondPlayerSecondPeriodObjectiveButton.setVisibility(View.GONE);
                 }
                 else if (secondPlayerSecondPeriodObjectiveTextView.getVisibility() == View.INVISIBLE ||
                         secondPlayerSecondPeriodObjectiveTextView.getVisibility() == View.GONE){
                     secondPlayerSecondPeriodObjectiveTextView.setVisibility(View.VISIBLE);
                     hideSecondPlayerSecondPeriodObjectiveButton.setText(getActivity().getResources().getString(R.string.hide_objective));
+                    pickSecondPlayerSecondPeriodObjectiveButton.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -148,28 +168,68 @@ public class PlaySplitScreenFragment extends Fragment implements IPlaySplitScree
         this.pickFirstPlayerFirstPeriodObjectiveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                core.pickFirstPlayerFirstPeriodObjective();
+                firstPlayerFirstPeriodObjectiveTextView.setVisibility(View.GONE);
+                firstPlayerFirstPeriodObjectiveProgressBar.setVisibility(View.VISIBLE);
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        core.pickFirstPlayerFirstPeriodObjective();
+                        firstPlayerFirstPeriodObjectiveTextView.setVisibility(View.VISIBLE);
+                        firstPlayerFirstPeriodObjectiveProgressBar.setVisibility(View.GONE);
+                    }
+                }, 500);
             }
         });
 
         this.pickSecondPlayerFirstPeriodObjectiveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                core.pickSecondPlayerFirstPeriodObjective();
+                secondPlayerFirstPeriodObjectiveTextView.setVisibility(View.GONE);
+                secondPlayerFirstPeriodObjectiveProgressBar.setVisibility(View.VISIBLE);
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        core.pickSecondPlayerFirstPeriodObjective();
+                        secondPlayerFirstPeriodObjectiveTextView.setVisibility(View.VISIBLE);
+                        secondPlayerFirstPeriodObjectiveProgressBar.setVisibility(View.GONE);
+                    }
+                }, 500);
             }
         });
 
         this.pickFirstPlayerSecondPeriodObjectiveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                core.pickFirstPlayerSecondPeriodObjective();
+                firstPlayerSecondPeriodObjectiveTextView.setVisibility(View.GONE);
+                firstPlayerSecondPeriodObjectiveProgressBar.setVisibility(View.VISIBLE);
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        core.pickFirstPlayerSecondPeriodObjective();
+                        firstPlayerSecondPeriodObjectiveTextView.setVisibility(View.VISIBLE);
+                        firstPlayerSecondPeriodObjectiveProgressBar.setVisibility(View.GONE);
+                    }
+                }, 500);
             }
         });
 
         this.pickSecondPlayerSecondPeriodObjectiveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                core.pickSecondPlayerSecondPeriodObjective();
+                secondPlayerSecondPeriodObjectiveTextView.setVisibility(View.GONE);
+                secondPlayerSecondPeriodObjectiveProgressBar.setVisibility(View.VISIBLE);
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        core.pickSecondPlayerSecondPeriodObjective();
+                        secondPlayerSecondPeriodObjectiveTextView.setVisibility(View.VISIBLE);
+                        secondPlayerSecondPeriodObjectiveProgressBar.setVisibility(View.GONE);
+                    }
+                }, 500);
             }
         });
 
@@ -218,7 +278,7 @@ public class PlaySplitScreenFragment extends Fragment implements IPlaySplitScree
 
     @Override
     public void pickFirstPlayerStars(final int stars) {
-        this.firstPlayerStarsImageView.setVisibility(View.INVISIBLE);
+        this.firstPlayerStarsImageView.setVisibility(View.GONE);
         this.firstPlayerStarsProgressbar.setVisibility(View.VISIBLE);
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -250,7 +310,7 @@ public class PlaySplitScreenFragment extends Fragment implements IPlaySplitScree
 
     @Override
     public void pickSecondPlayerStars(final int stars) {
-        this.secondPlayerStarsImageView.setVisibility(View.INVISIBLE);
+        this.secondPlayerStarsImageView.setVisibility(View.GONE);
         secondPlayerStarsProgressbar.setVisibility(View.VISIBLE);
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {

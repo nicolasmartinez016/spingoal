@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 import personal.nmartinez.fr.virtualfootballpicker.models.Objective;
@@ -85,7 +86,9 @@ public class PlaySplitScreenCore implements IPlaySplitScreenCore {
 
     private Objective selectRandomObjectiveByPeriod(int period, int player){
         List<Objective> objectives = getWheelObjectivesByHalf(period);
-        int index = ThreadLocalRandom.current().nextInt(0, objectives.size());
+        Random random = new Random();
+        int index = random.nextInt(objectives.size());
+        //int index = ThreadLocalRandom.current().nextInt(0, objectives.size());
         if (!objectives.isEmpty()){
             if (period == Objective.FIRST_PERIOD){
                 if (player == PLAYER_1){

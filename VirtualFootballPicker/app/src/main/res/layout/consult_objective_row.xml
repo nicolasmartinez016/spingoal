@@ -28,13 +28,15 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/whistle"/>
+                android:src="@drawable/whistle"
+                android:layout_gravity="center"/>
             <TextView
                 android:id="@+id/consult_objective_title_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
+                android:fontFamily="casual"
                 android:textStyle="bold"
                 android:textSize="18sp"/>
         </LinearLayout>
@@ -55,6 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textStyle="italic"
+                android:fontFamily="casual"
                 android:layout_marginLeft="10dp"
                 android:textSize="11sp"/>
         </LinearLayout>
