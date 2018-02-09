@@ -27,6 +27,9 @@ public class PlaySplitScreenCore implements IPlaySplitScreenCore {
     private static final int MAXIMUM_STAR = 5;
     private static final int PLAYER_1 = 1;
     private static final int PLAYER_2 = 2;
+    private static final int ALL_OBJECTIVES_PICKED = -2;
+    private static final int OBJECTIVE_ALREADY_PICKED = -1;
+    private static final int NEW_OBJECTIVE_PICKED = 1;
 
     private Wheel wheel;
     private Context context;
@@ -35,13 +38,23 @@ public class PlaySplitScreenCore implements IPlaySplitScreenCore {
     private int firstPlayerFirstPeriodObjectiveId;
     private int secondPlayerFirstPeriodObjectiveId;
 
+    private List<Integer> firstPeriodObjectivesIds;
+    private List<Integer> secondPeriodObjectivesIds;
+
+    private List<Objective> firstPeriodObjectives;
+    private List<Objective> secondPeriodObjectives;
+
     private IPlaySplitScreenView view;
 
     public PlaySplitScreenCore(Context context, IPlaySplitScreenView view){
         this.context = context;
         this.view = view;
         this.sharedPreferences = context.getSharedPreferences("", Context.MODE_PRIVATE);
+        this.firstPeriodObjectivesIds = new ArrayList<>();
+        this.secondPeriodObjectivesIds = new ArrayList<>();
         setupWheelToUse();
+        this.firstPeriodObjectives = getWheelObjectivesByHalf(Objective.FIRST_PERIOD);
+        this.secondPeriodObjectives = getWheelObjectivesByHalf(Objective.SECOND_PERIOD);
     }
 
     @Override
@@ -58,56 +71,114 @@ public class PlaySplitScreenCore implements IPlaySplitScreenCore {
 
     @Override
     public void pickFirstPlayerFirstPeriodObjective() {
-        Objective objective = selectRandomObjectiveByPeriod(Objective.FIRST_PERIOD, PLAYER_1);
-        this.view.pickFirstPlayerFirstPeriodObjective(objective.getName());
+        Objective objective = selectRandomObjectiveByPeriod(Objective.FIRST_PERIOD);
+        if (objective != null){
+            this.view.pickFirstPlayerFirstPeriodObjective(objective.getName());
+        }
     }
 
     @Override
     public void pickFirstPlayerSecondPeriodObjective() {
-        Objective objective = selectRandomObjectiveByPeriod(Objective.SECOND_PERIOD, PLAYER_1);
-        this.view.pickFirstPlayerSecondPeriodObjective(objective.getName());
+        Objective objective = selectRandomObjectiveByPeriod(Objective.SECOND_PERIOD);
+        if (objective != null){
+            this.view.pickFirstPlayerSecondPeriodObjective(objective.getName());
+        }
     }
 
     @Override
     public void pickSecondPlayerFirstPeriodObjective() {
-        Objective objective = selectRandomObjectiveByPeriod(Objective.FIRST_PERIOD, PLAYER_2);
-        this.view.pickSecondPlayerFirstPeriodObjective(objective.getName());
+        Objective objective = selectRandomObjectiveByPeriod(Objective.FIRST_PERIOD);
+        if (objective != null){
+            this.view.pickSecondPlayerFirstPeriodObjective(objective.getName());
+        }
     }
 
     @Override
     public void pickSecondPlayerSecondPeriodObjective() {
-        Objective objective = selectRandomObjectiveByPeriod(Objective.SECOND_PERIOD, PLAYER_2);
-        this.view.pickSecondPlayerSecondPeriodObjective(objective.getName());
+        Objective objective = selectRandomObjectiveByPeriod(Objective.SECOND_PERIOD);
+        if (objective != null){
+            this.view.pickSecondPlayerSecondPeriodObjective(objective.getName());
+        }
     }
 
     private int randomPickStars(){
         return ThreadLocalRandom.current().nextInt(MINIMUM_STAR, MAXIMUM_STAR + 1);
     }
 
-    private Objective selectRandomObjectiveByPeriod(int period, int player){
+    private Objective selectRandomObjectiveByPeriod(int period){
         List<Objective> objectives = getWheelObjectivesByHalf(period);
         Random random = new Random();
         int index = random.nextInt(objectives.size());
-        //int index = ThreadLocalRandom.current().nextInt(0, objectives.size());
         if (!objectives.isEmpty()){
-            if (period == Objective.FIRST_PERIOD){
-                if (player == PLAYER_1){
-                    this.firstPlayerFirstPeriodObjectiveId = objectives.get(index).getId();
-                }
-                else if (player == PLAYER_2){
-                    this.secondPlayerFirstPeriodObjectiveId = objectives.get(index).getId();
-
-                }
+            Objective objective = objectives.get(index);
+            int pickResult = addObjectiveIdInPeriodList(objective, period);
+            if (pickResult  == ALL_OBJECTIVES_PICKED){
+                // todo : alert user reset will be made with objectives
+                view.displayAllObjectivesUsedDialog();
+                return null;
             }
-            if (period == Objective.SECOND_PERIOD){
-                if ((player == PLAYER_1 && objectives.get(index).getId() == this.firstPlayerFirstPeriodObjectiveId)
-                        || (player == PLAYER_2 && objectives.get(index).getId() == this.secondPlayerFirstPeriodObjectiveId)){
-                    selectRandomObjectiveByPeriod(Objective.SECOND_PERIOD, player);
-                }
+            else if (pickResult == OBJECTIVE_ALREADY_PICKED){
+                return selectRandomObjectiveByPeriod(period);
             }
-            return objectives.get(index);
+            else if (pickResult == NEW_OBJECTIVE_PICKED){
+                return objective;
+            }
         }
+
         return null;
+    }
+
+    private int addObjectiveIdInPeriodList(Objective objective, int period){
+        if (period == Objective.FIRST_PERIOD){
+            return addFirstPeriodObjectiveId(objective);
+        }
+        else if (period == Objective.SECOND_PERIOD){
+            return addSecondPeriodObjectiveId(objective);
+        }
+
+        return -1;
+    }
+
+    private int addFirstPeriodObjectiveId(Objective objective){
+        int id = objective.getId();
+        if (this.firstPeriodObjectivesIds.size() == this.firstPeriodObjectives.size()){
+            // display alert all objectives have been used
+            this.firstPeriodObjectivesIds.clear();
+            this.secondPeriodObjectivesIds.clear();
+            return ALL_OBJECTIVES_PICKED;
+        }
+        else{
+            if (this.firstPeriodObjectivesIds.contains(id) || this.secondPeriodObjectivesIds.contains(id)){
+                return OBJECTIVE_ALREADY_PICKED;
+            }
+            firstPeriodObjectivesIds.add(id);
+            if (objective.getPeriod() == Objective.BOTH_PERIODS){
+                secondPeriodObjectivesIds.add(id);
+            }
+
+            return NEW_OBJECTIVE_PICKED;
+        }
+    }
+
+    private int addSecondPeriodObjectiveId(Objective objective){
+        int id = objective.getId();
+        if (this.secondPeriodObjectivesIds.size() == this.secondPeriodObjectives.size()){
+            // display alert all objectives have been used
+            this.secondPeriodObjectivesIds.clear();
+            this.firstPeriodObjectivesIds.clear();
+            return ALL_OBJECTIVES_PICKED;
+        }
+        else{
+            if (this.secondPeriodObjectivesIds.contains(id) || this.firstPeriodObjectivesIds.contains(id)){
+                return OBJECTIVE_ALREADY_PICKED;
+            }
+            secondPeriodObjectivesIds.add(id);
+            if (objective.getPeriod() == Objective.BOTH_PERIODS){
+                firstPeriodObjectivesIds.add(id);
+            }
+
+            return NEW_OBJECTIVE_PICKED;
+        }
     }
 
     /**

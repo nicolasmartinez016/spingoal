@@ -17,4 +17,6 @@ public interface IPlaySplitScreenView {
     void setWheelToBeUsed(String wheel);
 
     void showError(String message);
+
+    void displayAllObjectivesUsedDialog();
 }

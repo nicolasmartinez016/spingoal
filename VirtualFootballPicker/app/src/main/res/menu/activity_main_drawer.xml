@@ -6,17 +6,17 @@
     <item
         android:id="@+id/homepage_menu_item"
         android:title="Accueil"
-        android:icon="@drawable/ic_launcher_background"/>
+        android:icon="@drawable/icons_homepage"/>
 
-    <item android:title="@string/play_title">
+    <item android:id="@+id/play_menu_item_id" android:title="@string/play_title">
         <menu>
             <item
                 android:id="@+id/play_offline_solo_menu_item"
-                android:icon="@drawable/ic_menu_camera"
+                android:icon="@drawable/one_player_game_icon"
                 android:title="@string/play_offline_solo_title" />
             <item
                 android:id="@+id/play_offline_multi_menu_item"
-                android:icon="@drawable/ic_menu_gallery"
+                android:icon="@drawable/versus_game_icon"
                 android:title="@string/play_offline_multi_title" />
 
         </menu>

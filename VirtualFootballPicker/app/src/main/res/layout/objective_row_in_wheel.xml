@@ -7,6 +7,7 @@
         android:id="@+id/objective_title_in_wheels_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="casual"
         android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
     android:textStyle="italic"
         />
@@ -15,6 +16,7 @@
         android:id="@+id/objective_period_in_wheels_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="casual"
         android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
         android:gravity="right"
         android:textStyle="bold"

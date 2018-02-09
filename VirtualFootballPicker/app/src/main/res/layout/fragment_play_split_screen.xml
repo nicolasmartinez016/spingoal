@@ -114,6 +114,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="60dp"
                         android:visibility="gone"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
                         />
 
                     <ProgressBar
@@ -133,10 +135,11 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <Button
+                    <ImageView
                         android:id="@+id/player_1_pick_stars_button"
-                        style="@style/buttonStyle"
-                        android:text="@string/pick_objective"/>
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:src="@drawable/roll"/>
 
                 </LinearLayout>
 
@@ -158,6 +161,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="60dp"
                         android:visibility="gone"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
                         />
 
                     <ProgressBar
@@ -176,10 +181,11 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <Button
+                    <ImageView
                         android:id="@+id/player_2_pick_stars_button"
-                        style="@style/buttonStyle"
-                        android:text="@string/pick_objective"/>
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/roll"/>
 
 
                 </LinearLayout>
@@ -238,7 +244,11 @@
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:fontFamily="casual"
-                        android:paddingRight="3dp" />
+                        android:textColor="@color/white"
+                        android:padding="4dp"
+                        android:visibility="gone"
+                        android:background="@color/main_green"
+                        />
                     <ProgressBar
                         android:id="@+id/first_player_first_objective_progressbar"
                         android:layout_width="wrap_content"
@@ -256,16 +266,18 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <Button
+                    <ImageView
                         android:id="@+id/player_1_pick_period_1_objective_button"
-                        style="@style/buttonStyle"
-                        android:text="@string/pick_objective" />
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:src="@drawable/roll"/>
 
-                    <Button
+                    <ImageView
                         android:id="@+id/player_1_period_1_display_or_hide_objective_button"
-                        style="@style/buttonStyle"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:layout_marginLeft="10dp"
-                        android:text="@string/hide_objective"
+                        android:src="@drawable/hide_icon"
                         android:visibility="gone" />
 
                 </LinearLayout>
@@ -295,7 +307,11 @@
                         android:layout_marginRight="10dp"
                         android:layout_gravity="center"
                         android:fontFamily="casual"
-                        android:gravity="center"/>
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:padding="4dp"
+                        android:visibility="gone"
+                        android:background="@color/main_green"/>
 
                     <ProgressBar
                         android:id="@+id/second_player_first_objective_progressbar"
@@ -314,17 +330,19 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <Button
+                    <ImageView
                         android:id="@+id/player_2_pick_period_1_objective_button"
-                        style="@style/buttonStyle"
-                        android:text="@string/pick_objective" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/roll"/>
 
-                    <Button
+                    <ImageView
                         android:id="@+id/player_2_period_1_display_or_hide_objective_button"
-                        style="@style/buttonStyle"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:layout_marginLeft="10dp"
                         android:visibility="gone"
-                        android:text="@string/hide_objective"/>
+                        android:src="@drawable/hide_icon"/>
 
                 </LinearLayout>
 
@@ -384,6 +402,10 @@
                         android:layout_gravity="center"
                         android:fontFamily="casual"
                         android:gravity="center"
+                        android:textColor="@color/white"
+                        android:padding="4dp"
+                        android:visibility="gone"
+                        android:background="@color/main_green"
                         />
 
                     <ProgressBar
@@ -404,17 +426,19 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <Button
+                    <ImageView
                         android:id="@+id/player_1_pick_period_2_objective_button"
-                        style="@style/buttonStyle"
-                        android:text="@string/pick_objective"/>
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/roll"/>
 
-                    <Button
+                    <ImageView
                         android:id="@+id/player_1_period_2_display_or_hide_objective_button"
-                        style="@style/buttonStyle"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:layout_marginLeft="10dp"
                         android:visibility="gone"
-                        android:text="@string/hide_objective"/>
+                        android:src="@drawable/hide_icon"/>
 
                 </LinearLayout>
 
@@ -443,6 +467,10 @@
                         android:layout_gravity="center"
                         android:fontFamily="casual"
                         android:gravity="center"
+                        android:textColor="@color/white"
+                        android:padding="4dp"
+                        android:visibility="gone"
+                        android:background="@color/main_green"
                         />
 
                     <ProgressBar
@@ -461,17 +489,19 @@
                     android:layout_marginLeft="10dp"
                     android:orientation="horizontal">
 
-                    <Button
+                    <ImageView
                         android:id="@+id/player_2_pick_period_2_objective_button"
-                        style="@style/buttonStyle"
-                        android:text="@string/pick_objective"/>
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/roll"/>
 
-                    <Button
+                    <ImageView
                         android:id="@+id/player_2_period_2_display_or_hide_objective_button"
-                        style="@style/buttonStyle"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:layout_marginLeft="10dp"
                         android:visibility="gone"
-                        android:text="@string/hide_objective"/>
+                        android:src="@drawable/hide_icon"/>
 
                 </LinearLayout>
 

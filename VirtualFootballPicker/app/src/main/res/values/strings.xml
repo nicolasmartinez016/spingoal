@@ -38,6 +38,8 @@
     <string name="create_wheel_button_label">Créer !</string>
     <string name="try_playing_alone">Essaye maintenant ! \n(simple écran)</string>
     <string name="try_playing_multi">Essaye maintenant ! \n(écran partagé)</string>
+    <string name="information_title">INFORMATION</string>
+    <string name="all_objectives_used_label">Tous les gages ont ete tires pour cette mi-temps.\nRemise a 0 des gages disponibles, vous pouvez maintenant tomber a nouveau sur un gage deja tombe.</string>
     <string name="unsaved_changes_label">Des changements n\'ont pas été sauvegardés..</string>
     <string name="game_description">Lassé de taper tes potes sans cesse à la console ? Laisse leur une chance et change les règles du jeu !\n</string>
     <string name="game_description_part_2">D\'abord, le jeu va choisir le niveau de l\'équipe que tu vas jouer !\nEnsuite, tirez au sort un objectif par mi-temps et le premier à l\'avoir rempli gagne le match.</string>
