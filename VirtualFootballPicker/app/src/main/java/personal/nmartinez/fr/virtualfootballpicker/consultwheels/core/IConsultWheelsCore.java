@@ -18,4 +18,5 @@ public interface IConsultWheelsCore {
     Wheel getSelectedWheel();
     EditWheelDialog openEdition(Wheel wheel);
     IConsultWheelsView getView();
+    void removeWheel(Wheel wheel);
 }

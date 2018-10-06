@@ -60,10 +60,17 @@ public class ConsultObjectivesAdapter extends RecyclerView.Adapter<ConsultObject
             holder.editObjectiveButton.setVisibility(View.VISIBLE);
             holder.deleteObjectiveButton.setVisibility(View.VISIBLE);
         }
+
         holder.editObjectiveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 core.openEdition(objective);
+            }
+        });
+        holder.deleteObjectiveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                core.removeObjective(objective);
             }
         });
 

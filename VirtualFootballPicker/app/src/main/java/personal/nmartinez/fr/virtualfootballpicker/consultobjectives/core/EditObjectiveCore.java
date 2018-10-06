@@ -192,7 +192,9 @@ public class EditObjectiveCore implements IEditObjectiveCore {
 
         for (Objective localObjective : objectives){
             if (localObjective.getName().equalsIgnoreCase(name)){
-                return false;
+                if (localObjective.getId() != this.objective.getId()){
+                    return false;
+                }
             }
         }
 

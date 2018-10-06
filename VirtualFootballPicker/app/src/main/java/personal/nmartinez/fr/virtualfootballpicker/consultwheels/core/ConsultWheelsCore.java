@@ -122,6 +122,33 @@ public class ConsultWheelsCore implements IConsultWheelsCore {
         return editDialog;
     }
 
+    @Override
+    public void removeWheel(Wheel wheel) {
+        Wheel favoriteWheel = getSelectedWheel();
+        if (favoriteWheel != null && wheel != null && favoriteWheel.getId() == wheel.getId()){
+            view.displayCantDeleteFavoriteWheelPopup();
+        }
+        else{
+            List<Wheel> wheels = getData();
+            for (int i = 0; i < wheels.size(); i++){
+                if (wheel.getId() == wheels.get(i).getId()){
+                    wheels.remove(i);
+                }
+            }
+
+            try {
+                String wheelsJson = objectMapper.writeValueAsString(wheels);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString(WHEELS_KEY, wheelsJson);
+                editor.commit();
+                view.displayWheelDeletedPopup(wheel);
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
     /**
      * Gets the view
      * @return

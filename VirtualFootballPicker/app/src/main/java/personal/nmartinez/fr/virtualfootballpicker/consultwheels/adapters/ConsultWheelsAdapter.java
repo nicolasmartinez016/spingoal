@@ -104,6 +104,15 @@ public class ConsultWheelsAdapter extends BaseExpandableListAdapter {
             uploadButton.setFocusable(false);
             favButton.setFocusable(false);
 
+            if (wheel.isEditable()){
+                editButton.setVisibility(View.GONE);
+                deleteButton.setVisibility(View.GONE);
+            }
+            else{
+                editButton.setVisibility(View.VISIBLE);
+                deleteButton.setVisibility(View.VISIBLE);
+            }
+
             if (i % 2 == 0 ){
                 layout.setBackgroundColor(context.getResources().getColor(R.color.gray));
             }
@@ -131,6 +140,13 @@ public class ConsultWheelsAdapter extends BaseExpandableListAdapter {
                 }
             });
 
+            deleteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    core.removeWheel(wheel);
+                }
+            });
+
         return view;
     }
 
@@ -145,20 +161,24 @@ public class ConsultWheelsAdapter extends BaseExpandableListAdapter {
         Objective objective = (Objective)getChild(i, i1);
         TextView objectiveName = (TextView) view.findViewById(R.id.objective_title_in_wheels_textview);
         TextView objectivePeriod = (TextView) view.findViewById(R.id.objective_period_in_wheels_textview);
+        ImageView objectivePeriodImage = (ImageView) view.findViewById(R.id.objective_row_in_wheel_period_imageview);
 
         if (objective.getPeriod() == Objective.FIRST_PERIOD){
             objectivePeriod.setText(context.getResources().getString(R.string.first_period_inline));
             objectivePeriod.setTextColor(context.getResources().getColor(R.color.firstPeriodColor));
+            objectivePeriodImage.setImageResource(R.drawable.field_first_period);
         }
 
         else if (objective.getPeriod() == Objective.SECOND_PERIOD){
             objectivePeriod.setText(context.getResources().getString(R.string.second_period_inline));
             objectivePeriod.setTextColor(context.getResources().getColor(R.color.secondPeriodColor));
+            objectivePeriodImage.setImageResource(R.drawable.field_second_period);
         }
 
         else if (objective.getPeriod() == Objective.BOTH_PERIODS){
             objectivePeriod.setText(context.getResources().getString(R.string.both_periods_inline));
             objectivePeriod.setTextColor(context.getResources().getColor(R.color.bothPeriodsColor));
+            objectivePeriodImage.setImageResource(R.drawable.field);
         }
 
         objectiveName.setText(objective.getName());

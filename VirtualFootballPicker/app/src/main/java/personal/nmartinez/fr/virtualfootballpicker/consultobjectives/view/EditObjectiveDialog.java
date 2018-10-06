@@ -76,7 +76,7 @@ public class EditObjectiveDialog extends DialogFragment implements IEditObjectiv
         objective1stPeriodButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                core.setObjectivePeriod(Objective.BOTH_PERIODS);
+                core.setObjectivePeriod(Objective.FIRST_PERIOD);
                 displayFirstPeriodButtonChecked();
             }
         });
@@ -84,7 +84,7 @@ public class EditObjectiveDialog extends DialogFragment implements IEditObjectiv
         objective2ndPeriodButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                core.setObjectivePeriod(Objective.BOTH_PERIODS);
+                core.setObjectivePeriod(Objective.SECOND_PERIOD);
                 displaySecondPeriodButtonChecked();
             }
         });

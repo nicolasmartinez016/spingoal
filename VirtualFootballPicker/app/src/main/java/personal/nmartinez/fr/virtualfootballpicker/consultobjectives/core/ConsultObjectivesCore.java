@@ -16,6 +16,7 @@ import java.util.List;
 import personal.nmartinez.fr.virtualfootballpicker.consultobjectives.view.EditObjectiveDialog;
 import personal.nmartinez.fr.virtualfootballpicker.consultobjectives.view.IConsultObjectivesView;
 import personal.nmartinez.fr.virtualfootballpicker.models.Objective;
+import personal.nmartinez.fr.virtualfootballpicker.models.Wheel;
 import personal.nmartinez.fr.virtualfootballpicker.utils.StringUtils;
 
 import static personal.nmartinez.fr.virtualfootballpicker.MainActivity.OBJECTIVES_KEY;
@@ -64,6 +65,25 @@ public class ConsultObjectivesCore implements IConsultObjectivesCore {
         return objectives;
     }
 
+    /**
+     * Gets all the wheels of the user from the shared preference
+     * @return
+     */
+    private List<Wheel> getWheels(){
+        List<Wheel> wheels = new ArrayList<>();
+        String wheelsJson = this.sharedPreferences.getString(WHEELS_KEY, "");
+        try {
+
+            CollectionType javaType = objectMapper.getTypeFactory()
+                    .constructCollectionType(List.class, Wheel.class);
+            wheels = objectMapper.readValue(wheelsJson, javaType);
+        }  catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return wheels;
+    }
+
     @Override
     public EditObjectiveDialog openEdition(Objective objective) {
         // DialogFragment.show() will take care of adding the fragment
@@ -80,6 +100,45 @@ public class ConsultObjectivesCore implements IConsultObjectivesCore {
         editDialog.setConsultObjectivesCore(this);
         editDialog.show(ft, "dialog");
         return editDialog;
+    }
+
+    @Override
+    public void removeObjective(Objective objective) {
+        List<Wheel> wheels = getWheels();
+
+        boolean canDelete = true;
+
+        for (Wheel wheel : wheels){
+            for (Objective objectiveWheel : wheel.getObjectives()){
+                if (objectiveWheel.getId() == objective.getId()){
+                    canDelete = false;
+                    break;
+                }
+            }
+        }
+
+        if (canDelete){
+            List<Objective> objectives = getData();
+            for (int i = 0; i < objectives.size(); i++){
+                if (objectives.get(i).getId() == objective.getId()){
+                    objectives.remove(i);
+                }
+            }
+
+            String objectivesJson = null;
+            try {
+                objectivesJson = objectMapper.writeValueAsString(objectives);
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            }
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString(OBJECTIVES_KEY, objectivesJson);
+            editor.commit();
+            view.displayObjectiveDeletedPopup();
+        }
+        else{
+            view.displayCantDeleteObjectivePopup();
+        }
     }
 
     @Override

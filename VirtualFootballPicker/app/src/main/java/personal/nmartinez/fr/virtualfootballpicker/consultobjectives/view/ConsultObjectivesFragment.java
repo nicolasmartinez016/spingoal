@@ -18,6 +18,8 @@ import personal.nmartinez.fr.virtualfootballpicker.R;
 import personal.nmartinez.fr.virtualfootballpicker.consultobjectives.adapters.ConsultObjectivesAdapter;
 import personal.nmartinez.fr.virtualfootballpicker.consultobjectives.core.ConsultObjectivesCore;
 import personal.nmartinez.fr.virtualfootballpicker.consultobjectives.core.IConsultObjectivesCore;
+import personal.nmartinez.fr.virtualfootballpicker.consultobjectives.view.dialogs.CantDeleteObjectiveDialog;
+import personal.nmartinez.fr.virtualfootballpicker.consultobjectives.view.dialogs.ObjectiveDeletedDialog;
 import personal.nmartinez.fr.virtualfootballpicker.models.Objective;
 
 /**
@@ -77,6 +79,16 @@ public class ConsultObjectivesFragment extends Fragment implements IConsultObjec
     @Override
     public void setObjectivesAdapter(List<Objective> objectives) {
         this.consultObjectivesRecyclerView.setAdapter(new ConsultObjectivesAdapter(objectives, this.core, getActivity()));
+    }
+
+    @Override
+    public void displayObjectiveDeletedPopup() {
+        new ObjectiveDeletedDialog().show(getFragmentManager(), "");
+    }
+
+    @Override
+    public void displayCantDeleteObjectivePopup() {
+        new CantDeleteObjectiveDialog().show(getFragmentManager(), "");
     }
 
     @Override

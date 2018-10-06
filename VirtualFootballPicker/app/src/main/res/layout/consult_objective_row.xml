@@ -75,13 +75,14 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
-            android:src="@drawable/edit_icon" />
+            android:layout_marginLeft="8dp"
+            android:src="@drawable/ic_mode_edit_black_24dp" />
 
         <ImageView
             android:id="@+id/consult_objective_delete_button"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="8dp"
             android:layout_gravity="center"
             android:src="@drawable/ic_delete_black_24dp"/>
     </LinearLayout>

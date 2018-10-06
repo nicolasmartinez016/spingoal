@@ -207,7 +207,9 @@ public class EditWheelCore implements IEditWheelCore {
 
         for (Wheel localWheel : wheels){
             if (localWheel.getName().equalsIgnoreCase(name)){
-                return false;
+                if (localWheel.getId() != this.wheel.getId()){
+                    return false;
+                }
             }
         }
 

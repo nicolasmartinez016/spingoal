@@ -15,6 +15,9 @@ import personal.nmartinez.fr.virtualfootballpicker.R;
 import personal.nmartinez.fr.virtualfootballpicker.consultwheels.adapters.ConsultWheelsAdapter;
 import personal.nmartinez.fr.virtualfootballpicker.consultwheels.core.ConsultWheelsCore;
 import personal.nmartinez.fr.virtualfootballpicker.consultwheels.core.IConsultWheelsCore;
+import personal.nmartinez.fr.virtualfootballpicker.consultwheels.view.dialogs.CantDeleteWheelDialog;
+import personal.nmartinez.fr.virtualfootballpicker.consultwheels.view.dialogs.WheelDeletedDialog;
+import personal.nmartinez.fr.virtualfootballpicker.models.Wheel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -56,6 +59,18 @@ public class ConsultWheelsFragment extends Fragment implements IConsultWheelsVie
     @Override
     public void applyChangesInWheels() {
         this.consultWheelsExpandableListview.setAdapter(new ConsultWheelsAdapter(this.getActivity(), this.core));
+    }
+
+    @Override
+    public void displayCantDeleteFavoriteWheelPopup() {
+        new CantDeleteWheelDialog().show(getFragmentManager(), "");
+        applyChangesInWheels();
+    }
+
+    @Override
+    public void displayWheelDeletedPopup(Wheel wheel) {
+        new WheelDeletedDialog().show(getFragmentManager(), "");
+        applyChangesInWheels();
     }
 
     /**

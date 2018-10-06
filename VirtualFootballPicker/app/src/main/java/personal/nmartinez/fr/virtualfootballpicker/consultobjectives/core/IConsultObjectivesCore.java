@@ -12,4 +12,5 @@ public interface IConsultObjectivesCore {
     void retrieveObjectives();
     EditObjectiveDialog openEdition(Objective objective);
     IConsultObjectivesView getView();
+    void removeObjective(Objective objective);
 }

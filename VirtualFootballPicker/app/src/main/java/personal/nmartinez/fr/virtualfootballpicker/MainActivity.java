@@ -96,8 +96,8 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
+        // getMenuInflater().inflate(R.menu.main, menu);
+        return false;
     }
 
     @Override
@@ -223,6 +223,7 @@ public class MainActivity extends AppCompatActivity
         wheel.setName("Roue de base");
         wheel.setObjectives(objectives);
         wheel.setCreator("admin");
+        wheel.setEditable(false);
 
         List<Wheel> wheels = new ArrayList<>();
         wheels.add(wheel);

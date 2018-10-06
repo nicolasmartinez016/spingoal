@@ -27,11 +27,11 @@ public class PlayOfflineSoloFragment extends Fragment implements IPlayOfflineSol
     private TextView firstHalfObjectiveTextView;
     private TextView secondHalfObjectiveTextView;
 
-    private Button choseFirstHalfObjectiveButton;
-    private Button choseSecondHalfObjectiveButton;
-    private Button showFirstHalfObjectiveButton;
-    private Button showSecondHalfObjectiveButton;
-    private Button pickStarsButton;
+    private ImageView choseFirstHalfObjectiveButton;
+    private ImageView choseSecondHalfObjectiveButton;
+    private ImageView showFirstHalfObjectiveButton;
+    private ImageView showSecondHalfObjectiveButton;
+    private ImageView pickStarsButton;
 
     private ImageView starsImageView;
 
@@ -53,15 +53,15 @@ public class PlayOfflineSoloFragment extends Fragment implements IPlayOfflineSol
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_play_offline_solo, container, false);
 
-        this.wheelUsedTextView = (TextView) view.findViewById(R.id.selected_wheel_textview);
-        this.firstHalfObjectiveTextView = (TextView) view.findViewById(R.id.first_half_objective_textview);
-        this.secondHalfObjectiveTextView = (TextView) view.findViewById(R.id.second_half_objective_textview);
-        this.choseFirstHalfObjectiveButton = (Button) view.findViewById(R.id.pick_first_half_objective_button);
-        this.choseSecondHalfObjectiveButton = (Button) view.findViewById(R.id.pick_second_half_objective_button);
-        this.showFirstHalfObjectiveButton = (Button) view.findViewById(R.id.display_or_hide_first_half_objective_button);
-        this.showSecondHalfObjectiveButton = (Button) view.findViewById(R.id.display_or_hide_second_half_objective_button);
-        this.starsImageView = (ImageView) view.findViewById(R.id.selected_stars_imageview);
-        this.pickStarsButton = (Button) view.findViewById(R.id.pick_stars_button);
+        this.wheelUsedTextView = (TextView) view.findViewById(R.id.selected_wheel_textview_single_player);
+        this.firstHalfObjectiveTextView = (TextView) view.findViewById(R.id.first_period_objective_textview_single_player);
+        this.secondHalfObjectiveTextView = (TextView) view.findViewById(R.id.second_period_objective_textview_single_player);
+        this.choseFirstHalfObjectiveButton = (ImageView) view.findViewById(R.id.pick_first_period_objective_single_player);
+        this.choseSecondHalfObjectiveButton = (ImageView) view.findViewById(R.id.pick_second_period_objective_single_player);
+        this.showFirstHalfObjectiveButton = (ImageView) view.findViewById(R.id.hide_or_display_first_period_objective_single_player);
+        this.showSecondHalfObjectiveButton = (ImageView) view.findViewById(R.id.hide_or_display_second_period_objective_single_player);
+        this.starsImageView = (ImageView) view.findViewById(R.id.selected_stars_imageview_single_player);
+        this.pickStarsButton = (ImageView) view.findViewById(R.id.pick_stars_button);
 
         this.choseFirstHalfObjectiveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,11 +132,11 @@ public class PlayOfflineSoloFragment extends Fragment implements IPlayOfflineSol
         this.showFirstHalfObjective = !this.showFirstHalfObjective;
         if (this.showFirstHalfObjective){
             this.firstHalfObjectiveTextView.setVisibility(View.VISIBLE);
-            this.showFirstHalfObjectiveButton.setText(getResources().getString(R.string.hide_objective));
+            this.showFirstHalfObjectiveButton.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.hide_icon));
         }
         else {
             this.firstHalfObjectiveTextView.setVisibility(View.INVISIBLE);
-            this.showFirstHalfObjectiveButton.setText(getResources().getString(R.string.display_objective));
+            this.showFirstHalfObjectiveButton.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.show_icon));
         }
     }
 
@@ -148,11 +148,11 @@ public class PlayOfflineSoloFragment extends Fragment implements IPlayOfflineSol
         this.showSecondHalfObjective = !this.showSecondHalfObjective;
         if (this.showSecondHalfObjective){
             this.secondHalfObjectiveTextView.setVisibility(View.VISIBLE);
-            this.showSecondHalfObjectiveButton.setText(getResources().getString(R.string.hide_objective));
+            this.showSecondHalfObjectiveButton.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.hide_icon));
         }
         else {
             this.secondHalfObjectiveTextView.setVisibility(View.INVISIBLE);
-            this.showSecondHalfObjectiveButton.setText(getResources().getString(R.string.display_objective));
+            this.showSecondHalfObjectiveButton.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.show_icon));
         }
     }
 

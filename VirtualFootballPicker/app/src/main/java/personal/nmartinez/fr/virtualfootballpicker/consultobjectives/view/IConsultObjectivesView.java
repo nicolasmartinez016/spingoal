@@ -14,4 +14,8 @@ public interface IConsultObjectivesView {
     void displayWaitingForData(boolean wait);
     void setObjectivesAdapter(List<Objective> objectives);
     Activity getViewActivity();
+
+    void displayObjectiveDeletedPopup();
+
+    void displayCantDeleteObjectivePopup();
 }

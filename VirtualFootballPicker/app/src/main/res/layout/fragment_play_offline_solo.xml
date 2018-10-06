@@ -10,170 +10,235 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
     <LinearLayout
-        android:id="@+id/selected_wheel_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/selected_wheel_label"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:text="@string/selected_wheel_label" />
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/selected_wheel_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="22sp"
-            android:textStyle="bold|italic" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center">
 
-    </LinearLayout>
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/wheel_icon"
+                    />
+
+                <TextView
+                    android:id="@+id/selected_wheel_textview_single_player"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/every_wheels"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="15dp"
+                    android:fontFamily="casual"
+                    android:textStyle="bold"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center">
+
+                <View
+                    android:layout_width="80dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="0.5"
+                    android:background="@color/main_green"
+                    />
+
+                <View android:layout_width="80dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="0.5"
+                    android:background="@color/gold"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
 
 
         <LinearLayout
             android:id="@+id/stars_layout"
-            android:layout_below="@id/selected_wheel_layout"
             android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/pick_stars_button"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/roll"
+                />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/star_number_label"
                 android:textSize="18sp"
+                android:layout_marginLeft="10dp"
                 android:layout_gravity="center"
-                android:layout_marginBottom="15dp"
+                android:gravity="center"
                 />
 
             <ImageView
-                android:id="@+id/selected_stars_imageview"
-                android:visibility="gone"
+                android:id="@+id/selected_stars_imageview_single_player"
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
                 android:layout_gravity="center"
-                android:src="@drawable/fivestars"
-                />
-
-            <Button
-                android:id="@+id/pick_stars_button"
-                android:layout_gravity="center"
-                style="@style/buttonStyle"
-                android:text="@string/pick_objective"
+                android:src="@drawable/randomstars"
                 />
 
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"/>
 
-        <TextView
-            android:id="@+id/first_half_objective_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/stars_layout"
-            android:layout_centerHorizontal="true"
-            android:textSize="18sp"
-            android:paddingTop="30dp"
-            android:text="@string/first_half_objective_label"/>
 
-        <TextView
-            android:id="@+id/first_half_objective_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingTop="15dp"
-            android:textStyle="italic"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/first_half_objective_label" />
-
-        <RelativeLayout
-            android:id="@+id/first_half_buttons_layout"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="15dp"
-            android:layout_below="@id/first_half_objective_textview">
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            >
 
-            <RelativeLayout
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="120sp"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/pick_first_period_objective_single_player"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/roll"
+                    />
+
+                <ImageView
+                    android:id="@+id/hide_or_display_first_period_objective_single_player"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/hide_icon"
+                    />
+
+            </LinearLayout>
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true">
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:fontFamily="casual"
+                android:textSize="18sp"
+                android:text="@string/first_period"/>
 
-                <Button
-                    android:id="@+id/pick_first_half_objective_button"
-                    style="@style/buttonStyle"
-                    android:text="@string/pick_objective"/>
+            <TextView
+                android:id="@+id/first_period_objective_textview_single_player"
+                android:layout_height="80dp"
+                android:textColor="@color/white"
+                android:background="@color/main_green"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:padding="4dp"
+                android:textSize="18sp"
+                android:text="@string/pick_objective_label"/>
 
-                <Button
-                    android:id="@+id/display_or_hide_first_half_objective_button"
-                    android:layout_marginLeft="20dp"
-                    android:visibility="gone"
-                    android:text="@string/hide_objective"
-                    style="@style/buttonStyle"
-                    android:layout_toRightOf="@id/pick_first_half_objective_button"/>
+        </LinearLayout>
 
-            </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"/>
 
-        </RelativeLayout>
 
-        <TextView
-            android:id="@+id/second_half_objective_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/first_half_buttons_layout"
-            android:layout_centerHorizontal="true"
-            android:textSize="18sp"
-            android:paddingTop="30dp"
-            android:text="@string/second_half_objective_label"/>
-
-        <TextView
-            android:id="@+id/second_half_objective_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingTop="15dp"
-            android:textStyle="italic"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/second_half_objective_label" />
-
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="15dp"
-            android:layout_below="@id/second_half_objective_textview">
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            >
 
-            <RelativeLayout
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="120sp"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/pick_second_period_objective_single_player"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/roll"
+                    />
+
+                <ImageView
+                    android:id="@+id/hide_or_display_second_period_objective_single_player"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/hide_icon"
+                    />
+
+            </LinearLayout>
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true">
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:fontFamily="casual"
+                android:textSize="18sp"
+                android:text="@string/second_period"/>
 
-                <Button
-                    android:id="@+id/pick_second_half_objective_button"
-                    style="@style/buttonStyle"
-                    android:text="@string/pick_objective"/>
+            <TextView
+                android:id="@+id/second_period_objective_textview_single_player"
+                android:layout_height="80dp"
+                android:textColor="@color/white"
+                android:background="@color/main_green"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:padding="4dp"
+                android:textSize="18sp"
+                android:text="@string/pick_objective_label"/>
 
-                <Button
-                    android:id="@+id/display_or_hide_second_half_objective_button"
-                    android:layout_marginLeft="20dp"
-                    android:visibility="gone"
-                    android:text="@string/hide_objective"
-                    style="@style/buttonStyle"
-                    android:layout_toRightOf="@id/pick_second_half_objective_button"/>
-
-            </RelativeLayout>
-
-        </RelativeLayout>
+        </LinearLayout>
 
 
-    </RelativeLayout>
+
+
+
+
+
+    </LinearLayout>
 
 </ScrollView>
 

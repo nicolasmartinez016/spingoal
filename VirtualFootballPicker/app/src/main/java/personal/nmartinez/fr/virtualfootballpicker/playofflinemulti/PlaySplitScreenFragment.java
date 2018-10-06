@@ -290,20 +290,20 @@ public class PlaySplitScreenFragment extends Fragment implements IPlaySplitScree
             public void run() {
                 // Actions to do after 10 seconds
                 if (stars == 1) {
-                    firstPlayerStarsImageView.setImageDrawable(getResources().getDrawable(R.drawable.one_star_icon));
+                    firstPlayerStarsImageView.setImageDrawable(getResources().getDrawable(R.drawable.onestar));
                 }
                 else if (stars == 2){
-                    firstPlayerStarsImageView.setImageDrawable(getResources().getDrawable(R.drawable.two_stars_icon));
+                    firstPlayerStarsImageView.setImageDrawable(getResources().getDrawable(R.drawable.twostars));
                 }
                 else if (stars == 3){
-                    firstPlayerStarsImageView.setImageDrawable(getResources().getDrawable(R.drawable.three_stars_icon));
+                    firstPlayerStarsImageView.setImageDrawable(getResources().getDrawable(R.drawable.threestars));
                 }
                 else if (stars == 4){
-                    firstPlayerStarsImageView.setImageDrawable(getResources().getDrawable(R.drawable.four_stars_icon));
+                    firstPlayerStarsImageView.setImageDrawable(getResources().getDrawable(R.drawable.fourstars));
 
                 }
                 else if (stars == 5){
-                    firstPlayerStarsImageView.setImageDrawable(getResources().getDrawable(R.drawable.five_stars_icon));
+                    firstPlayerStarsImageView.setImageDrawable(getResources().getDrawable(R.drawable.fivestars));
                 }
                 firstPlayerStarsProgressbar.setVisibility(View.INVISIBLE);
                 firstPlayerStarsImageView.setVisibility(View.VISIBLE);
@@ -322,20 +322,20 @@ public class PlaySplitScreenFragment extends Fragment implements IPlaySplitScree
             public void run() {
                 // Actions to do after 10 seconds
                 if (stars == 1) {
-                    secondPlayerStarsImageView.setImageDrawable(getResources().getDrawable(R.drawable.one_star_icon));
+                    secondPlayerStarsImageView.setImageDrawable(getResources().getDrawable(R.drawable.onestar));
                 }
                 else if (stars == 2){
-                    secondPlayerStarsImageView.setImageDrawable(getResources().getDrawable(R.drawable.two_stars_icon));
+                    secondPlayerStarsImageView.setImageDrawable(getResources().getDrawable(R.drawable.twostars));
                 }
                 else if (stars == 3){
-                    secondPlayerStarsImageView.setImageDrawable(getResources().getDrawable(R.drawable.three_stars_icon));
+                    secondPlayerStarsImageView.setImageDrawable(getResources().getDrawable(R.drawable.threestars));
                 }
                 else if (stars == 4){
-                    secondPlayerStarsImageView.setImageDrawable(getResources().getDrawable(R.drawable.four_stars_icon));
+                    secondPlayerStarsImageView.setImageDrawable(getResources().getDrawable(R.drawable.fourstars));
 
                 }
                 else if (stars == 5){
-                    secondPlayerStarsImageView.setImageDrawable(getResources().getDrawable(R.drawable.five_stars_icon));
+                    secondPlayerStarsImageView.setImageDrawable(getResources().getDrawable(R.drawable.fivestars));
                 }
                 secondPlayerStarsProgressbar.setVisibility(View.INVISIBLE);
                 secondPlayerStarsImageView.setVisibility(View.VISIBLE);

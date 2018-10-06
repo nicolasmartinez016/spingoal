@@ -14,4 +14,8 @@ public interface IConsultWheelsView {
     void showError(String message);
     void applyChangesInWheels();
     Activity getViewActivity();
+
+    void displayCantDeleteFavoriteWheelPopup();
+
+    void displayWheelDeletedPopup(Wheel wheel);
 }

@@ -10,6 +10,7 @@
         android:background="@color/main_green"
         android:fontFamily="casual"
         android:textSize="22sp"
+        android:paddingLeft="15dp"
         android:text="@string/information_title"/>
 
     <TextView
