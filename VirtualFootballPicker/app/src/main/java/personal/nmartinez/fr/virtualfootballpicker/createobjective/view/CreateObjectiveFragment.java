@@ -1,48 +1,63 @@
 package personal.nmartinez.fr.virtualfootballpicker.createobjective.view;
 
 
+import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.LifecycleOwner;
+import android.arch.lifecycle.LifecycleRegistry;
 import android.content.res.Resources;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v7.widget.AppCompatEditText;
+import android.text.InputType;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.EditText;
-import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.ToggleButton;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import personal.nmartinez.fr.virtualfootballpicker.AlertUtils;
+import personal.nmartinez.fr.virtualfootballpicker.HideShowIconInterface;
+import personal.nmartinez.fr.virtualfootballpicker.NavigationManager;
 import personal.nmartinez.fr.virtualfootballpicker.R;
-import personal.nmartinez.fr.virtualfootballpicker.createobjective.core.CreateObjectiveCore;
-import personal.nmartinez.fr.virtualfootballpicker.createobjective.core.ICreateObjectiveCore;
-import personal.nmartinez.fr.virtualfootballpicker.createobjective.view.dialogs.CreationKoDialog;
-import personal.nmartinez.fr.virtualfootballpicker.createobjective.view.dialogs.CreationOkDialog;
+import personal.nmartinez.fr.virtualfootballpicker.createobjective.core.CreateObjectivePresenterImpl;
+import personal.nmartinez.fr.virtualfootballpicker.createobjective.core.CreateObjectivePresenter;
 import personal.nmartinez.fr.virtualfootballpicker.models.Objective;
+import personal.nmartinez.fr.virtualfootballpicker.models.ObjectiveModel;
+import personal.nmartinez.fr.virtualfootballpicker.utils.StringUtils;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CreateObjectiveFragment extends Fragment implements ICreateObjectiveView {
+public class CreateObjectiveFragment extends Fragment implements CreateObjectiveView {
 
-    private ICreateObjectiveCore core;
+    public static final String TAG = CreateObjectiveFragment.class.getName();
+    public static final String CONSULT_OBJECTIVE_KEY = "consult_objective_key";
 
-    private EditText nameEditText;
-    private EditText descriptionEditText;
-    private Button validateButton;
-    //private ToggleButton isEditableToggleButton;
-    private RadioButton firstHalfRadioButton;
-    private RadioButton secondHalfRadioButton;
-    private RadioButton bothHalvesRadioButton;
-    private TextView errorNameTextView;
-    private TextView errorPeriodTextView;
-    private Button firstPeriodButton;
-    private Button secondPeriodButton;
-    private Button bothPeriodsButton;
-    private Button objectiveEditableButton;
-    private Button objectiveNotEditableButton;
+    private LifecycleRegistry lifecycleRegistry;
+    private CreateObjectivePresenter presenter;
+
+    @BindView(R.id.create_objective_name_edittext) AppCompatEditText nameEditText;
+    @BindView(R.id.create_objective_name_error_textview) TextView errorNameTextView;
+    @BindView(R.id.create_objective_period_error_textview) TextView errorPeriodTextView;
+    @BindView(R.id.create_objective_first_period_button) Button firstPeriodButton;
+    @BindView(R.id.create_objective_second_period_button) Button secondPeriodButton;
+    @BindView(R.id.create_objective_both_periods_button) Button bothPeriodsButton;
+    @BindView(R.id.create_objective_editable_button) Button objectiveEditableButton;
+    @BindView(R.id.create_objective_not_editable_button) Button objectiveNotEditableButton;
+    @BindView(R.id.edit_objective_layout) View editingLayout;
+    @BindView(R.id.create_objective_layout) View creatingLayout;
+    @BindView(R.id.rl_create_objective_main_layout) RelativeLayout mainLayout;
+
+    private ObjectiveModel objectiveModel;
 
 
 
@@ -50,169 +65,108 @@ public class CreateObjectiveFragment extends Fragment implements ICreateObjectiv
         // Required empty public constructor
     }
 
+    public static CreateObjectiveFragment newInstance(Objective objective) {
+        CreateObjectiveFragment fragment = new CreateObjectiveFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(CONSULT_OBJECTIVE_KEY, objective);
+        fragment.setArguments(bundle);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        this.lifecycleRegistry = new LifecycleRegistry(this);
+        this.lifecycleRegistry.markState(Lifecycle.State.CREATED);
+        if (getArguments() != null) {
+            Objective objective = (Objective) getArguments().getSerializable(CONSULT_OBJECTIVE_KEY);
+            this.presenter = new CreateObjectivePresenterImpl(this, objective);
+        }
+        setHasOptionsMenu(true);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        this.core = new CreateObjectiveCore(getActivity(), this);
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_create_objective, container, false);
+        ButterKnife.bind(this, view);
 
-        this.nameEditText = (EditText) view.findViewById(R.id.create_objective_name_edittext);
-        //this.descriptionEditText = (EditText) view.findViewById(R.id.create_objective_description_edittext);
-        this.validateButton = (Button) view.findViewById(R.id.create_objective_validate_button);
-        //this.isEditableToggleButton = (ToggleButton) view.findViewById(R.id.create_objective_editable_togglebutton);
-        this.errorNameTextView = (TextView) view.findViewById(R.id.create_objective_name_error_textview);
-        this.errorPeriodTextView = (TextView) view.findViewById(R.id.create_objective_period_error_textview);
-        this.firstPeriodButton = (Button) view.findViewById(R.id.create_objective_first_period_button);
-        this.secondPeriodButton = (Button) view.findViewById(R.id.create_objective_second_period_button);
-        this.bothPeriodsButton = (Button) view.findViewById(R.id.create_objective_both_periods_button);
-        this.objectiveEditableButton = (Button) view.findViewById(R.id.create_objective_editable_button);
-        this.objectiveNotEditableButton = (Button) view.findViewById(R.id.create_objective_not_editable_button);
+        this.firstPeriodButton.setOnClickListener(view16 -> selectObjectivePeriod(Objective.FIRST_PERIOD));
 
-        this.firstPeriodButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                core.setObjectivePeriod(Objective.FIRST_PERIOD);
+        this.secondPeriodButton.setOnClickListener(view15 ->
+            selectObjectivePeriod(Objective.SECOND_PERIOD)
+        );
 
-                Resources resources = getActivity().getResources();
+        this.bothPeriodsButton.setOnClickListener(view14 ->
+            selectObjectivePeriod(Objective.BOTH_PERIODS)
+        );
 
-                firstPeriodButton.setTextColor(resources.getColor(R.color.white));
-                secondPeriodButton.setTextColor(resources.getColor(R.color.secondPeriodColor));
-                bothPeriodsButton.setTextColor(resources.getColor(R.color.bothPeriodsColor));
 
-                firstPeriodButton.setBackground(null);
-                firstPeriodButton.setBackgroundColor(resources.getColor(R.color.firstPeriodColor));
-                secondPeriodButton.setBackground(resources.getDrawable(R.drawable.button_border));
-                bothPeriodsButton.setBackground(resources.getDrawable(R.drawable.button_border));
-            }
+        this.objectiveEditableButton.setOnClickListener(view13 -> {
+            selectObjectiveEditable(true);
         });
 
-        this.secondPeriodButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                core.setObjectivePeriod(Objective.SECOND_PERIOD);
-
-                Resources resources = getActivity().getResources();
-
-                secondPeriodButton.setTextColor(resources.getColor(R.color.white));
-                firstPeriodButton.setTextColor(resources.getColor(R.color.firstPeriodColor));
-                bothPeriodsButton.setTextColor(resources.getColor(R.color.bothPeriodsColor));
-
-                secondPeriodButton.setBackground(null);
-                secondPeriodButton.setBackgroundColor(resources.getColor(R.color.secondPeriodColor));
-                firstPeriodButton.setBackground(resources.getDrawable(R.drawable.button_border));
-                bothPeriodsButton.setBackground(resources.getDrawable(R.drawable.button_border));
-            }
+        this.objectiveNotEditableButton.setOnClickListener(view12 -> {
+            selectObjectiveEditable(false);
         });
 
-        this.bothPeriodsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                core.setObjectivePeriod(Objective.BOTH_PERIODS);
+        //this.validateButton.setOnClickListener(view1 -> presenter.createObjective(nameEditText.getText().toString()));
 
-                Resources resources = getActivity().getResources();
-
-                bothPeriodsButton.setTextColor(resources.getColor(R.color.white));
-                secondPeriodButton.setTextColor(resources.getColor(R.color.secondPeriodColor));
-                firstPeriodButton.setTextColor(resources.getColor(R.color.firstPeriodColor));
-
-                bothPeriodsButton.setBackground(null);
-                bothPeriodsButton.setBackgroundColor(resources.getColor(R.color.bothPeriodsColor));
-                secondPeriodButton.setBackground(resources.getDrawable(R.drawable.button_border));
-                firstPeriodButton.setBackground(resources.getDrawable(R.drawable.button_border));
-            }
-        });
-
-//        this.firstHalfRadioButton = (RadioButton) view.findViewById(R.id.create_objective_first_period_radiobutton);
-//        this.secondHalfRadioButton = (RadioButton) view.findViewById(R.id.create_objective_second_period_radiobutton);
-//        this.bothHalvesRadioButton = (RadioButton) view.findViewById(R.id.create_objective_both_periods_radiobutton);
-
-//        this.firstHalfRadioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-//                if (b){
-//                    secondHalfRadioButton.setChecked(false);
-//                    bothHalvesRadioButton.setChecked(false);
-//                    core.setObjectivePeriod(Objective.FIRST_PERIOD);
-//                }
-//                else{
-//                    core.setObjectivePeriod(Objective.PERIOD_ERROR);
-//                }
-//            }
-//        });
-//
-//        this.secondHalfRadioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-//                if (b){
-//                    firstHalfRadioButton.setChecked(false);
-//                    bothHalvesRadioButton.setChecked(false);
-//                    core.setObjectivePeriod(Objective.SECOND_PERIOD);
-//                }
-//                else{
-//                    core.setObjectivePeriod(Objective.PERIOD_ERROR);
-//                }
-//            }
-//        });
-//
-//        this.bothHalvesRadioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-//                if (b){
-//                    secondHalfRadioButton.setChecked(false);
-//                    firstHalfRadioButton.setChecked(false);
-//                    core.setObjectivePeriod(Objective.BOTH_PERIODS);
-//                }
-//                else{
-//                    core.setObjectivePeriod(Objective.PERIOD_ERROR);
-//                }
-//            }
-//        });
-
-//        this.isEditableToggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-//                core.setObjectiveEditable(b);
-//            }
-//        });
-
-        this.objectiveEditableButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                core.setObjectiveEditable(true);
-                Resources resources = getActivity().getResources();
-                objectiveEditableButton.setTextColor(resources.getColor(R.color.white));
-                objectiveEditableButton.setBackground(null);
-                objectiveEditableButton.setBackgroundColor(resources.getColor(R.color.main_green));
-                objectiveNotEditableButton.setTextColor(resources.getColor(R.color.main_green));
-                objectiveNotEditableButton.setBackground(resources.getDrawable(R.drawable.button_border));
-            }
-        });
-
-        this.objectiveNotEditableButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                core.setObjectiveEditable(false);
-                Resources resources = getActivity().getResources();
-                objectiveNotEditableButton.setTextColor(resources.getColor(R.color.white));
-                objectiveNotEditableButton.setBackground(null);
-                objectiveNotEditableButton.setBackgroundColor(resources.getColor(R.color.main_green));
-                objectiveEditableButton.setTextColor(resources.getColor(R.color.main_green));
-                objectiveEditableButton.setBackground(resources.getDrawable(R.drawable.button_border));
-            }
-        });
-
-        this.validateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                core.setObjectiveName(nameEditText.getText().toString());
-                core.createObjective();
-            }
-        });
-
+        presenter.initViews();
+        ((HideShowIconInterface) getActivity()).showBackIcon();
         return view;
+    }
+
+    private void selectObjectivePeriod(int period) {
+        //presenter.setObjectivePeriod(period);
+        objectiveModel.setPeriod(period);
+
+        Resources resources = getActivity().getResources();
+
+        bothPeriodsButton.setTextColor(Objective.BOTH_PERIODS == period ? resources.getColor(R.color.white) : resources.getColor(R.color.bothPeriodsColor));
+        secondPeriodButton.setTextColor(Objective.SECOND_PERIOD == period ? resources.getColor(R.color.white) : resources.getColor(R.color.secondPeriodColor));
+        firstPeriodButton.setTextColor(Objective.FIRST_PERIOD == period ? resources.getColor(R.color.white) : resources.getColor(R.color.firstPeriodColor));
+
+        if (Objective.BOTH_PERIODS == period) {
+            bothPeriodsButton.setBackground(null);
+            bothPeriodsButton.setBackgroundColor(resources.getColor(R.color.bothPeriodsColor));
+        } else {
+            bothPeriodsButton.setBackground(resources.getDrawable(R.drawable.button_border));
+        }
+
+        if (Objective.FIRST_PERIOD == period) {
+            firstPeriodButton.setBackground(null);
+            firstPeriodButton.setBackgroundColor(resources.getColor(R.color.firstPeriodColor));
+        } else {
+            firstPeriodButton.setBackground(resources.getDrawable(R.drawable.button_border));
+        }
+
+        if (Objective.SECOND_PERIOD == period) {
+            secondPeriodButton.setBackground(null);
+            secondPeriodButton.setBackgroundColor(resources.getColor(R.color.secondPeriodColor));
+        } else {
+            secondPeriodButton.setBackground(resources.getDrawable(R.drawable.button_border));
+        }
+    }
+
+    private void selectObjectiveEditable(boolean isObjectiveEditable) {
+        //presenter.setObjectiveEditable(isObjectiveEditable);
+        this.objectiveModel.setEditable(isObjectiveEditable);
+        Resources resources = getActivity().getResources();
+        objectiveNotEditableButton.setTextColor(isObjectiveEditable ? resources.getColor(R.color.main_green) : resources.getColor(R.color.white));
+        objectiveEditableButton.setTextColor(isObjectiveEditable ? resources.getColor(R.color.white) : resources.getColor(R.color.main_green));
+
+        if (isObjectiveEditable) {
+            objectiveEditableButton.setBackground(null);
+            objectiveEditableButton.setBackgroundColor(resources.getColor(R.color.main_green));
+            objectiveNotEditableButton.setBackground(resources.getDrawable(R.drawable.button_border));
+        } else {
+            objectiveNotEditableButton.setBackground(null);
+            objectiveNotEditableButton.setBackgroundColor(resources.getColor(R.color.main_green));
+            objectiveEditableButton.setBackground(resources.getDrawable(R.drawable.button_border));
+        }
     }
 
     @Override
@@ -233,13 +187,14 @@ public class CreateObjectiveFragment extends Fragment implements ICreateObjectiv
      * Notifies the user that his objective has been created
      */
     @Override
-    public void displayObjectiveCreationSucces() {
-        new CreationOkDialog().show(getFragmentManager(), "");
+    public void displayObjectiveCreationSucces(boolean isEditing) {
+        NavigationManager.getInstance().consultObjectives(true, isEditing);
     }
 
     @Override
-    public void displayObjectiveCreationFailure() {
-        new CreationKoDialog().show(getFragmentManager(), "");
+    public void displayObjectiveCreationFailure(boolean isEditing) {
+        String message = isEditing ? "Le gage n'a pas été modifié." : "Le gage n'a pas été créé";
+        AlertUtils.displayErrorCrouton(getActivity(), message, mainLayout);
     }
 
     @Override
@@ -248,7 +203,7 @@ public class CreateObjectiveFragment extends Fragment implements ICreateObjectiv
     }
 
     /**
-     * Displays the warning message that the user did not pick a period
+     * Displays the warning message that the user did not pick selectObjectivePeriod period
      */
     @Override
     public void displayPickAPeriod() {
@@ -264,10 +219,88 @@ public class CreateObjectiveFragment extends Fragment implements ICreateObjectiv
     }
 
     /**
-     * Hides the warning message that the user did not pick a period
+     * Hides the warning message that the user did not pick selectObjectivePeriod period
      */
     @Override
     public void hidePickAPeriod() {
         this.errorPeriodTextView.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void initViews(ObjectiveModel objective, boolean isEditing) {
+        this.objectiveModel = objective;
+        if (objective != null) {
+            if (!StringUtils.isNullOrEmpty(objective.getName())) {
+                this.nameEditText.setText(objective.getName());
+            }
+
+            if (objective.getPeriod() != 0) {
+                selectObjectivePeriod(objective.getPeriod());
+            }
+
+            selectObjectiveEditable(objective.isEditable());
+            if (isEditing) {
+                //nameEditText.setInputType(InputType.TYPE_NULL);
+                showEditingLayout();
+            } else {
+                showCreatingLayout();
+            }
+        }
+    }
+
+    private void showEditingLayout() {
+        if (this.editingLayout != null) {
+            this.editingLayout.setVisibility(View.VISIBLE);
+        }
+
+        if (this.creatingLayout != null) {
+            this.creatingLayout.setVisibility(View.GONE);
+        }
+    }
+
+    private void showCreatingLayout() {
+        if (this.editingLayout != null) {
+            this.editingLayout.setVisibility(View.GONE);
+        }
+
+        if (this.creatingLayout != null) {
+            this.creatingLayout.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.validate_menu, menu);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.iv_validate_objective) {
+            this.objectiveModel.setName(nameEditText.getText().toString());
+            presenter.createObjective(this.objectiveModel);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public Lifecycle getLifecycle() {
+        return lifecycleRegistry;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (this.lifecycleRegistry != null) {
+            this.lifecycleRegistry.markState(Lifecycle.State.RESUMED);
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (this.lifecycleRegistry != null) {
+            this.lifecycleRegistry.markState(Lifecycle.State.DESTROYED);
+        }
     }
 }

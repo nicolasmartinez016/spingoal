@@ -2,10 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="personal.nmartinez.fr.virtualfootballpicker.createobjective.view.CreateObjectiveFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <RelativeLayout
+        android:id="@+id/rl_create_objective_main_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -20,6 +22,7 @@
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:id="@+id/create_objective_layout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
@@ -41,6 +44,33 @@
                         android:textSize="22sp"
                         android:textStyle="bold"
                         android:text="@string/create_objective_label"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/edit_objective_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/edit_objective_icon"
+                        />
+
+                    <TextView
+                        android:id="@+id/edit_objective_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_gravity="center"
+                        android:textSize="22sp"
+                        android:fontFamily="casual"
+                        android:textStyle="bold"
+                        android:text="@string/edit_objective_label"
                         />
 
                 </LinearLayout>
@@ -81,24 +111,43 @@
             android:focusableInTouchMode="true"
             android:layout_marginTop="20dp"
             android:layout_marginStart="20dp">
-        <TextView
-            android:id="@+id/create_objective_name_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="casual"
-            android:text="Nom du gage : "/>
+        <!--<TextView-->
+            <!--android:id="@+id/create_objective_name_textview"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:fontFamily="casual"-->
+            <!--android:text="Nom du gage : "/>-->
 
-        <EditText
-            android:id="@+id/create_objective_name_edittext"
-            android:layout_width="match_parent"
-            android:focusedByDefault="false"
-            android:maxLength="50"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="20dp"
-            android:ellipsize="start"
-            android:gravity="center"
-            android:background="@drawable/edit_text_style"/>
+        <!--<EditText-->
+            <!--android:id="@+id/create_objective_name_edittext"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:focusedByDefault="false"-->
+            <!--android:maxLength="50"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:layout_marginEnd="20dp"-->
+            <!--android:ellipsize="start"-->
+            <!--android:gravity="center"-->
+            <!--android:background="@drawable/edit_text_style"/>-->
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+                android:textColorHint="@color/colorPrimary">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/create_objective_name_edittext"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusedByDefault="false"
+                    android:maxLength="50"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:ellipsize="start"
+                    android:hint="Nom du gage"/>
+
+            </android.support.design.widget.TextInputLayout>
 
 
         <TextView
@@ -121,6 +170,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="casual"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
             android:text="Mi-temps : "/>
 
             <LinearLayout
@@ -188,7 +240,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:fontFamily="casual"
-                android:text="Editable : "/>
+                android:text="Editable : "
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -222,6 +277,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -231,8 +287,9 @@
 
             <Button
                 android:id="@+id/create_objective_validate_button"
-                style="@style/buttonStyle"
-                android:layout_gravity="center"
+                style="@style/enabledButtonStyle"
+                android:layout_gravity="end"
+                android:layout_marginEnd="20dp"
                 android:text="Valider"/>
 
         </LinearLayout>

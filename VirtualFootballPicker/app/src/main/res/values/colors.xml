@@ -9,6 +9,9 @@
     <color name="gray">#DADADA</color>
     <color name="light_gray">#EEEEEE</color>
     <color name="main_green">#4CC176</color>
+    <color name="main_green_w_opacity">#994CC176</color>
+    <color name="disabled_button_background">#CCCCCC</color>
+    <color name="disabled_button_text">#888888</color>
 
     <color name="colorPrimary">@color/main_green</color>
     <color name="colorPrimaryBis">#3F51B5</color>

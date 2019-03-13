@@ -6,14 +6,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import personal.nmartinez.fr.virtualfootballpicker.R;
-import personal.nmartinez.fr.virtualfootballpicker.createwheels.core.ICreateWheelCore;
+import personal.nmartinez.fr.virtualfootballpicker.createwheels.core.CreateWheelPresenter;
 import personal.nmartinez.fr.virtualfootballpicker.models.Objective;
 
 /**
@@ -22,14 +23,16 @@ import personal.nmartinez.fr.virtualfootballpicker.models.Objective;
 
 public class CreateWheelAdapter extends RecyclerView.Adapter<CreateWheelAdapter.CreateWheelViewHolder> {
 
-    private ICreateWheelCore core;
+    private CreateWheelPresenter presenter;
     private List<Objective> objectives;
     private Context context;
+    private boolean isSelectAll;
 
-    public CreateWheelAdapter(ICreateWheelCore core, Context context){
-        this.core = core;
-        this.objectives = core.getAllObjectives();
+    public CreateWheelAdapter(CreateWheelPresenter presenter, Context context, List<Objective> allObjectives){
+        this.presenter = presenter;
+        this.objectives = allObjectives;
         this.context = context;
+        isSelectAll = false;
     }
 
     @Override
@@ -40,26 +43,30 @@ public class CreateWheelAdapter extends RecyclerView.Adapter<CreateWheelAdapter.
 
     @Override
     public void onBindViewHolder(CreateWheelViewHolder holder, int position) {
-        final Objective objective = this.objectives.get(position);
+        final Objective objective = this.objectives.get(holder.getAdapterPosition());
 
-        holder.objectiveCheckBox.setChecked(core.isObjectiveInWheel(objective));
+        holder.objectiveCheckBox.setOnCheckedChangeListener(null);
+        holder.objectiveCheckBox.setChecked(presenter.isObjectiveInWheel(objective));
         holder.objectiveName.setText(objective.getName());
 
-        if (position % 2 == 0){
+        if (holder.getAdapterPosition() % 2 == 0){
             holder.rowLayout.setBackgroundColor(context.getResources().getColor(R.color.gray));
         }
         else{
             holder.rowLayout.setBackgroundColor(context.getResources().getColor(R.color.light_gray));
         }
 
+        if (isSelectAll) {
+            holder.objectiveCheckBox.setChecked(true);
+        }
+
         // adds or removes the objective to/from the wheel when clicking on the checkbox
-        holder.objectiveCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                core.addOrRemoveObjective(objective);
-            }
+        holder.objectiveCheckBox.setOnCheckedChangeListener((compoundButton, b) -> {
+            presenter.addOrRemoveObjective(objective);
         });
+
     }
+
 
     @Override
     public int getItemCount() {
@@ -67,16 +74,13 @@ public class CreateWheelAdapter extends RecyclerView.Adapter<CreateWheelAdapter.
     }
 
     public class CreateWheelViewHolder extends RecyclerView.ViewHolder{
-        private TextView objectiveName;
-        private CheckBox objectiveCheckBox;
-        private LinearLayout rowLayout;
+        @BindView(R.id.edit_wheel_objective_name_textview) TextView objectiveName;
+        @BindView(R.id.edit_wheel_objective_checkbox) CheckBox objectiveCheckBox;
+        @BindView(R.id.create_wheel_objective_row_layout) LinearLayout rowLayout;
 
         public CreateWheelViewHolder(View itemView) {
             super(itemView);
-            objectiveName = (TextView) itemView.findViewById(R.id.edit_wheel_objective_name_textview);
-            objectiveCheckBox = (CheckBox) itemView.findViewById(R.id.edit_wheel_objective_checkbox);
-            rowLayout = (LinearLayout) itemView.findViewById(R.id.create_wheel_objective_row_layout);
-            this.setIsRecyclable(false);
+            ButterKnife.bind(this, itemView);
         }
     }
 }

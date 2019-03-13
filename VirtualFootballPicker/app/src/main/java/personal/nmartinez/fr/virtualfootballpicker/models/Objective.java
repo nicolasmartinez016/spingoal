@@ -1,11 +1,16 @@
 package personal.nmartinez.fr.virtualfootballpicker.models;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+
 import java.io.Serializable;
 
 /**
  * Created by Nicolas on 01/12/2017.
  */
 
+@Entity(tableName = "Objectives")
 public class Objective implements Serializable {
 
     public static final int FIRST_PERIOD = 1;
@@ -13,6 +18,8 @@ public class Objective implements Serializable {
     public static final int BOTH_PERIODS = 3;
     public static final int PERIOD_ERROR = -1;
 
+    @NonNull
+    @PrimaryKey
     private int id;
     private String name;
     private int period;
@@ -105,5 +112,16 @@ public class Objective implements Serializable {
         public Objective build(){
             return new Objective(this);
         }
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (obj instanceof Objective) {
+            return (((Objective) obj).getId() == this.id);
+        }
+        return super.equals(obj);
     }
 }

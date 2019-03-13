@@ -5,15 +5,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import personal.nmartinez.fr.virtualfootballpicker.NavigationManager;
 import personal.nmartinez.fr.virtualfootballpicker.R;
-import personal.nmartinez.fr.virtualfootballpicker.consultobjectives.core.IConsultObjectivesCore;
+import personal.nmartinez.fr.virtualfootballpicker.consultobjectives.core.ConsultObjectivesPresenter;
 import personal.nmartinez.fr.virtualfootballpicker.models.Objective;
 import personal.nmartinez.fr.virtualfootballpicker.utils.StringUtils;
 
@@ -25,10 +27,10 @@ import personal.nmartinez.fr.virtualfootballpicker.utils.StringUtils;
 public class ConsultObjectivesAdapter extends RecyclerView.Adapter<ConsultObjectivesAdapter.ConsultObjectivesViewHolder> {
 
     private List<Objective> objectives;
-    private IConsultObjectivesCore core;
+    private ConsultObjectivesPresenter core;
     private Context context;
 
-    public ConsultObjectivesAdapter(List<Objective> objectives, IConsultObjectivesCore core, Context context){
+    public ConsultObjectivesAdapter(List<Objective> objectives, ConsultObjectivesPresenter core, Context context){
         this.core = core;
         this.objectives = objectives;
         this.context = context;
@@ -46,26 +48,26 @@ public class ConsultObjectivesAdapter extends RecyclerView.Adapter<ConsultObject
 
         if (position % 2 == 0){
             holder.rowLayout.setBackgroundColor(context.getResources().getColor(R.color.gray));
+            holder.swipedLayout.setBackgroundColor(context.getResources().getColor(R.color.gray));
         }
         else{
             holder.rowLayout.setBackgroundColor(context.getResources().getColor(R.color.light_gray));
+            holder.swipedLayout.setBackgroundColor(context.getResources().getColor(R.color.light_gray));
         }
 
-        holder.objectiveTitle.setText(StringUtils.cutObjectiveName(objective.getName()));
-        if (!objective.isEditable()){
-            holder.editObjectiveButton.setVisibility(View.INVISIBLE);
-            holder.deleteObjectiveButton.setVisibility(View.INVISIBLE);
-        }
-        else{
-            holder.editObjectiveButton.setVisibility(View.VISIBLE);
-            holder.deleteObjectiveButton.setVisibility(View.VISIBLE);
-        }
+        holder.objectiveTitle.setText(objective.getName());
+//        if (!objective.isEditable()){
+//            holder.editObjectiveButton.setVisibility(View.INVISIBLE);
+//            holder.deleteObjectiveButton.setVisibility(View.INVISIBLE);
+//        }
+//        else{
+//            holder.editObjectiveButton.setVisibility(View.VISIBLE);
+//            holder.deleteObjectiveButton.setVisibility(View.VISIBLE);
+//        }
 
-        holder.editObjectiveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                core.openEdition(objective);
-            }
+        holder.editObjectiveButton.setOnClickListener(view -> {
+            // redirect to edit
+            NavigationManager.getInstance().consultObjective(objective);
         });
         holder.deleteObjectiveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +92,12 @@ public class ConsultObjectivesAdapter extends RecyclerView.Adapter<ConsultObject
             holder.objectivePeriod.setTextColor(context.getResources().getColor(R.color.bothPeriodsColor));
             holder.periodImageView.setImageResource(R.drawable.field);
         }
+
+        if (objective.isEditable()) {
+            holder.swipedLayout.setVisibility(View.VISIBLE);
+        } else {
+            holder.swipedLayout.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -99,22 +107,17 @@ public class ConsultObjectivesAdapter extends RecyclerView.Adapter<ConsultObject
 
     public class ConsultObjectivesViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView objectiveTitle;
-        TextView objectivePeriod;
-        public ImageView editObjectiveButton;
-        public ImageView deleteObjectiveButton;
-        public ImageButton uploadObjectiveButton;
-        ImageView periodImageView;
-        LinearLayout rowLayout;
+        @BindView(R.id.consult_objective_title_textview) TextView objectiveTitle;
+        @BindView(R.id.consult_objective_period_textview) TextView objectivePeriod;
+        @BindView(R.id.consult_objective_edit_button) ImageView editObjectiveButton;
+        @BindView(R.id.consult_objective_delete_button) ImageView deleteObjectiveButton;
+        @BindView(R.id.consult_objective_row_period_imageview) ImageView periodImageView;
+        @BindView(R.id.consult_objective_row_layout) LinearLayout rowLayout;
+        @BindView(R.id.ll_swiped_layout) LinearLayout swipedLayout;
 
         public ConsultObjectivesViewHolder(View itemView) {
             super(itemView);
-            objectiveTitle = (TextView) itemView.findViewById(R.id.consult_objective_title_textview);
-            editObjectiveButton = (ImageView) itemView.findViewById(R.id.consult_objective_edit_button);
-            deleteObjectiveButton = (ImageView) itemView.findViewById(R.id.consult_objective_delete_button);
-            objectivePeriod = (TextView) itemView.findViewById(R.id.consult_objective_period_textview);
-            rowLayout = (LinearLayout) itemView.findViewById(R.id.consult_objective_row_layout);
-            periodImageView = (ImageView) itemView.findViewById(R.id.consult_objective_row_period_imageview);
+            ButterKnife.bind(this, itemView);
         }
     }
 }

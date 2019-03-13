@@ -18,6 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textSize="22sp"
+            android:layout_marginTop="15dp"
             android:fontFamily="casual"
             android:text="Bienvenue"
             />
@@ -80,18 +81,15 @@
                 >
                 <Button
                     android:id="@+id/play_simple_game_button"
-                    style="@style/buttonStyle"
+                    style="@style/enabledButtonStyle"
                     android:text="@string/try_playing_alone"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
                     android:layout_marginBottom="30dp"
                     />
 
-                <Button
-                    android:id="@+id/play_split_game_button"
-                    style="@style/buttonStyle"
-                    android:layout_marginLeft="20dp"
-                    android:text="@string/try_playing_multi"
-                    android:layout_marginBottom="30dp"
-                    />
             </LinearLayout>
 
         </RelativeLayout>

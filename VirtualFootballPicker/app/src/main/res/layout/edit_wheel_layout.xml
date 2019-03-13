@@ -9,30 +9,6 @@
         android:descendantFocusability="beforeDescendants"
         android:focusableInTouchMode="true"
         android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_gravity="center">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/add_wheel_icon"
-                />
-
-            <TextView
-                android:id="@+id/edit_wheel_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_gravity="center"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:text="@string/edit_wheel_label"
-                />
-
-        </LinearLayout>
         <TextView
             android:id="@+id/edit_wheel_name_value_textview"
             android:layout_width="wrap_content"
@@ -76,7 +52,7 @@
 
         <Button
             android:id="@+id/edit_wheel_apply_button"
-            style="@style/buttonStyle"
+            style="@style/enabledButtonStyle"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:text="Appliquer"

@@ -1,8 +1,8 @@
 package personal.nmartinez.fr.virtualfootballpicker.homepage.core;
 
 import personal.nmartinez.fr.virtualfootballpicker.MainActivity;
-import personal.nmartinez.fr.virtualfootballpicker.playofflinemulti.PlaySplitScreenFragment;
-import personal.nmartinez.fr.virtualfootballpicker.playofflinesolo.view.PlayOfflineSoloFragment;
+import personal.nmartinez.fr.virtualfootballpicker.NavigationManager;
+import personal.nmartinez.fr.virtualfootballpicker.game.firstplayerstars.view.PlayerOneSelectStarsFragment;
 
 /**
  * Created by Nicolas on 05/01/2018.
@@ -18,11 +18,11 @@ public class HomePageCore implements IHomePageCore {
 
     @Override
     public void playSimpleScreen() {
-        this.activity.goToFragment(new PlayOfflineSoloFragment());
+        NavigationManager.getInstance().startGame();
     }
 
     @Override
     public void playSplitScreen() {
-        this.activity.goToFragment(new PlaySplitScreenFragment());
+        NavigationManager.getInstance().startGame();
     }
 }

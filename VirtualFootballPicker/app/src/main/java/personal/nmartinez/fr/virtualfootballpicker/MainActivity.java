@@ -1,157 +1,132 @@
 package personal.nmartinez.fr.virtualfootballpicker;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.SpannableStringBuilder;
-import android.text.style.TypefaceSpan;
 import android.view.Menu;
 import android.view.MenuItem;
-
+import android.view.View;
+import android.view.WindowManager;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executor;
 
-import personal.nmartinez.fr.virtualfootballpicker.consultobjectives.view.ConsultObjectivesFragment;
-import personal.nmartinez.fr.virtualfootballpicker.consultwheels.view.ConsultWheelsFragment;
-import personal.nmartinez.fr.virtualfootballpicker.createobjective.view.CreateObjectiveFragment;
-import personal.nmartinez.fr.virtualfootballpicker.createwheels.view.CreateWheelFragment;
-import personal.nmartinez.fr.virtualfootballpicker.homepage.view.HomePageFragment;
+import personal.nmartinez.fr.virtualfootballpicker.models.FavoriteWheel;
 import personal.nmartinez.fr.virtualfootballpicker.models.Wheel;
-import personal.nmartinez.fr.virtualfootballpicker.playofflinemulti.PlaySplitScreenFragment;
-import personal.nmartinez.fr.virtualfootballpicker.playofflinesolo.view.PlayOfflineSoloFragment;
 import personal.nmartinez.fr.virtualfootballpicker.models.Objective;
+import personal.nmartinez.fr.virtualfootballpicker.data.SpinGoalDatabase;
+import personal.nmartinez.fr.virtualfootballpicker.models.WheelObjectiveJoin;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, HideShowIconInterface {
 
-    private static final String BASE_OBJECTIVES = "gages";
-    private static final String CUSTOM_OBJECTIVES = "custom_gages";
     public static final String WHEEL_TO_USE = "wheel_to_use";
     public static final String OBJECTIVES_KEY = "objectives_key";
     public static final String WHEELS_KEY = "wheels_key";
 
-    private static List<Objective> baseObjectives;
-    private static List<Objective> customObjectives;
+    ActionBarDrawerToggle toggle;
+    DrawerLayout drawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
+        NavigationManager.getInstance().init(getSupportFragmentManager(), this);
 
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+
+        drawer = findViewById(R.id.drawer_layout);
+        toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         SharedPreferences sharedPreferences = getSharedPreferences("", Context.MODE_PRIVATE);
         if (sharedPreferences.getString(WHEELS_KEY, "").equals("") || sharedPreferences.getString(WHEEL_TO_USE, "").equals("")
                 || sharedPreferences.getString(OBJECTIVES_KEY, "").equals("")){
             initObjectives(sharedPreferences);
+        } else {
+            initObjectives(sharedPreferences);
         }
 
-        goToFragment(new HomePageFragment());
-    }
-
-    public void goToFragment(Fragment fragment){
-        Bundle args = new Bundle();
-        //args.putInt(PlanetFragment.ARG_PLANET_NUMBER, position);
-        fragment.setArguments(args);
-
-        // Insert the fragment by replacing any existing fragment
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.content_frame_2, fragment)
-                .commit();
+        NavigationManager.getInstance().homePage();
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
+        if (drawer != null && drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        // getMenuInflater().inflate(R.menu.main, menu);
-        return false;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        int id = item.getItemId();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                int id = item.getItemId();
 
-        if (id == R.id.homepage_menu_item){
-            goToFragment(new HomePageFragment());
-        }
-        else if (id == R.id.consult_objectives_menu_item) {
-            goToFragment(new ConsultObjectivesFragment());
-        }
-        else if (id == R.id.consult_wheels_menu_item) {
-            // Handle the camera action
-            goToFragment(new ConsultWheelsFragment());
-        }
-        else if (id == R.id.play_offline_solo_menu_item) {
-            // Handle the camera action
-            goToFragment(new PlayOfflineSoloFragment());
-        }
-        else if (id == R.id.play_offline_multi_menu_item) {
-            // Handle the camera action
-            goToFragment(new PlaySplitScreenFragment());
-        }
-        else if (id == R.id.create_objective_menu_item) {
-            // Handle the camera action
-            goToFragment(new CreateObjectiveFragment());
-        }
+                if (id == R.id.homepage_menu_item){
+                    NavigationManager.getInstance().homePage();
+                }
+                else if (id == R.id.consult_objectives_menu_item) {
+                    NavigationManager.getInstance().consultObjectives(false, false);
+                }
+                else if (id == R.id.consult_wheels_menu_item) {
+                    NavigationManager.getInstance().consultWheels(false, false);
+                }
+                else if (id == R.id.play_offline_solo_menu_item) {
+                    NavigationManager.getInstance().startGame();
+                }
+            }
+        }, 200);
 
-        else if (id == R.id.create_wheel_menu_item){
-            // Handle the camera action
-            goToFragment(new CreateWheelFragment());
+        if (drawer != null) {
+            drawer.closeDrawer(GravityCompat.START);
         }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void showHamburgerIcon() {
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        toggle.setDrawerIndicatorEnabled(true);
+    }
+    @Override
+    public void showBackIcon() {
+        toggle.setDrawerIndicatorEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toggle.setToolbarNavigationClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
     }
 
     private void initObjectives(SharedPreferences sharedPreferences){
@@ -244,8 +219,21 @@ public class MainActivity extends AppCompatActivity
             e.printStackTrace();
         }
 
+        List<WheelObjectiveJoin> wheelObjectiveJoins = new ArrayList<>();
+        for (Wheel localWheel : wheels) {
+            for (Objective localObjective : wheel.getObjectives()) {
+                wheelObjectiveJoins.add(new WheelObjectiveJoin(localWheel.getId(), localObjective.getId()));
+            }
+        }
+
+        new Thread(() -> {
+            SpinGoalApp.getApp().getDatabase().objectiveDao().createObjectives(objectives);
+            SpinGoalApp.getApp().getDatabase().wheelDao().createWheels(wheels);
+            SpinGoalApp.getApp().getDatabase().wheelObjectiveJoinDao().createWheelObjectiveJoins(wheelObjectiveJoins);
+        }
+        ).start();
+
     }
-
-
-
 }
+
+

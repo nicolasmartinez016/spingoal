@@ -17,11 +17,39 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="buttonStyle">
+    <style name="enabledButtonStyle">
         <item name="android:background">@drawable/rounded_button</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
     </style>
+
+    <style name="disabledButtonStyle">
+        <item name="android:background">@drawable/disabled_rounded_button</item>
+        <item name="android:textColor">@color/disabled_button_text</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="TextAppearance.App.TextInputLayout" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">casual</item>
+    </style>
+
+    <style name="edit_text_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColorHint">@color/white</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="colorControlNormal">@color/white</item>
+        <item name="colorControlActivated">@color/white</item>
+        <item name="colorControlHighlight">@color/white</item>
+        <item name="android:textCursorDrawable">@drawable/cursor_color</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:background">@drawable/edit_text_shape</item>
+    </style>
+
 
 </resources>

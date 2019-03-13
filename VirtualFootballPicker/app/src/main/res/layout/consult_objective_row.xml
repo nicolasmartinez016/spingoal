@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -10,95 +9,95 @@
         android:layout_height="1dp"
         android:background="@color/black"/>
 
-    <LinearLayout
-        android:id="@+id/consult_objective_row_layout"
+    <com.daimajia.swipe.SwipeLayout
+        android:id="@+id/order_swipe_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:id="@+id/ll_swiped_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/whistle"
-                android:layout_gravity="center"/>
-            <TextView
-                android:id="@+id/consult_objective_title_textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/consult_objective_edit_button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:fontFamily="casual"
-                android:textStyle="bold"
-                android:textSize="18sp"/>
+                android:layout_marginLeft="8dp"
+                android:src="@drawable/ic_mode_edit_black_24dp" />
+
+            <ImageView
+                android:id="@+id/consult_objective_delete_button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="8dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_delete_black_24dp"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/consult_objective_row_period_imageview"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/field"/>
-
-            <TextView
-                android:id="@+id/consult_objective_period_textview"
-                android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:id="@+id/consult_objective_row_layout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textStyle="italic"
-                android:fontFamily="casual"
-                android:layout_marginLeft="10dp"
-                android:textSize="11sp"/>
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/whistle"
+                            android:layout_gravity="center"/>
+                        <TextView
+                            android:id="@+id/consult_objective_title_textview"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="10dp"
+                            android:fontFamily="casual"
+                            android:textStyle="bold"
+                            android:textSize="18sp"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/consult_objective_row_period_imageview"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/field"/>
+
+                        <TextView
+                            android:id="@+id/consult_objective_period_textview"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="casual"
+                            android:layout_marginLeft="10dp"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
         </LinearLayout>
 
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="match_parent"
-        android:gravity="right">
-
-        <ImageView
-            android:id="@+id/consult_objective_edit_button"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="8dp"
-            android:src="@drawable/ic_mode_edit_black_24dp" />
-
-        <ImageView
-            android:id="@+id/consult_objective_delete_button"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="8dp"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_delete_black_24dp"/>
-    </LinearLayout>
-
-
-
-    <ImageButton
-        android:visibility="gone"
-        android:id="@+id/consult_objective_upload_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_send_black_24dp"/>
-
-
-
-    </LinearLayout>
+    </com.daimajia.swipe.SwipeLayout>
 
 
 </LinearLayout>
