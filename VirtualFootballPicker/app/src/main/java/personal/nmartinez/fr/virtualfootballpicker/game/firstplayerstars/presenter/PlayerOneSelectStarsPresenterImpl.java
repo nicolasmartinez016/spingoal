@@ -59,7 +59,7 @@ public class PlayerOneSelectStarsPresenterImpl implements PlayerOneSelectStarsPr
 
     @Override
     public void validateStepOne() {
-        if (this.game != null && this.game.getFirstPlayerStars() > 0 && this.view != null) {
+        if (this.game != null && this.view != null) {
             this.view.goToStepTwo(this.game);
         }
     }

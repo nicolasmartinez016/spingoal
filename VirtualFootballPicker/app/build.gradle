@@ -12,6 +12,7 @@ android {
         }
     }
     compileSdkVersion 26
+    compileSdkVersion 26
     defaultConfig {
         applicationId "personal.nmartinez.fr.virtualfootballpicker"
         minSdkVersion 21

@@ -1,7 +1,10 @@
 package personal.nmartinez.fr.virtualfootballpicker.splashscreen
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import kotlinx.android.synthetic.main.activity_splash_screen.*
+import personal.nmartinez.fr.virtualfootballpicker.MainActivity
 import personal.nmartinez.fr.virtualfootballpicker.R
 
 class SplashScreenActivity : AppCompatActivity(), SplashScreenView {
@@ -15,29 +18,34 @@ class SplashScreenActivity : AppCompatActivity(), SplashScreenView {
         this.presenter.initApp()
     }
 
-
-
     override fun showCreatingWheel() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        tv_splash_screen_status.text = "Initialisation de la roue principale..."
     }
 
     override fun showErrorInObjectivesCreation() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        tv_splash_screen_status.text = "Une erreur est survenue lors de la creation des gages..."
     }
 
     override fun showWheelCreated() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        tv_splash_screen_status.text = "La roue principale a été créée, l'application va démarrer..."
+        startMainActivity()
     }
 
     override fun showErrorInWheelCreation() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        tv_splash_screen_status.text = "Une erreur est survenue lors de la creation de la roue..."
     }
 
     override fun showWheelsRetrieved() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        tv_splash_screen_status.text = "Les données ont été récupérées, l'application va démarrer..."
+        startMainActivity()
     }
 
     override fun showCreatingObjectives() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        tv_splash_screen_status.text = "Initialisation des gages..."
+    }
+
+    private fun startMainActivity() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
     }
 }

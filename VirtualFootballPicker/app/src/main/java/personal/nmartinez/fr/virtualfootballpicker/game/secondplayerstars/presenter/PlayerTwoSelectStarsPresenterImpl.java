@@ -34,7 +34,7 @@ public class PlayerTwoSelectStarsPresenterImpl implements PlayerTwoSelectsStarsP
 
     @Override
     public void validateStepTwo() {
-        if (this.game != null && this.game.getSecondPlayerStars() > 0) {
+        if (this.game != null && this.view != null) {
             this.view.goToStepThree(this.game);
         }
     }

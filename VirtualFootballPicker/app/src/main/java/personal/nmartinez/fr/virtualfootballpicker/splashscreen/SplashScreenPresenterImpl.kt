@@ -4,8 +4,10 @@ import android.arch.lifecycle.Observer
 import android.content.Context
 import com.google.gson.Gson
 import personal.nmartinez.fr.virtualfootballpicker.FileManager
+import personal.nmartinez.fr.virtualfootballpicker.data.repositories.objective.ObjectiveRepositoryImpl
 import personal.nmartinez.fr.virtualfootballpicker.data.repositories.objective.interfaces.CreateObjectiveRepositoryListener
 import personal.nmartinez.fr.virtualfootballpicker.data.repositories.objective.interfaces.ObjectiveRepository
+import personal.nmartinez.fr.virtualfootballpicker.data.repositories.wheel.WheelRepositoryImpl
 import personal.nmartinez.fr.virtualfootballpicker.data.repositories.wheel.interfaces.CreateWheelRepositoryListener
 import personal.nmartinez.fr.virtualfootballpicker.data.repositories.wheel.interfaces.WheelRepository
 import personal.nmartinez.fr.virtualfootballpicker.models.Wheel
@@ -13,8 +15,8 @@ import personal.nmartinez.fr.virtualfootballpicker.models.Wheel
 class SplashScreenPresenterImpl : SplashScreenPresenter, CreateObjectiveRepositoryListener, CreateWheelRepositoryListener {
 
     private var view: SplashScreenView
-    private lateinit var wheelRepository: WheelRepository
-    private lateinit var objectiveRepository: ObjectiveRepository
+    private var wheelRepository: WheelRepository
+    private var objectiveRepository: ObjectiveRepository
     private var context : Context
     private var wheel: Wheel? = null
     private var resourceId: Int = 0
@@ -23,6 +25,8 @@ class SplashScreenPresenterImpl : SplashScreenPresenter, CreateObjectiveReposito
         this.view = view
         this.context = context
         this.resourceId = resourceId
+        this.wheelRepository = WheelRepositoryImpl()
+        this.objectiveRepository = ObjectiveRepositoryImpl()
     }
 
     override fun initApp() {
