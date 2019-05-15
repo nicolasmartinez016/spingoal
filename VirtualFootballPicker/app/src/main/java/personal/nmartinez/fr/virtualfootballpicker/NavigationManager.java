@@ -1,8 +1,11 @@
 package personal.nmartinez.fr.virtualfootballpicker;
 
+import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 
 import java.util.logging.Handler;
@@ -27,8 +30,7 @@ import personal.nmartinez.fr.virtualfootballpicker.models.Wheel;
 public class NavigationManager {
 
     private FragmentManager fragmentManager;
-    private NavigationListener navigationListener;
-    private AppCompatActivity appCompatActivity;
+    private CustomNavigation customNavigation;
 
     private static NavigationManager navigationManager;
     private HideShowIconInterface burgerOrBackArrow;
@@ -49,19 +51,26 @@ public class NavigationManager {
         }
     }
 
-    public void init(FragmentManager fragmentManager, HideShowIconInterface burgerOrBackArrow) {
+    public void init(FragmentManager fragmentManager, HideShowIconInterface burgerOrBackArrow, DrawerLayout drawerLayout, NavigationView navigationView, BottomNavigationView bottomNavigationView) {
         this.fragmentManager = fragmentManager;
         this.burgerOrBackArrow = burgerOrBackArrow;
-        this.fragmentManager.addOnBackStackChangedListener(() -> {
-            if (this.navigationListener != null) {
-                this.navigationListener.onBackStackChanged();
-            }
-        });
+        this.customNavigation = new CustomNavigation(bottomNavigationView, navigationView, drawerLayout);
     }
 
     public void startGame() {
         Fragment fragment = PlayerOneSelectStarsFragment.newInstance();
-        open(fragment, PlayerOneSelectStarsFragment.TAG);
+        if (fragmentManager != null) {
+            Fragment currentFragment = fragmentManager.findFragmentById(R.id.content_frame_2);
+            if (!(currentFragment instanceof PlayerOneSelectStarsFragment
+                    || currentFragment instanceof PlayerOneSelectFirstObjectiveFragment
+                    || currentFragment instanceof PlayerOneSelectSecondObjectiveFragment
+                    || currentFragment instanceof PlayerTwoSelectFirstObjectiveFragment
+                    || currentFragment instanceof PlayerTwoSelectStarsFragment
+                    || currentFragment instanceof PlayerTwoSelectSecondObjectiveFragment)) {
+                open(fragment, PlayerOneSelectStarsFragment.TAG);
+                customNavigation.selectGame();
+            }
+        }
     }
 
     public void selectSecondPlayerStars(Game game) {
@@ -95,8 +104,14 @@ public class NavigationManager {
     }
 
     public void consultWheels(boolean fromWheelCreated, boolean isEditing) {
-        Fragment fragment = ConsultWheelsFragment.newInstance(fromWheelCreated, isEditing);
-        open(fragment, ConsultWheelsFragment.TAG);
+        Fragment fragment = ConsultWheelsFragment.Companion.newInstance(fromWheelCreated, isEditing);
+        if (fragmentManager != null) {
+            Fragment currentFragment = fragmentManager.findFragmentById(R.id.content_frame_2);
+            if (!(currentFragment instanceof ConsultWheelsFragment)) {
+                open(fragment, ConsultWheelsFragment.Companion.getTAG());
+                customNavigation.selectConsultWheels();
+            }
+        }
     }
 
     public void consultWheelDetail(Wheel wheel) {
@@ -105,12 +120,14 @@ public class NavigationManager {
     }
 
     public void consultObjectives(boolean fromObjectiveCreated, boolean isEditing) {
-        Fragment fragment = ConsultObjectivesFragment.newInstance(fromObjectiveCreated, isEditing);
-        open(fragment, ConsultObjectivesFragment.TAG);
-    }
-
-    public void setNavigationListener(NavigationListener navigationListener) {
-        this.navigationListener = navigationListener;
+        Fragment fragment = ConsultObjectivesFragment.Companion.newInstance(fromObjectiveCreated, isEditing);
+        if (fragmentManager != null) {
+            Fragment currentFragment = fragmentManager.findFragmentById(R.id.content_frame_2);
+            if (!(currentFragment instanceof ConsultObjectivesFragment)) {
+                open(fragment, ConsultObjectivesFragment.Companion.getTAG());
+                customNavigation.selectConsultObjectives();
+            }
+        }
     }
 
     public void consultObjective(Objective objective) {
@@ -120,7 +137,13 @@ public class NavigationManager {
 
     public void homePage() {
         Fragment fragment = HomePageFragment.newInstance();
-        open(fragment, HomePageFragment.TAG);
+        if (fragmentManager != null) {
+            Fragment currentFragment = fragmentManager.findFragmentById(R.id.content_frame_2);
+            if (!(currentFragment instanceof HomePageFragment)) {
+                open(fragment, HomePageFragment.TAG);
+                customNavigation.selectHomePage();
+            }
+        }
     }
 
     public void createObjective() {
@@ -131,9 +154,5 @@ public class NavigationManager {
     public void gameRecap(Game game) {
         Fragment fragment = GameRecapFragment.newInstance(game);
         open(fragment, GameRecapFragment.TAG);
-    }
-
-    public interface NavigationListener {
-        void onBackStackChanged();
     }
 }

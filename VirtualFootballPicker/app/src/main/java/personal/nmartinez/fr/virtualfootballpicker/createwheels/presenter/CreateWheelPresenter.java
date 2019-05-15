@@ -1,6 +1,4 @@
-package personal.nmartinez.fr.virtualfootballpicker.createwheels.core;
-
-import java.util.List;
+package personal.nmartinez.fr.virtualfootballpicker.createwheels.presenter;
 
 import personal.nmartinez.fr.virtualfootballpicker.models.Objective;
 import personal.nmartinez.fr.virtualfootballpicker.models.WheelModel;

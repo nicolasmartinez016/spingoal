@@ -33,9 +33,9 @@ public class PlayerTwoSelectFirstObjectiveFragment extends Fragment implements S
 
     private SecondPlayerFirstObjectivePresenter presenter;
 
-    @BindView(R.id.second_player_first_period_objective_textview) TextView objectiveTextView;
-    @BindView(R.id.second_first_player_first_objective_button) ImageView selectObjectiveButton;
-    @BindView(R.id.second_player_first_objective_next_button) TextView nextButton;
+    @BindView(R.id.tv_second_player_first_period_objective_value) TextView objectiveTextView;
+    @BindView(R.id.iv_second_first_player_first_objective_button) ImageView selectObjectiveButton;
+    @BindView(R.id.tv_second_player_first_objective_next_button) TextView nextButton;
     @BindView(R.id.iv_second_player_first_objective_hat) ImageView hatImageView;
 
 
@@ -56,7 +56,7 @@ public class PlayerTwoSelectFirstObjectiveFragment extends Fragment implements S
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_player_two_select_first_objective, container, false);
+        View view = inflater.inflate(R.layout.second_player_select_first_objective_layout, container, false);
         ButterKnife.bind(this, view);
 
         if (nextButton != null) {

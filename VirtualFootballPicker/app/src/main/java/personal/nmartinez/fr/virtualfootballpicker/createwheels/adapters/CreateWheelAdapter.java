@@ -14,7 +14,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import personal.nmartinez.fr.virtualfootballpicker.R;
-import personal.nmartinez.fr.virtualfootballpicker.createwheels.core.CreateWheelPresenter;
+import personal.nmartinez.fr.virtualfootballpicker.createwheels.presenter.CreateWheelPresenter;
 import personal.nmartinez.fr.virtualfootballpicker.models.Objective;
 
 /**

@@ -1,4 +1,4 @@
-package personal.nmartinez.fr.virtualfootballpicker.createobjective.core;
+package personal.nmartinez.fr.virtualfootballpicker.createobjective.presenter;
 
 import android.arch.lifecycle.LiveData;
 
@@ -71,13 +71,7 @@ public class CreateObjectivePresenterImpl implements CreateObjectivePresenter, C
     @Override
     public void createObjective(ObjectiveModel objectiveModel) {
         if (objectiveModel != null && objective != null) {
-            if (StringUtils.isNullOrEmpty(objectiveModel.getName())) {
-                this.view.displayNameUnavailableError();
-                this.view.displayObjectiveCreationFailure(isEditing);
-            } else if (objectiveModel.getName().equalsIgnoreCase(objective.getName())) {
-                this.view.displayNameUnavailableError();
-                this.view.displayObjectiveCreationFailure(isEditing);
-            } else {
+            if (isNameAvailable(objectiveModel.getName())) {
                 this.objective = objectiveModel.toObjective();
                 if (isEditing) {
                     objectiveRepository.updateObjective(this.objective, this);
@@ -101,6 +95,9 @@ public class CreateObjectivePresenterImpl implements CreateObjectivePresenter, C
                         this.view.displayNameUnavailableError();
                     }
                 }
+            } else {
+                this.view.displayNameUnavailableError();
+                this.view.displayObjectiveCreationFailure(isEditing);
             }
         }
     }

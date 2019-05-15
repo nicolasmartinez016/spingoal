@@ -16,15 +16,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,8 +28,8 @@ import personal.nmartinez.fr.virtualfootballpicker.HideShowIconInterface;
 import personal.nmartinez.fr.virtualfootballpicker.NavigationManager;
 import personal.nmartinez.fr.virtualfootballpicker.R;
 import personal.nmartinez.fr.virtualfootballpicker.createwheels.adapters.CreateWheelAdapter;
-import personal.nmartinez.fr.virtualfootballpicker.createwheels.core.CreateWheelPresenterImpl;
-import personal.nmartinez.fr.virtualfootballpicker.createwheels.core.CreateWheelPresenter;
+import personal.nmartinez.fr.virtualfootballpicker.createwheels.presenter.CreateWheelPresenterImpl;
+import personal.nmartinez.fr.virtualfootballpicker.createwheels.presenter.CreateWheelPresenter;
 import personal.nmartinez.fr.virtualfootballpicker.models.Wheel;
 import personal.nmartinez.fr.virtualfootballpicker.models.WheelModel;
 import personal.nmartinez.fr.virtualfootballpicker.utils.StringUtils;

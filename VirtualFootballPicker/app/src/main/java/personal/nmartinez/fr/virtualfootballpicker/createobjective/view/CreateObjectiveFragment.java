@@ -2,16 +2,12 @@ package personal.nmartinez.fr.virtualfootballpicker.createobjective.view;
 
 
 import android.arch.lifecycle.Lifecycle;
-import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.LifecycleRegistry;
 import android.content.res.Resources;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatEditText;
-import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -28,8 +24,8 @@ import personal.nmartinez.fr.virtualfootballpicker.AlertUtils;
 import personal.nmartinez.fr.virtualfootballpicker.HideShowIconInterface;
 import personal.nmartinez.fr.virtualfootballpicker.NavigationManager;
 import personal.nmartinez.fr.virtualfootballpicker.R;
-import personal.nmartinez.fr.virtualfootballpicker.createobjective.core.CreateObjectivePresenterImpl;
-import personal.nmartinez.fr.virtualfootballpicker.createobjective.core.CreateObjectivePresenter;
+import personal.nmartinez.fr.virtualfootballpicker.createobjective.presenter.CreateObjectivePresenterImpl;
+import personal.nmartinez.fr.virtualfootballpicker.createobjective.presenter.CreateObjectivePresenter;
 import personal.nmartinez.fr.virtualfootballpicker.models.Objective;
 import personal.nmartinez.fr.virtualfootballpicker.models.ObjectiveModel;
 import personal.nmartinez.fr.virtualfootballpicker.utils.StringUtils;

@@ -6,7 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -17,10 +16,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import personal.nmartinez.fr.virtualfootballpicker.NavigationManager;
 import personal.nmartinez.fr.virtualfootballpicker.R;
-import personal.nmartinez.fr.virtualfootballpicker.consultobjectives.adapters.ConsultObjectivesAdapter;
-import personal.nmartinez.fr.virtualfootballpicker.consultwheels.core.ConsultWheelsPresenter;
+import personal.nmartinez.fr.virtualfootballpicker.consultwheels.presenter.ConsultWheelsPresenter;
 import personal.nmartinez.fr.virtualfootballpicker.models.Wheel;
-import personal.nmartinez.fr.virtualfootballpicker.utils.ImageUtils;
 
 public class ConsultWheelAdapter extends RecyclerView.Adapter<ConsultWheelAdapter.ConsultWheelViewHolder> {
 

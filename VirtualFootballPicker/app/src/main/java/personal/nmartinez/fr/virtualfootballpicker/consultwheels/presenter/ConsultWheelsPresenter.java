@@ -1,4 +1,4 @@
-package personal.nmartinez.fr.virtualfootballpicker.consultwheels.core;
+package personal.nmartinez.fr.virtualfootballpicker.consultwheels.presenter;
 
 import personal.nmartinez.fr.virtualfootballpicker.models.Wheel;
 

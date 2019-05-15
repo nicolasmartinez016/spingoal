@@ -1,5 +1,6 @@
 package personal.nmartinez.fr.virtualfootballpicker.game.firstplayerstars.presenter;
 
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 import personal.nmartinez.fr.virtualfootballpicker.data.repositories.objective.interfaces.ObjectiveRepository;
@@ -11,7 +12,6 @@ import personal.nmartinez.fr.virtualfootballpicker.models.Game;
 
 public class PlayerOneSelectStarsPresenterImpl implements PlayerOneSelectStarsPresenter {
 
-    private static final int MINIMUM_STAR = 1;
     private static final int MAXIMUM_STAR = 5;
 
     private PlayerOneSelectStarsView view;
@@ -40,7 +40,6 @@ public class PlayerOneSelectStarsPresenterImpl implements PlayerOneSelectStarsPr
                         this.game.setWheel(wheel);
                     });
                 }
-
             });
         });
     }
@@ -48,7 +47,8 @@ public class PlayerOneSelectStarsPresenterImpl implements PlayerOneSelectStarsPr
     @Override
     public void selectFirstPlayerStars() {
         if (this.game != null) {
-            int stars = ThreadLocalRandom.current().nextInt(MINIMUM_STAR, MAXIMUM_STAR + 1);
+            Random rdm = new Random();
+            int stars = rdm.nextInt(MAXIMUM_STAR);
 
             this.game.setFirstPlayerStars(stars);
             if (this.view != null) {

@@ -59,7 +59,7 @@
             android:gravity="center"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:textStyle="italic"
             android:text="@string/game_description_part_3"
             />

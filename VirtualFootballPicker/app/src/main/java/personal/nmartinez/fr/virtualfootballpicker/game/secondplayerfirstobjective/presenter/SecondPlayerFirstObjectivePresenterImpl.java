@@ -21,6 +21,7 @@ public class SecondPlayerFirstObjectivePresenterImpl implements SecondPlayerFirs
             Objective objective = ObjectivesManager.selectRandomObjectiveByPeriod(this.game.getWheel().getObjectives(), Objective.FIRST_PERIOD, -1);
             if (objective != null && this.view != null) {
                 this.game.setSecondPlayerFirstObjective(objective.getName());
+                this.game.setSecondPlayerFirstObjectiveId(objective.getId());
                 this.view.showObjective(objective.getName());
             }
         }

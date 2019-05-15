@@ -25,6 +25,7 @@ public class FirstPlayerFirstObjectivePresenterImpl implements FirstPlayerFirstO
             Objective objective = ObjectivesManager.selectRandomObjectiveByPeriod(this.game.getWheel().getObjectives(), Objective.SECOND_PERIOD, -1);
             if (objective != null && this.view != null) {
                 this.game.setFirstPlayerFirstObjective(objective.getName());
+                this.game.setFirstPlayerFirstObjectiveId(objective.getId());
                 this.view.showObjective(objective.getName());
             }
         }

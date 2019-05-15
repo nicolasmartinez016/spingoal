@@ -1,5 +1,6 @@
 package personal.nmartinez.fr.virtualfootballpicker.game.secondplayerstars.presenter;
 
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 import personal.nmartinez.fr.virtualfootballpicker.game.secondplayerstars.presenter.PlayerTwoSelectsStarsView;
@@ -8,7 +9,6 @@ import personal.nmartinez.fr.virtualfootballpicker.models.Game;
 
 public class PlayerTwoSelectStarsPresenterImpl implements PlayerTwoSelectsStarsPresenter {
 
-    private static final int MINIMUM_STAR = 1;
     private static final int MAXIMUM_STAR = 5;
 
     private PlayerTwoSelectsStarsView view;
@@ -22,7 +22,8 @@ public class PlayerTwoSelectStarsPresenterImpl implements PlayerTwoSelectsStarsP
     @Override
     public void selectSecondPlayerStars() {
         if (this.game != null) {
-            int stars = ThreadLocalRandom.current().nextInt(MINIMUM_STAR, MAXIMUM_STAR + 1);
+            Random rdm = new Random();
+            int stars = rdm.nextInt(MAXIMUM_STAR);
 
             this.game.setSecondPlayerStars(stars);
             if (this.view != null) {

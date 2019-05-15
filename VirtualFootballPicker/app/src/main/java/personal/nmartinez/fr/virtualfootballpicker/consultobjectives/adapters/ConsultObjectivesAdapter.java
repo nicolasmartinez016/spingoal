@@ -17,7 +17,6 @@ import personal.nmartinez.fr.virtualfootballpicker.NavigationManager;
 import personal.nmartinez.fr.virtualfootballpicker.R;
 import personal.nmartinez.fr.virtualfootballpicker.consultobjectives.core.ConsultObjectivesPresenter;
 import personal.nmartinez.fr.virtualfootballpicker.models.Objective;
-import personal.nmartinez.fr.virtualfootballpicker.utils.StringUtils;
 
 /**
  * Created by Nicolas on 01/12/2017.
@@ -56,25 +55,12 @@ public class ConsultObjectivesAdapter extends RecyclerView.Adapter<ConsultObject
         }
 
         holder.objectiveTitle.setText(objective.getName());
-//        if (!objective.isEditable()){
-//            holder.editObjectiveButton.setVisibility(View.INVISIBLE);
-//            holder.deleteObjectiveButton.setVisibility(View.INVISIBLE);
-//        }
-//        else{
-//            holder.editObjectiveButton.setVisibility(View.VISIBLE);
-//            holder.deleteObjectiveButton.setVisibility(View.VISIBLE);
-//        }
 
         holder.editObjectiveButton.setOnClickListener(view -> {
             // redirect to edit
             NavigationManager.getInstance().consultObjective(objective);
         });
-        holder.deleteObjectiveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                core.removeObjective(objective);
-            }
-        });
+        holder.deleteObjectiveButton.setOnClickListener(view -> core.removeObjective(objective));
 
         if (objective.getPeriod() == Objective.FIRST_PERIOD){
             holder.objectivePeriod.setText(context.getResources().getString(R.string.first_period_inline));

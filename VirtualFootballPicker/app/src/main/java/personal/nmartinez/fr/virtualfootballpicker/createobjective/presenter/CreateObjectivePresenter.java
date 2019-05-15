@@ -1,4 +1,4 @@
-package personal.nmartinez.fr.virtualfootballpicker.createobjective.core;
+package personal.nmartinez.fr.virtualfootballpicker.createobjective.presenter;
 
 
 import personal.nmartinez.fr.virtualfootballpicker.models.ObjectiveModel;

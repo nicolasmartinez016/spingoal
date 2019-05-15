@@ -16,6 +16,8 @@ public interface ObjectiveRepository {
 
     void createObjective(Objective objective, CreateObjectiveRepositoryListener listener);
 
+    void createObjectives(List<Objective> objectives, CreateObjectiveRepositoryListener listener);
+
     void updateObjective(Objective objective, UpdateObjectiveRepositoryListener listener);
 
     void deleteObjective(Objective objective, DeleteObjectiveRepositoryListener listener);

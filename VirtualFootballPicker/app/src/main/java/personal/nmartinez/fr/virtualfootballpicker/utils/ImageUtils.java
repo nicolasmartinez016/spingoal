@@ -10,15 +10,15 @@ public class ImageUtils {
 
     public static Drawable getStarImage(Context context, int stars) {
         switch (stars) {
-            case 1 :
+            case 0 :
                 return context.getResources().getDrawable(R.drawable.onestar);
-            case 2 :
+            case 1 :
                 return context.getResources().getDrawable(R.drawable.twostars);
-            case 3 :
+            case 2 :
                 return context.getResources().getDrawable(R.drawable.threestars);
-            case 4 :
+            case 3 :
                 return context.getResources().getDrawable(R.drawable.fourstars);
-            case 5 :
+            case 4 :
                 return context.getResources().getDrawable(R.drawable.fivestars);
             default:
                 return null;

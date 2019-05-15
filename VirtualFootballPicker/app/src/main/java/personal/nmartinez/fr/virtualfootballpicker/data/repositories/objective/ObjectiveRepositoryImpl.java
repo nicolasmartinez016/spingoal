@@ -51,6 +51,20 @@ public class ObjectiveRepositoryImpl implements ObjectiveRepository {
     }
 
     @Override
+    public void createObjectives(List<Objective> objectives, CreateObjectiveRepositoryListener listener) {
+        executor.execute(() -> {
+            List<Long> result = SpinGoalApp.getApp().getDatabase().objectiveDao().createObjectives(objectives);
+            if (listener != null) {
+                if (result != null) {
+                    listener.onCreateObjectiveSuccess();
+                } else {
+                    listener.onCreateObjectiveFailure();
+                }
+            }
+        });
+    }
+
+    @Override
     public void updateObjective(Objective objective, UpdateObjectiveRepositoryListener listener) {
         executor.execute(() -> {
             int objectivesUpdated = SpinGoalApp.getApp().getDatabase().objectiveDao().updateObjective(objective);
@@ -77,7 +91,6 @@ public class ObjectiveRepositoryImpl implements ObjectiveRepository {
                     listener.onDeleteObjectiveFailure();
                 }
             }
-
         });
     }
 }

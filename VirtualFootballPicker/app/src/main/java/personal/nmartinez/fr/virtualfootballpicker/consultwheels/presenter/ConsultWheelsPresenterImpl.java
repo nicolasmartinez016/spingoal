@@ -1,6 +1,4 @@
-package personal.nmartinez.fr.virtualfootballpicker.consultwheels.core;
-
-import android.content.Context;
+package personal.nmartinez.fr.virtualfootballpicker.consultwheels.presenter;
 
 import java.util.List;
 
@@ -17,16 +15,13 @@ import personal.nmartinez.fr.virtualfootballpicker.data.repositories.wheel.Wheel
 
 public class ConsultWheelsPresenterImpl implements ConsultWheelsPresenter, DeleteWheelRepositoryListener {
 
-    public static final String SERIALIZATION_ERROR = "Un probleme a eu lieu lors de la serialisation";
     private ConsultWheelsView view;
-    private Context context;
     private List<Wheel> wheels;
     private WheelRepository wheelRepository;
     private int favoriteWheelId = 1;
 
-    public ConsultWheelsPresenterImpl(ConsultWheelsView view, Context context){
+    public ConsultWheelsPresenterImpl(ConsultWheelsView view){
         this.view = view;
-        this.context = context;
         wheelRepository = new WheelRepositoryImpl();
     }
 

@@ -1,6 +1,4 @@
-package personal.nmartinez.fr.virtualfootballpicker.createwheels.core;
-
-import android.content.Context;
+package personal.nmartinez.fr.virtualfootballpicker.createwheels.presenter;
 
 import java.util.List;
 

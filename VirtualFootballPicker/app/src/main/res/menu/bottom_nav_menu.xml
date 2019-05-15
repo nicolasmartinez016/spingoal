@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homepage_bottom_menu_item"
+        android:title="Accueil"
+        android:icon="@drawable/icons_homepage"/>
+
+    <item
+        android:id="@+id/play_offline_solo__bottom_menu_item"
+        android:icon="@drawable/one_player_game_icon"
+        android:title="@string/play_title" />
+
+    <item
+        android:id="@+id/consult_objectives_bottom_menu_item"
+        android:icon="@drawable/consult_objective_icon"
+        android:title="@string/consult_objectives_title" />
+
+    <item
+        android:id="@+id/consult_wheels_bottom_menu_item"
+        android:icon="@drawable/consult_wheel_icon"
+        android:title="@string/consult_wheels_title" />
+
+</menu>

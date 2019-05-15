@@ -33,10 +33,10 @@ public class PlayerOneSelectFirstObjectiveFragment extends Fragment implements F
 
     private FirstPlayerFirstObjectivePresenter presenter;
 
-    @BindView(R.id.first_player_first_period_objective_textview) TextView objectiveTextView;
-    @BindView(R.id.pick_first_player_first_objective_button) ImageView pickObjectiveButton;
+    @BindView(R.id.tv_first_player_first_period_objective_value) TextView objectiveTextView;
+    @BindView(R.id.iv_pick_first_player_first_objective_button) ImageView pickObjectiveButton;
     @BindView(R.id.iv_first_player_first_objective_hat) ImageView hatImageView;
-    @BindView(R.id.first_player_first_objective_next_button) TextView nextButton;
+    @BindView(R.id.tv_first_player_first_objective_next_button) TextView nextButton;
 
     public PlayerOneSelectFirstObjectiveFragment() {
         // Required empty public constructor
@@ -55,7 +55,7 @@ public class PlayerOneSelectFirstObjectiveFragment extends Fragment implements F
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_player_one_select_first_objective, container, false);
+        View view = inflater.inflate(R.layout.first_player_select_first_objective_layout, container, false);
         ButterKnife.bind(this, view);
         if (pickObjectiveButton != null) {
             pickObjectiveButton.setOnClickListener(view1 -> {

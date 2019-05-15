@@ -2,6 +2,7 @@ package personal.nmartinez.fr.virtualfootballpicker;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 import personal.nmartinez.fr.virtualfootballpicker.models.Objective;
@@ -35,7 +36,8 @@ public class ObjectivesManager {
     public static Objective selectRandomObjectiveByPeriod(List<Objective> objectives, int period, int firstPeriodObjectiveId){
         List<Objective> objectivesFiltered = getWheelObjectivesByHalf(objectives, period);
         if (objectivesFiltered != null && !objectivesFiltered.isEmpty()) {
-            int index = ThreadLocalRandom.current().nextInt(0, objectivesFiltered.size());
+            Random rdm = new Random();
+            int index = rdm.nextInt(objectivesFiltered.size());
             if (!objectivesFiltered.isEmpty()){
                 if (period == Objective.SECOND_PERIOD){
                     if (objectivesFiltered.get(index).getId() == firstPeriodObjectiveId){

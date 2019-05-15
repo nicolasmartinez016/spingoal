@@ -43,7 +43,7 @@
     <string name="all_objectives_used_label">Tous les gages ont ete tires pour cette mi-temps.\nRemise a 0 des gages disponibles, vous pouvez maintenant tomber a nouveau sur un gage deja tombe.</string>
     <string name="unsaved_changes_label">Des changements n\'ont pas été sauvegardés..</string>
     <string name="game_description">Lassé de taper tes potes sans cesse à la console ? Laisse leur une chance et change les règles du jeu !\n</string>
-    <string name="game_description_part_2">D\'abord, le jeu va choisir le niveau de l\'équipe que tu vas jouer !\nEnsuite, tirez au sort un objectif par mi-temps et le premier à l\'avoir rempli gagne le match.\n Si a la fin du match personne n\'a reussi un gage, c\'est le score qui prime.</string>
+    <string name="game_description_part_2">Tirez au sort des gages et le premier à remplir le sien gagne le match.</string>
     <string name="game_description_part_3">Vous pouvez creer et modifier vos propres gages et roues.</string>
 
 

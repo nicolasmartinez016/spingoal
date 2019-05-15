@@ -31,9 +31,9 @@ public class PlayerOneSelectSecondObjectiveFragment extends Fragment implements 
     public static final String TAG = PlayerOneSelectSecondObjectiveFragment.class.getName();
     private static final String GAME_KEY = "gameKey";
 
-    @BindView(R.id.first_player_second_period_objective_textview) TextView objectiveTextView;
-    @BindView(R.id.pick_first_player_second_objective_button) ImageView selectObjectiveButton;
-    @BindView(R.id.first_player_second_objective_next_button) TextView nextButton;
+    @BindView(R.id.tv_first_player_second_period_objective_value) TextView objectiveTextView;
+    @BindView(R.id.iv_pick_first_player_second_objective_button) ImageView selectObjectiveButton;
+    @BindView(R.id.tv_first_player_second_objective_next_button) TextView nextButton;
     @BindView(R.id.iv_first_player_second_objective_hat) ImageView hatImageView;
 
     private FirstPlayerSecondObjectivePresenter presenter;
@@ -55,7 +55,7 @@ public class PlayerOneSelectSecondObjectiveFragment extends Fragment implements 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_player_one_select_second_objective, container, false);
+        View view = inflater.inflate(R.layout.first_player_second_objective_layout, container, false);
         ButterKnife.bind(this, view);
 
         if (selectObjectiveButton != null) {
