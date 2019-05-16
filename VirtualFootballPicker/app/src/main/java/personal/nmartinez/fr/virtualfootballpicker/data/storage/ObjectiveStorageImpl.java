@@ -9,8 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.util.List;
 
-import personal.nmartinez.fr.virtualfootballpicker.data.storage.ObjectiveStorage;
-import personal.nmartinez.fr.virtualfootballpicker.models.Objective;
+import personal.nmartinez.fr.virtualfootballpicker.data.models.Objective;
 import personal.nmartinez.fr.virtualfootballpicker.utils.StringUtils;
 
 public class ObjectiveStorageImpl {

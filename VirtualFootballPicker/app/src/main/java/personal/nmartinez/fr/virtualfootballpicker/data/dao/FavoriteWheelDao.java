@@ -6,7 +6,7 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 
-import personal.nmartinez.fr.virtualfootballpicker.models.FavoriteWheel;
+import personal.nmartinez.fr.virtualfootballpicker.data.models.FavoriteWheel;
 
 @Dao
 public interface FavoriteWheelDao {

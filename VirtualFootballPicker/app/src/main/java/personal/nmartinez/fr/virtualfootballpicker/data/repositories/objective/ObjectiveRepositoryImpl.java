@@ -6,12 +6,12 @@ import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-import personal.nmartinez.fr.virtualfootballpicker.SpinGoalApp;
+import personal.nmartinez.fr.virtualfootballpicker.application.SpinGoalApp;
 import personal.nmartinez.fr.virtualfootballpicker.data.repositories.objective.interfaces.CreateObjectiveRepositoryListener;
 import personal.nmartinez.fr.virtualfootballpicker.data.repositories.objective.interfaces.DeleteObjectiveRepositoryListener;
 import personal.nmartinez.fr.virtualfootballpicker.data.repositories.objective.interfaces.ObjectiveRepository;
 import personal.nmartinez.fr.virtualfootballpicker.data.repositories.objective.interfaces.UpdateObjectiveRepositoryListener;
-import personal.nmartinez.fr.virtualfootballpicker.models.Objective;
+import personal.nmartinez.fr.virtualfootballpicker.data.models.Objective;
 
 public class ObjectiveRepositoryImpl implements ObjectiveRepository {
 

@@ -9,8 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.util.List;
 
-import personal.nmartinez.fr.virtualfootballpicker.data.storage.WheelStorage;
-import personal.nmartinez.fr.virtualfootballpicker.models.Wheel;
+import personal.nmartinez.fr.virtualfootballpicker.data.models.Wheel;
 import personal.nmartinez.fr.virtualfootballpicker.utils.StringUtils;
 
 public class WheelStorageImpl implements WheelStorage {

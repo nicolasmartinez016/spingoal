@@ -4,7 +4,7 @@ import android.arch.lifecycle.LiveData;
 
 import java.util.List;
 
-import personal.nmartinez.fr.virtualfootballpicker.models.Objective;
+import personal.nmartinez.fr.virtualfootballpicker.data.models.Objective;
 
 public interface ObjectiveRepository {
 

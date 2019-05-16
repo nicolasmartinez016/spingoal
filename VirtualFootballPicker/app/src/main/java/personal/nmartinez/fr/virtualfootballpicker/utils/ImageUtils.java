@@ -4,7 +4,7 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 
 import personal.nmartinez.fr.virtualfootballpicker.R;
-import personal.nmartinez.fr.virtualfootballpicker.models.Objective;
+import personal.nmartinez.fr.virtualfootballpicker.data.models.Objective;
 
 public class ImageUtils {
 

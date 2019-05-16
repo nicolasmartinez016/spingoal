@@ -5,15 +5,15 @@ import android.arch.lifecycle.LiveData;
 import java.util.ArrayList;
 import java.util.List;
 
-import personal.nmartinez.fr.virtualfootballpicker.SpinGoalApp;
+import personal.nmartinez.fr.virtualfootballpicker.application.SpinGoalApp;
 import personal.nmartinez.fr.virtualfootballpicker.data.repositories.wheel.interfaces.CreateWheelRepositoryListener;
 import personal.nmartinez.fr.virtualfootballpicker.data.repositories.wheel.interfaces.DeleteWheelRepositoryListener;
 import personal.nmartinez.fr.virtualfootballpicker.data.repositories.wheel.interfaces.UpdateWheelRepositoryListener;
 import personal.nmartinez.fr.virtualfootballpicker.data.repositories.wheel.interfaces.WheelRepository;
-import personal.nmartinez.fr.virtualfootballpicker.models.FavoriteWheel;
-import personal.nmartinez.fr.virtualfootballpicker.models.Objective;
-import personal.nmartinez.fr.virtualfootballpicker.models.Wheel;
-import personal.nmartinez.fr.virtualfootballpicker.models.WheelObjectiveJoin;
+import personal.nmartinez.fr.virtualfootballpicker.data.models.FavoriteWheel;
+import personal.nmartinez.fr.virtualfootballpicker.data.models.Objective;
+import personal.nmartinez.fr.virtualfootballpicker.data.models.Wheel;
+import personal.nmartinez.fr.virtualfootballpicker.data.models.WheelObjectiveJoin;
 
 public class WheelRepositoryImpl implements WheelRepository {
 

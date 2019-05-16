@@ -4,8 +4,8 @@ import android.arch.lifecycle.LiveData;
 
 import java.util.List;
 
-import personal.nmartinez.fr.virtualfootballpicker.models.FavoriteWheel;
-import personal.nmartinez.fr.virtualfootballpicker.models.Wheel;
+import personal.nmartinez.fr.virtualfootballpicker.data.models.FavoriteWheel;
+import personal.nmartinez.fr.virtualfootballpicker.data.models.Wheel;
 
 public interface WheelRepository {
 

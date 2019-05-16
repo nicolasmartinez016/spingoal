@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.View
 import android.view.WindowManager
+import personal.nmartinez.fr.virtualfootballpicker.navigation.HideShowIconInterface
+import personal.nmartinez.fr.virtualfootballpicker.navigation.NavigationManager
 
 open class MainActivity : AppCompatActivity(), HideShowIconInterface {
 
@@ -29,7 +31,7 @@ open class MainActivity : AppCompatActivity(), HideShowIconInterface {
         drawer = findViewById(R.id.drawer_layout)
         toggle = ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-        drawer!!.addDrawerListener(toggle)
+        drawer?.addDrawerListener(toggle)
         toggle.syncState()
 
         val navigationView = findViewById<NavigationView>(R.id.nav_view)
@@ -46,16 +48,14 @@ open class MainActivity : AppCompatActivity(), HideShowIconInterface {
         }
     }
 
-
-
     override fun showHamburgerIcon() {
-        supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+        supportActionBar?.setDisplayHomeAsUpEnabled(false)
         toggle.isDrawerIndicatorEnabled = true
     }
 
     override fun showBackIcon() {
         toggle.isDrawerIndicatorEnabled = false
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         toggle.toolbarNavigationClickListener = View.OnClickListener { onBackPressed() }
     }
 

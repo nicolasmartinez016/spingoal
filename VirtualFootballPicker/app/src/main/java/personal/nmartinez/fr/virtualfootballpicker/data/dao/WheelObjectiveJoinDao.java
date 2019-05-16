@@ -2,7 +2,6 @@ package personal.nmartinez.fr.virtualfootballpicker.data.dao;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
-import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
@@ -10,9 +9,9 @@ import android.arch.persistence.room.Transaction;
 
 import java.util.List;
 
-import personal.nmartinez.fr.virtualfootballpicker.models.Objective;
-import personal.nmartinez.fr.virtualfootballpicker.models.Wheel;
-import personal.nmartinez.fr.virtualfootballpicker.models.WheelObjectiveJoin;
+import personal.nmartinez.fr.virtualfootballpicker.data.models.Objective;
+import personal.nmartinez.fr.virtualfootballpicker.data.models.Wheel;
+import personal.nmartinez.fr.virtualfootballpicker.data.models.WheelObjectiveJoin;
 
 @Dao
 public abstract class WheelObjectiveJoinDao {

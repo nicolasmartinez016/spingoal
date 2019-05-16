@@ -47,6 +47,14 @@
     <string name="game_description_part_3">Vous pouvez creer et modifier vos propres gages et roues.</string>
 
 
+    <string name="splash_screen_data_retrieved">Les données ont été récupérées, l\'application va démarrer...</string>
+    <string name="splash_screen_error_creating_wheel">Une erreur est survenue lors de la creation de la roue...</string>
+    <string name="splash_screen_error_creating_objectives">Une erreur est survenue lors de la creation des gages...</string>
+    <string name="splash_screen_data_created">La roue principale a été créée, l\'application va démarrer...</string>
+    <string name="splash_screen_initializing_data">Initialisation de la roue principale...</string>
+    <string name="splash_screen_creating_objectives">Initialisation des gages...</string>
+
+
     <string name="action_settings">Settings</string>
 
     <!-- TODO: Remove or change this placeholder text -->

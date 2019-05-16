@@ -2,7 +2,7 @@ package personal.nmartinez.fr.virtualfootballpicker.data.storage;
 
 import java.util.List;
 
-import personal.nmartinez.fr.virtualfootballpicker.models.Wheel;
+import personal.nmartinez.fr.virtualfootballpicker.data.models.Wheel;
 
 public interface WheelStorage {
 

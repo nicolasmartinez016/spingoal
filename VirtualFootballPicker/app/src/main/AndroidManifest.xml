@@ -3,7 +3,7 @@
     package="personal.nmartinez.fr.virtualfootballpicker">
 
     <application
-        android:name=".SpinGoalApp"
+        android:name=".application.SpinGoalApp"
         android:allowBackup="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
@@ -18,7 +18,7 @@
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
-        <activity android:name=".splashscreen.SplashScreenActivity"
+        <activity android:name=".splashscreen.view.SplashScreenActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
