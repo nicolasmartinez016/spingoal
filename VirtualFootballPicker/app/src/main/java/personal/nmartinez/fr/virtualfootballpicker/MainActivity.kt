@@ -32,6 +32,11 @@ open class MainActivity : AppCompatActivity(), HideShowIconInterface {
         drawer!!.addDrawerListener(toggle)
         toggle.syncState()
 
+        val admobId = "ca-app-pub-5717896329484847~9588505519"
+        val interstitiellesId = "ca-app-pub-5717896329484847/8674755383"
+        val interstitiellesTestId = "ca-app-pub-3940256099942544/1033173712"
+
+
         val navigationView = findViewById<NavigationView>(R.id.nav_view)
         bottomNavigationView = findViewById<View>(R.id.navigation) as BottomNavigationView
         NavigationManager.getInstance().init(supportFragmentManager, this, drawer, navigationView, bottomNavigationView)
