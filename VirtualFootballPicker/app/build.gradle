@@ -1,6 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'io.fabric'
 
 android {
     signingConfigs {
@@ -14,11 +16,11 @@ android {
     compileSdkVersion 26
     compileSdkVersion 26
     defaultConfig {
-        applicationId "personal.nmartinez.fr.virtualfootballpicker"
+        applicationId "personal.nmartinez.fr.spingoal"
         minSdkVersion 21
         targetSdkVersion 26
-        versionCode 10001
-        versionName "1.0.1"
+        versionCode 10005
+        versionName "1.0.5"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.config
     }
@@ -26,6 +28,19 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    flavorDimensions "versionCode"
+    productFlavors {
+        prod {
+            buildConfigField "String", "ADS_KEY", '"ca-app-pub-5717896329484847/8674755383"'
+            buildConfigField "String", "ADMOB_ID", '"ca-app-pub-5717896329484847~9588505519"'
+
+        }
+        dev {
+            applicationIdSuffix ".dev"
+            buildConfigField "String", "ADS_KEY", '"ca-app-pub-3940256099942544/1033173712"'
+            buildConfigField "String", "ADMOB_ID", '"ca-app-pub-3940256099942544~3347511713"'
         }
     }
     compileOptions {
@@ -42,30 +57,52 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support:support-v4:26.1.0'
     implementation 'com.android.support:design:26.1.0'
+
+    // constraint layout
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+
+    //room
     implementation 'android.arch.persistence.room:runtime:1.1.0'
-    implementation 'net.cachapa.expandablelayout:expandablelayout:2.9.2'
+
+    //lifecycle
     implementation 'android.arch.lifecycle:extensions:1.1.1'
+
     implementation 'com.facebook.stetho:stetho-okhttp3:1.5.0'
-    implementation 'com.chauthai.swipereveallayout:swipe-reveal-layout:1.4.1'
+
+    //swipe layout
     implementation 'com.daimajia.swipelayout:library:1.2.0@aar'
+
     //Crouton display
     implementation('de.keyboardsurfer.android.widget:crouton:1.8.5@aar') {
         // exclusion is not necessary, but generally a good idea.
         exclude group: 'com.google.android', module: 'support-v4'
     }
-    annotationProcessor 'android.arch.persistence.room:compiler:1.1.0'
-    testImplementation 'junit:junit:4.12'
+
+    //serialization
     implementation 'com.google.code.gson:gson:2.8.5'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation 'com.fasterxml.jackson.core:jackson-core:2.4.1'
     implementation 'com.fasterxml.jackson.core:jackson-annotations:2.4.1'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.4.1'
+
+    //butterknife
     implementation 'com.jakewharton:butterknife:8.8.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
+    //kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+
+    // admob
     implementation 'com.google.android.gms:play-services-ads:17.2.0'
+
+    // firebase
+    implementation 'com.google.firebase:firebase-core:16.0.9'
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.10.0'
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    annotationProcessor 'android.arch.persistence.room:compiler:1.1.0'
 
 }
 repositories {

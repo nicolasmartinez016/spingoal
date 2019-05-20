@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="personal.nmartinez.fr.virtualfootballpicker">
+    package="personal.nmartinez.fr.spingoal">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application
-        android:name=".SpinGoalApp"
+        android:name="personal.nmartinez.fr.spingoal.application.SpinGoalApp"
         android:allowBackup="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
@@ -13,15 +15,19 @@
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-5717896329484847~9588505519"/>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="30323751984fb10bf3dda1e2517d0c177427bea4"
+            />
         <activity
-            android:name=".MainActivity"
+            android:name="personal.nmartinez.fr.spingoal.MainActivity"
             android:hardwareAccelerated="true"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
-        <activity android:name=".splashscreen.SplashScreenActivity"
+        <activity android:name="personal.nmartinez.fr.spingoal.splashscreen.view.SplashScreenActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

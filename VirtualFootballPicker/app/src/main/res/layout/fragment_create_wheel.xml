@@ -4,7 +4,7 @@
     android:id="@+id/fl_create_wheel_main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="personal.nmartinez.fr.virtualfootballpicker.createwheels.view.CreateWheelFragment">
+    tools:context=".components.createwheels.view.CreateWheelFragment">
 
 
     <LinearLayout

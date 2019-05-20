@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="personal.nmartinez.fr.virtualfootballpicker.createobjective.view.CreateObjectiveFragment">
+    tools:context=".components.createobjective.view.CreateObjectiveFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <RelativeLayout

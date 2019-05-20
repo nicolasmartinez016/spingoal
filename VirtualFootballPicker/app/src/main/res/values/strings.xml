@@ -8,6 +8,8 @@
     <string name="create_wheels_title">Creer une roue</string>
     <string name="consult_wheels_title">Consulter les roues</string>
     <string name="consult_objectives_title">Consulter les gages</string>
+    <string name="privacy_policy_title">Politique de confidentialite</string>
+    <string name="privacy_policy_content">Vous pouvez consulter la politique de confidentialite en cliquant ici</string>
     <string name="wheels_title">Roues</string>
     <string name="play_title">Jouer</string>
     <string name="play_offline_solo_title">Jouer hors ligne seul</string>
@@ -45,6 +47,14 @@
     <string name="game_description">Lassé de taper tes potes sans cesse à la console ? Laisse leur une chance et change les règles du jeu !\n</string>
     <string name="game_description_part_2">Tirez au sort des gages et le premier à remplir le sien gagne le match.</string>
     <string name="game_description_part_3">Vous pouvez creer et modifier vos propres gages et roues.</string>
+
+
+    <string name="splash_screen_data_retrieved">Les données ont été récupérées, l\'application va démarrer...</string>
+    <string name="splash_screen_error_creating_wheel">Une erreur est survenue lors de la creation de la roue...</string>
+    <string name="splash_screen_error_creating_objectives">Une erreur est survenue lors de la creation des gages...</string>
+    <string name="splash_screen_data_created">La roue principale a été créée, l\'application va démarrer...</string>
+    <string name="splash_screen_initializing_data">Initialisation de la roue principale...</string>
+    <string name="splash_screen_creating_objectives">Initialisation des gages...</string>
 
 
     <string name="action_settings">Settings</string>
